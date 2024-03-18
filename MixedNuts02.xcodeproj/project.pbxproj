@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5813330A2BA0A3AF001E17B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 581333092BA0A3AF001E17B4 /* GoogleService-Info.plist */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
 		5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330E2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion */; };
 		581333112BA0A463001E17B4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 581333102BA0A463001E17B4 /* FirebaseAnalyticsSwift */; };
@@ -37,22 +36,81 @@
 		581333412BA0A463001E17B4 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 581333402BA0A463001E17B4 /* FirebaseStorageCombine-Community */; };
 		581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE642B9A152F00CA0B6D /* AppDelegate.swift */; };
 		581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */; };
-		581ADE692B9A152F00CA0B6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE682B9A152F00CA0B6D /* ViewController.swift */; };
-		581ADE6C2B9A152F00CA0B6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581ADE6A2B9A152F00CA0B6D /* Main.storyboard */; };
-		581ADE6E2B9A153100CA0B6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 581ADE6D2B9A153100CA0B6D /* Assets.xcassets */; };
 		581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */; };
+		CE0A74622BA8DDF300361881 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */; };
+		CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */; };
+		CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74512BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf */; };
+		CE0A74652BA8DDF300361881 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74522BA8DDF300361881 /* Poppins-BoldItalic.ttf */; };
+		CE0A74662BA8DDF300361881 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74532BA8DDF300361881 /* Poppins-Light.ttf */; };
+		CE0A74672BA8DDF300361881 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74542BA8DDF300361881 /* Poppins-Medium.ttf */; };
+		CE0A74682BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74552BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf */; };
+		CE0A74692BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74562BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf */; };
+		CE0A746A2BA8DDF300361881 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74572BA8DDF300361881 /* Poppins-ExtraBold.ttf */; };
+		CE0A746B2BA8DDF300361881 /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74582BA8DDF300361881 /* Poppins-BlackItalic.ttf */; };
+		CE0A746C2BA8DDF300361881 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74592BA8DDF300361881 /* OFL.txt */; };
+		CE0A746D2BA8DDF300361881 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A745A2BA8DDF300361881 /* Poppins-Regular.ttf */; };
+		CE0A746E2BA8DDF300361881 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A745B2BA8DDF300361881 /* Poppins-LightItalic.ttf */; };
+		CE0A746F2BA8DDF300361881 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A745C2BA8DDF300361881 /* Poppins-Bold.ttf */; };
+		CE0A74702BA8DDF300361881 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A745D2BA8DDF300361881 /* Poppins-Black.ttf */; };
+		CE0A74712BA8DDF300361881 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A745E2BA8DDF300361881 /* Poppins-Thin.ttf */; };
+		CE0A74722BA8DDF300361881 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A745F2BA8DDF300361881 /* Poppins-SemiBold.ttf */; };
+		CE0A74732BA8DDF300361881 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74602BA8DDF300361881 /* Poppins-Italic.ttf */; };
+		CE0A74742BA8DDF300361881 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74612BA8DDF300361881 /* Poppins-MediumItalic.ttf */; };
+		CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */; };
+		CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74772BA8DDFE00361881 /* HomeViewController.swift */; };
+		CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74782BA8DDFE00361881 /* ManageViewController.swift */; };
+		CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74792BA8DDFE00361881 /* LogInViewController.swift */; };
+		CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */; };
+		CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */; };
+		CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74812BA8DE0F00361881 /* DesignableUITextField.swift */; };
+		CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74822BA8DE0F00361881 /* DesignableUIButton.swift */; };
+		CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */; };
+		CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */; };
+		CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748C2BA8DE1600361881 /* TaskView.xib */; };
+		CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748E2BA8DE1F00361881 /* Main.storyboard */; };
+		CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74902BA8DE2C00361881 /* Assets.xcassets */; };
+		CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		581333092BA0A3AF001E17B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581ADE642B9A152F00CA0B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		581ADE682B9A152F00CA0B6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		581ADE6B2B9A152F00CA0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		581ADE6D2B9A153100CA0B6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		581ADE702B9A153100CA0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		581ADE722B9A153100CA0B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74512BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74522BA8DDF300361881 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74532BA8DDF300361881 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		CE0A74542BA8DDF300361881 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		CE0A74552BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74562BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74572BA8DDF300361881 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		CE0A74582BA8DDF300361881 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74592BA8DDF300361881 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		CE0A745A2BA8DDF300361881 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		CE0A745B2BA8DDF300361881 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		CE0A745C2BA8DDF300361881 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		CE0A745D2BA8DDF300361881 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		CE0A745E2BA8DDF300361881 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		CE0A745F2BA8DDF300361881 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		CE0A74602BA8DDF300361881 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		CE0A74612BA8DDF300361881 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		CE0A74772BA8DDFE00361881 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CE0A74782BA8DDFE00361881 /* ManageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
+		CE0A74792BA8DDFE00361881 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableDatePicker.swift; sourceTree = "<group>"; };
+		CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignablePopUpCard.swift; sourceTree = "<group>"; };
+		CE0A74812BA8DE0F00361881 /* DesignableUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableUITextField.swift; sourceTree = "<group>"; };
+		CE0A74822BA8DE0F00361881 /* DesignableUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableUIButton.swift; sourceTree = "<group>"; };
+		CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableViewBox.swift; sourceTree = "<group>"; };
+		CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableTaskView.swift; sourceTree = "<group>"; };
+		CE0A748C2BA8DE1600361881 /* TaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
+		CE0A748E2BA8DE1F00361881 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CE0A74902BA8DE2C00361881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Downloads/Milestone2/Milestone2/Assets.xcassets; sourceTree = "<group>"; };
+		CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,16 +170,77 @@
 		581ADE632B9A152F00CA0B6D /* MixedNuts02 */ = {
 			isa = PBXGroup;
 			children = (
+				CE0A744E2BA8DDF300361881 /* Poppins */,
 				581ADE642B9A152F00CA0B6D /* AppDelegate.swift */,
 				581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */,
-				581ADE682B9A152F00CA0B6D /* ViewController.swift */,
-				581ADE6A2B9A152F00CA0B6D /* Main.storyboard */,
-				581ADE6D2B9A153100CA0B6D /* Assets.xcassets */,
+				CE0A74752BA8DDFE00361881 /* ViewControllers */,
+				CE0A747E2BA8DE0F00361881 /* Designables */,
+				CE0A748B2BA8DE1600361881 /* Views */,
+				CE0A748E2BA8DE1F00361881 /* Main.storyboard */,
+				CE0A74902BA8DE2C00361881 /* Assets.xcassets */,
 				581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */,
 				581ADE722B9A153100CA0B6D /* Info.plist */,
-				581333092BA0A3AF001E17B4 /* GoogleService-Info.plist */,
+				CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */,
 			);
 			path = MixedNuts02;
+			sourceTree = "<group>";
+		};
+		CE0A744E2BA8DDF300361881 /* Poppins */ = {
+			isa = PBXGroup;
+			children = (
+				CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */,
+				CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */,
+				CE0A74512BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf */,
+				CE0A74522BA8DDF300361881 /* Poppins-BoldItalic.ttf */,
+				CE0A74532BA8DDF300361881 /* Poppins-Light.ttf */,
+				CE0A74542BA8DDF300361881 /* Poppins-Medium.ttf */,
+				CE0A74552BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf */,
+				CE0A74562BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf */,
+				CE0A74572BA8DDF300361881 /* Poppins-ExtraBold.ttf */,
+				CE0A74582BA8DDF300361881 /* Poppins-BlackItalic.ttf */,
+				CE0A74592BA8DDF300361881 /* OFL.txt */,
+				CE0A745A2BA8DDF300361881 /* Poppins-Regular.ttf */,
+				CE0A745B2BA8DDF300361881 /* Poppins-LightItalic.ttf */,
+				CE0A745C2BA8DDF300361881 /* Poppins-Bold.ttf */,
+				CE0A745D2BA8DDF300361881 /* Poppins-Black.ttf */,
+				CE0A745E2BA8DDF300361881 /* Poppins-Thin.ttf */,
+				CE0A745F2BA8DDF300361881 /* Poppins-SemiBold.ttf */,
+				CE0A74602BA8DDF300361881 /* Poppins-Italic.ttf */,
+				CE0A74612BA8DDF300361881 /* Poppins-MediumItalic.ttf */,
+			);
+			path = Poppins;
+			sourceTree = "<group>";
+		};
+		CE0A74752BA8DDFE00361881 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */,
+				CE0A74772BA8DDFE00361881 /* HomeViewController.swift */,
+				CE0A74782BA8DDFE00361881 /* ManageViewController.swift */,
+				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CE0A747E2BA8DE0F00361881 /* Designables */ = {
+			isa = PBXGroup;
+			children = (
+				CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */,
+				CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */,
+				CE0A74812BA8DE0F00361881 /* DesignableUITextField.swift */,
+				CE0A74822BA8DE0F00361881 /* DesignableUIButton.swift */,
+				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
+				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
+			);
+			path = Designables;
+			sourceTree = "<group>";
+		};
+		CE0A748B2BA8DE1600361881 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,10 +333,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE0A746E2BA8DDF300361881 /* Poppins-LightItalic.ttf in Resources */,
+				CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */,
+				CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */,
+				CE0A746F2BA8DDF300361881 /* Poppins-Bold.ttf in Resources */,
+				CE0A746C2BA8DDF300361881 /* OFL.txt in Resources */,
+				CE0A74692BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				CE0A74682BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */,
+				CE0A74702BA8DDF300361881 /* Poppins-Black.ttf in Resources */,
+				CE0A74622BA8DDF300361881 /* Poppins-ExtraLight.ttf in Resources */,
+				CE0A74662BA8DDF300361881 /* Poppins-Light.ttf in Resources */,
+				CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */,
+				CE0A74712BA8DDF300361881 /* Poppins-Thin.ttf in Resources */,
 				581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */,
-				5813330A2BA0A3AF001E17B4 /* GoogleService-Info.plist in Resources */,
-				581ADE6E2B9A153100CA0B6D /* Assets.xcassets in Resources */,
-				581ADE6C2B9A152F00CA0B6D /* Main.storyboard in Resources */,
+				CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */,
+				CE0A746D2BA8DDF300361881 /* Poppins-Regular.ttf in Resources */,
+				CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */,
+				CE0A746B2BA8DDF300361881 /* Poppins-BlackItalic.ttf in Resources */,
+				CE0A74722BA8DDF300361881 /* Poppins-SemiBold.ttf in Resources */,
+				CE0A74732BA8DDF300361881 /* Poppins-Italic.ttf in Resources */,
+				CE0A74652BA8DDF300361881 /* Poppins-BoldItalic.ttf in Resources */,
+				CE0A74672BA8DDF300361881 /* Poppins-Medium.ttf in Resources */,
+				CE0A74742BA8DDF300361881 /* Poppins-MediumItalic.ttf in Resources */,
+				CE0A746A2BA8DDF300361881 /* Poppins-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,23 +367,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				581ADE692B9A152F00CA0B6D /* ViewController.swift in Sources */,
+				CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */,
+				CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
+				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
+				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
+				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
+				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
+				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
+				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,
+				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,
+				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		581ADE6A2B9A152F00CA0B6D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				581ADE6B2B9A152F00CA0B6D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -308,7 +448,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -365,7 +505,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

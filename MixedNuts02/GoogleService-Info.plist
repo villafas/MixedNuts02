@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCE_zLA_AeIQuevcz3TRDCmb6dSpu3SYSw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>402807210491</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.apptist.MixedNuts02</string>
+	<key>PROJECT_ID</key>
+	<string>mixednuts02</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mixednuts02.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:402807210491:ios:3e0d6d15277af0cdc30b5e</string>
+</dict>
+</plist>
