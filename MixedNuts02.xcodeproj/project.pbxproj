@@ -70,6 +70,9 @@
 		CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748E2BA8DE1F00361881 /* Main.storyboard */; };
 		CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74902BA8DE2C00361881 /* Assets.xcassets */; };
 		CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */; };
+		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
+		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
+		CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +114,9 @@
 		CE0A748E2BA8DE1F00361881 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE0A74902BA8DE2C00361881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Downloads/Milestone2/Milestone2/Assets.xcassets; sourceTree = "<group>"; };
 		CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
+		CE7316872BADDF6000D95353 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +187,7 @@
 				581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */,
 				581ADE722B9A153100CA0B6D /* Info.plist */,
 				CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */,
+				CE0A74982BA8F28100361881 /* Task.swift */,
 			);
 			path = MixedNuts02;
 			sourceTree = "<group>";
@@ -218,6 +225,7 @@
 				CE0A74772BA8DDFE00361881 /* HomeViewController.swift */,
 				CE0A74782BA8DDFE00361881 /* ManageViewController.swift */,
 				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
+				CE7316872BADDF6000D95353 /* AddViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -225,6 +233,7 @@
 		CE0A747E2BA8DE0F00361881 /* Designables */ = {
 			isa = PBXGroup;
 			children = (
+				CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */,
 				CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */,
 				CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */,
 				CE0A74812BA8DE0F00361881 /* DesignableUITextField.swift */,
@@ -372,12 +381,15 @@
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
 				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
+				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
 				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,
+				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,
 				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,
+				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

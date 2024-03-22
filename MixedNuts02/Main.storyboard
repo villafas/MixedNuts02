@@ -521,11 +521,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adr-rz-T52">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adr-rz-T52">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="1X9-UK-OC9">
-                                        <rect key="frame" x="20" y="0.0" width="353" height="741"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="1X9-UK-OC9">
+                                        <rect key="frame" x="20" y="0.0" width="353" height="841"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbf-ia-5bx">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="65"/>
@@ -564,16 +564,28 @@
                                                     <constraint firstAttribute="height" constant="450" id="sgE-bK-I1a"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="XKR-c5-Yxa">
-                                                <rect key="frame" x="0.0" y="541" width="353" height="200"/>
-                                            </stackView>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XBp-6O-Vee" customClass="SelfSizedTableView" customModule="MixedNuts02" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="541" width="353" height="300"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="task" id="8lB-m8-gvM">
+                                                        <rect key="frame" x="0.0" y="50" width="353" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8lB-m8-gvM" id="M92-jt-xWk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="353" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="1X9-UK-OC9" firstAttribute="height" secondItem="c3b-jM-QBo" secondAttribute="height" id="0id-KN-qo7"/>
                                     <constraint firstItem="1X9-UK-OC9" firstAttribute="centerX" secondItem="adr-rz-T52" secondAttribute="centerX" id="Kcb-Mc-EqP"/>
-                                    <constraint firstItem="1X9-UK-OC9" firstAttribute="height" secondItem="c3b-jM-QBo" secondAttribute="height" id="Sk9-HI-gqG"/>
                                     <constraint firstItem="1X9-UK-OC9" firstAttribute="leading" secondItem="cMS-mn-jZX" secondAttribute="leading" constant="20" id="TZt-GO-mFB"/>
+                                    <constraint firstItem="1X9-UK-OC9" firstAttribute="bottom" secondItem="adr-rz-T52" secondAttribute="bottom" id="c3j-p9-ntN"/>
                                     <constraint firstItem="1X9-UK-OC9" firstAttribute="top" secondItem="cMS-mn-jZX" secondAttribute="top" id="dd7-QE-iuJ"/>
                                     <constraint firstAttribute="bottom" secondItem="1X9-UK-OC9" secondAttribute="bottom" id="eo7-W9-cYl"/>
                                     <constraint firstAttribute="trailing" secondItem="1X9-UK-OC9" secondAttribute="trailing" constant="20" id="wl6-ON-9dd"/>
@@ -610,7 +622,7 @@
                         <outlet property="calendarViewBox" destination="PQV-Mj-DeD" id="4c0-sq-5SW"/>
                         <outlet property="mainTitle" destination="J0P-WQ-u5u" id="N2A-nf-5ah"/>
                         <outlet property="subtitleLabel" destination="vmj-Qe-eSi" id="fwY-V9-ZGb"/>
-                        <outlet property="taskStackView" destination="XKR-c5-Yxa" id="mHe-79-f0F"/>
+                        <outlet property="taskTable" destination="XBp-6O-Vee" id="1uf-hT-qke"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9Z-bB-a5i" sceneMemberID="firstResponder"/>
