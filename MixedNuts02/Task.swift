@@ -34,7 +34,7 @@ struct Task {
     }
 
     // Func converting model for easier writing to database
-    func toAnyObject() -> Any {
+    func toAnyObject() -> [String : Any] {
         return [
             "title": title,
             "course": course,

@@ -4,17 +4,15 @@
 //
 //  Created by Default User on 3/14/24.
 //
-//https://www.youtube.com/watch?v=XwXEsKRYUXU
-//https://medium.com/@didoaint/scratching-the-firebase-services-with-your-ios-app-c2746881c6d8
     
 import UIKit
 import EventKit
 import Firebase
 
 @IBDesignable
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
     
-    @IBOutlet var calendarViewBox: UIView!
+    @IBOutlet weak var calendarViewBox: UIView!
     @IBOutlet weak var taskTable: UITableView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var mainTitle: UILabel!
@@ -23,52 +21,86 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBInspectable var tintColor: UIColor!
     
     var db: Firestore!
+    var calendarView: UICalendarView!
     
     var taskList = [Task]()
     var dateList = [Date]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCalendarView()
-        //taskTable.translatesAutoresizingMaskIntoConstraints = false
-        
-        taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
-        taskTable.delegate = self
-        taskTable.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         db = Firestore.firestore()
-        
-        var dateList = [Date]()
+
         db.collection("tasks").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    let taskDate = ((document.data()["workDate"]) as! Timestamp).dateValue();
-                    dateList.append(taskDate.removeTimeStamp!)
+                    let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
+                    if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
                 }
-                self.dateList = dateList
+                self.calendarView.reloadDecorations(forDateComponents: self.dateToComponents(dates: self.dateList), animated: true)
             }
         }
+        
+        configureCalendarView()
+
+        taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
+        taskTable.delegate = self
+        taskTable.dataSource = self
     }
     
-    
-    
-    private func configureCalendarView(){
-        let calendarView = UICalendarView()
+    func configureCalendarView(){
+        if calendarViewBox.viewWithTag(99) != nil {
+            return
+        }
+        calendarView = UICalendarView()
         calendarView.calendar = Calendar(identifier: .gregorian)
+        let startDate = Calendar.current.date(byAdding: .year, value: -3, to: Date())
+        let endDate = Calendar.current.date(byAdding: .year, value: 3, to: Date())
+        let calendarViewDateRange = DateInterval(start: startDate!, end: endDate!)
+        calendarView.visibleDateComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date())
+        calendarView.availableDateRange = calendarViewDateRange
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         calendarView.tintColor = tintColor
+        calendarView.tag = 99
+        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
+        calendarView.selectionBehavior = dateSelection
+        calendarView.delegate = self
         calendarViewBox.addSubview(calendarView)
         NSLayoutConstraint.activate([
             calendarView.leadingAnchor.constraint(equalTo: calendarViewBox.leadingAnchor),
             calendarView.trailingAnchor.constraint(equalTo: calendarViewBox.trailingAnchor),
             calendarView.centerXAnchor.constraint(equalTo: calendarViewBox.centerXAnchor)
         ])
+    }
+    
+    typealias DateListClosure = ([Date]?) -> Void
+    func updateDateList(completionHandler: @escaping DateListClosure) {
         
-        let dateSelection = UICalendarSelectionSingleDate(delegate: self)
-        calendarView.selectionBehavior = dateSelection
-        calendarView.delegate = self
+//        var dateList = [Date]()
+//        db.collection("tasks").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
+//                    if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
+//                }
+//                self.dateList = dateList
+//            }
+    }
+    
+    func dateToComponents(dates: [Date]) -> [DateComponents]{
+        var components = [DateComponents]()
+        for d in dates {
+            let comp = Calendar.current.dateComponents([.year, .month, .day], from: d)
+            components.append(comp)
+        }
+        
+        return components
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,9 +125,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.contentView.addSubview(taskView)
         return cell
     }
-}
-
-extension HomeViewController: UICalendarSelectionSingleDateDelegate {
+    
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        if dateList.contains(dateComponents.date!.startOfDay) {
+            return UICalendarView.Decoration.default(color: decorationColor, size: .small)
+        }
+            
+        return nil
+    }
+    
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
         //print(dateComponents)
         // HARD CODED
@@ -129,30 +167,9 @@ extension HomeViewController: UICalendarSelectionSingleDateDelegate {
                 }
                 self.taskList = taskList
                 self.taskTable.reloadData();
+                self.subtitleLabel.text = "You have \(self.taskList.count) tasks for the day"
             }
         }
-    }
-}
-
-extension HomeViewController: UICalendarViewDelegate {
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        //let font = UIFont(name:"Poppins-Regular", size: 14)
-        //Save the dates
-        if dateList.isEmpty {
-            return nil
-        }
-        
-        guard let day = Calendar.current.date(from: dateComponents)?.removeTimeStamp else {
-            return nil
-        }
-
-        for date in dateList{
-            if date == day {
-                return UICalendarView.Decoration.default(color: decorationColor, size: .small)
-            }
-        }
-
-        return nil
     }
 }
 
@@ -170,6 +187,9 @@ extension Date {
        }
        return date
    }
+    var startOfDay: Date {
+        Calendar.current.startOfDay(for: self)
+    }
 }
 
 extension CollectionReference {

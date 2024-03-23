@@ -524,8 +524,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adr-rz-T52">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="1X9-UK-OC9">
-                                        <rect key="frame" x="20" y="0.0" width="353" height="841"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1X9-UK-OC9">
+                                        <rect key="frame" x="20" y="0.0" width="353" height="835"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbf-ia-5bx">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="65"/>
@@ -557,15 +557,15 @@
                                                     <constraint firstAttribute="height" constant="65" id="hqy-wd-sOu"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQV-Mj-DeD" customClass="CalendarView" customModule="KDCalendar">
-                                                <rect key="frame" x="0.0" y="78" width="353" height="450"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQV-Mj-DeD">
+                                                <rect key="frame" x="0.0" y="75" width="353" height="450"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="450" id="sgE-bK-I1a"/>
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XBp-6O-Vee" customClass="SelfSizedTableView" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="541" width="353" height="300"/>
+                                                <rect key="frame" x="0.0" y="535" width="353" height="300"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="task" id="8lB-m8-gvM">
@@ -1926,7 +1926,7 @@
         <!--Add Your Task-->
         <scene sceneID="h1Q-dI-IBc">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bd9-EI-jkH" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="bd9-EI-jkH" customClass="AddViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="37E-i1-eFT">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2295,6 +2295,7 @@
                                                 <connections>
                                                     <action selector="doneDoneAction:" destination="MEH-K9-Yh4" eventType="touchUpInside" id="e5i-9P-dkt"/>
                                                     <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h49-8M-vwN"/>
+                                                    <action selector="submitPressed:" destination="bd9-EI-jkH" eventType="touchUpInside" id="bq8-AY-iWu"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2336,6 +2337,14 @@
                             <color key="value" red="0.80784313730000001" green="0.1647058824" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="courseField" destination="gCX-bZ-uBB" id="3oG-W6-sOf"/>
+                        <outlet property="dueDate" destination="Lf4-XA-b2y" id="ZYI-G1-CG6"/>
+                        <outlet property="dueTime" destination="uST-mU-aua" id="iPX-m9-e6M"/>
+                        <outlet property="titleField" destination="PBs-Mj-0Kp" id="Cm3-qh-nay"/>
+                        <outlet property="workDate" destination="E1L-Vb-fEg" id="w2g-7J-Twk"/>
+                        <outlet property="workTime" destination="pVd-3G-0m2" id="izi-6G-Ejs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hk5-be-wJx" sceneMemberID="firstResponder"/>
             </objects>
