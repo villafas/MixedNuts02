@@ -77,22 +77,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ])
     }
     
-    typealias DateListClosure = ([Date]?) -> Void
-    func updateDateList(completionHandler: @escaping DateListClosure) {
-        
-//        var dateList = [Date]()
-//        db.collection("tasks").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
-//                    if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
-//                }
-//                self.dateList = dateList
-//            }
-    }
-    
     func dateToComponents(dates: [Date]) -> [DateComponents]{
         var components = [DateComponents]()
         for d in dates {
@@ -116,11 +100,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let viewWithTag = cell.contentView.viewWithTag(100) {
                 viewWithTag.removeFromSuperview()
         }
-        let taskView = DesignableTaskView.instanceFromNib()
+        let taskView = DesignableTaskView.instanceFromNib(setTask: taskList[indexPath.row])
         taskView.translatesAutoresizingMaskIntoConstraints = false
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
-        taskView.taskTitle.text = taskList[indexPath.row].title
-        taskView.taskDate.text = "Lol"
         taskView.tag = 100
         cell.contentView.addSubview(taskView)
         return cell

@@ -73,6 +73,8 @@
 		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
 		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
 		CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddViewController.swift */; };
+		CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */; };
+		CED3CD312BB1BDC800C9A544 /* EditTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		CE7316872BADDF6000D95353 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableEditTaskView.swift; sourceTree = "<group>"; };
+		CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTaskView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +244,7 @@
 				CE0A74822BA8DE0F00361881 /* DesignableUIButton.swift */,
 				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
 				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
+				CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
+				CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				CE0A74682BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */,
 				CE0A74702BA8DDF300361881 /* Poppins-Black.ttf in Resources */,
+				CED3CD312BB1BDC800C9A544 /* EditTaskView.xib in Resources */,
 				CE0A74622BA8DDF300361881 /* Poppins-ExtraLight.ttf in Resources */,
 				CE0A74662BA8DDF300361881 /* Poppins-Light.ttf in Resources */,
 				CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */,
@@ -385,6 +392,7 @@
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
 				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,
+				CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */,
 				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,

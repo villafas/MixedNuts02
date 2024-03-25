@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 struct Task {
+    let id: String
     let title: String
     let course: String
     let dueDate: Date
@@ -16,7 +17,8 @@ struct Task {
     let isComplete: Bool
     
     // Standard init
-    init(title: String, course: String, dueDate: Date, workDate: Date, isComplete: Bool){
+    init(id: String, title: String, course: String, dueDate: Date, workDate: Date, isComplete: Bool){
+        self.id = id
         self.title = title
         self.course = course
         self.dueDate = dueDate
@@ -26,6 +28,7 @@ struct Task {
     
     // Init for reading from Database snapshot
     init(snapshot: QueryDocumentSnapshot) {
+        id = snapshot.documentID
         title = snapshot.data()["title"] as! String
         course = snapshot.data()["course"] as! String
         dueDate = ((snapshot.data()["dueDate"]) as! Timestamp).dateValue();
