@@ -39,12 +39,12 @@ class DesignableTaskView: UIView {
         
     }
     
-    private func taskIsDone(){
+    func taskIsDone(){
         taskButton.isSelected = true
         backgroundColor = doneColor
     }
     
-    private func taskIsNotDone(){
+    func taskIsNotDone(){
         taskButton.isSelected = false
         backgroundColor = bkgColor
     }

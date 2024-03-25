@@ -71,6 +71,7 @@
 		CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74902BA8DE2C00361881 /* Assets.xcassets */; };
 		CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */; };
 		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
+		CE45AF912BB1ED4400832038 /* SectionTitleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */; };
 		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
 		CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddViewController.swift */; };
 		CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */; };
@@ -117,6 +118,7 @@
 		CE0A74902BA8DE2C00361881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Downloads/Milestone2/Milestone2/Assets.xcassets; sourceTree = "<group>"; };
 		CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleVIew.swift; sourceTree = "<group>"; };
 		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		CE7316872BADDF6000D95353 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableEditTaskView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
 				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
 				CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */,
+				CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */,
+				CE45AF912BB1ED4400832038 /* SectionTitleVIew.swift in Sources */,
 				CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,

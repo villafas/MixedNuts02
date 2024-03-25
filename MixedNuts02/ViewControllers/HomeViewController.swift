@@ -138,7 +138,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // MAIN LOGIC
         // Go through all of the tasks in the table, and position them on the right day
-        db.collection("tasks").whereField("dueDate", isDateEqual: dateComponents!).getDocuments() { (querySnapshot, err) in
+        db.collection("tasks")
+            .whereField("dueDate", isDateEqual: dateComponents!)
+            .order(by: "isComplete", descending: false)
+            .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
