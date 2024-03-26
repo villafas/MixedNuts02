@@ -34,21 +34,24 @@
                             <state key="selected" image="group17">
                                 <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="doneIsPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="pGl-Lh-IPO"/>
+                            </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="4lI-xo-PZo">
-                            <rect key="frame" x="52" y="18.000000000000004" width="301" height="45.333333333333343"/>
+                            <rect key="frame" x="52" y="22.000000000000004" width="301" height="37.333333333333343"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eJ6-Hj-cWL">
-                                    <rect key="frame" x="0.0" y="0.0" width="39" height="45.333333333333336"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="35" height="37.333333333333336"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpc-vA-fk5">
-                                            <rect key="frame" x="0.0" y="0.0" width="39" height="22.666666666666668"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="35" height="18.666666666666668"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iio-1e-HRy">
-                                            <rect key="frame" x="0.0" y="22.666666666666664" width="39" height="22.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="18.666666666666664" width="35" height="18.666666666666664"/>
                                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                             <color key="textColor" red="0.25490196078431371" green="0.29019607843137252" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

@@ -71,9 +71,11 @@
 		CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74902BA8DE2C00361881 /* Assets.xcassets */; };
 		CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */; };
 		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
+		CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */; };
 		CE45AF912BB1ED4400832038 /* SectionTitleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */; };
 		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
 		CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddViewController.swift */; };
+		CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */; };
 		CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */; };
 		CED3CD312BB1BDC800C9A544 /* EditTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */; };
 /* End PBXBuildFile section */
@@ -118,9 +120,11 @@
 		CE0A74902BA8DE2C00361881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../Downloads/Milestone2/Milestone2/Assets.xcassets; sourceTree = "<group>"; };
 		CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleVIew.swift; sourceTree = "<group>"; };
 		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		CE7316872BADDF6000D95353 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableDoneCard.swift; sourceTree = "<group>"; };
 		CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableEditTaskView.swift; sourceTree = "<group>"; };
 		CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTaskView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +236,7 @@
 				CE0A74782BA8DDFE00361881 /* ManageViewController.swift */,
 				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
 				CE7316872BADDF6000D95353 /* AddViewController.swift */,
+				CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
 				CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */,
 				CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */,
+				CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -390,6 +396,7 @@
 				CE45AF912BB1ED4400832038 /* SectionTitleVIew.swift in Sources */,
 				CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
+				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
 				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
 				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
@@ -398,6 +405,7 @@
 				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,
 				CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */,
 				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
+				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,
 				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,

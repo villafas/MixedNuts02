@@ -33,23 +33,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         db = Firestore.firestore()
 
-        db.collection("tasks").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
-                    if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
-                }
-                self.calendarView.reloadDecorations(forDateComponents: self.dateToComponents(dates: self.dateList), animated: true)
-            }
-        }
+        refreshDates()
         
         configureCalendarView()
 
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
         taskTable.delegate = self
         taskTable.dataSource = self
+        taskTable.reloadData()
     }
     
     func configureCalendarView(){
@@ -75,6 +66,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             calendarView.trailingAnchor.constraint(equalTo: calendarViewBox.trailingAnchor),
             calendarView.centerXAnchor.constraint(equalTo: calendarViewBox.centerXAnchor)
         ])
+    }
+    
+    func refreshDates(){
+        db.collection("tasks").getDocuments() { [self] (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
+                    if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
+                }
+                self.calendarView.reloadDecorations(forDateComponents: self.dateToComponents(dates: self.getDateRange()), animated: true)
+            }
+        }
     }
     
     func dateToComponents(dates: [Date]) -> [DateComponents]{
@@ -156,6 +161,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
+    
+    func getDateRange() -> [Date] {
+        var dates = [Date]()
+        let current = Date()
+        var start = current.getLastMonthStart()
+        let end = current.getNextMonthEnd()
+        while start! <= end! {
+            dates.append(start!)
+            start = Calendar.current.date(byAdding: .day, value: 1, to: start!)
+        }
+        
+        return dates
+    }
 }
 
 extension Date {
@@ -174,6 +192,20 @@ extension Date {
    }
     var startOfDay: Date {
         Calendar.current.startOfDay(for: self)
+    }
+    
+    //Last Month Start
+    func getLastMonthStart() -> Date? {
+        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
+        components.month -= 1
+        return Calendar.current.date(from: components as DateComponents)!
+    }
+    
+    //Last Month End
+    func getNextMonthEnd() -> Date? {
+        let components:NSDateComponents = Calendar.current.dateComponents([.year, .month], from: self) as NSDateComponents
+        components.month += 2
+        return Calendar.current.date(from: components as DateComponents)!
     }
 }
 

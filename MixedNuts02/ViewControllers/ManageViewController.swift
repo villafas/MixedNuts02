@@ -10,13 +10,12 @@ import Firebase
 
 class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet var completeBtn: UIButton!
-    @IBOutlet var deleteBtn: UIButton!
     @IBOutlet var popupDeleteView: UIView!
     @IBOutlet var popupDoneView: UIView!
     @IBOutlet weak var taskTable: SelfSizedTableView!
     
     var db: Firestore!
+    var tempID: String?
     
     struct DaySection {
         var day: String
@@ -28,7 +27,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    var sections = [DaySection]()
+    var sections: [DaySection]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +38,18 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         db = Firestore.firestore()
         
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
         taskTable.delegate = self
         taskTable.dataSource = self
 
+        getData()
+    }
+    
+    func getData(){
+        sections = [DaySection]()
+        
         db.collection("tasks").whereField("isComplete", isEqualTo: false).order(by: "dueDate").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -63,42 +67,39 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         dateTitle = formatter.string(from: task.dueDate.startOfDay)
                     }
                     // start sections
-                    if self.sections.count == 0 {
-                        self.sections.append(DaySection(day: dateTitle, tasks: [task]))
+                    if self.sections!.count == 0 {
+                        self.sections!.append(DaySection(day: dateTitle, tasks: [task]))
                     } else {
                         var added = false
-                        for i in 0..<self.sections.count {
-                            if self.sections[i].day == dateTitle {
-                                self.sections[i].tasks.append(task)
+                        for i in 0..<self.sections!.count {
+                            if self.sections![i].day == dateTitle {
+                                self.sections![i].tasks.append(task)
                                 added = true
                                 break
                             }
                         }
                         if added == false {
-                            self.sections.append(DaySection(day: dateTitle, tasks: [task]))
+                            self.sections!.append(DaySection(day: dateTitle, tasks: [task]))
                         }
                     }
                 }
-                print(self.sections)
                 self.taskTable.reloadData();
             }
         }
-
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return sections!.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTitle")! as! SectionTitleView
-        cell.title!.text = sections[section].day
+        cell.title!.text = sections![section].day
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = self.sections[section]
+        let section = self.sections![section]
         return section.tasks.count
     }
     
@@ -111,41 +112,79 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let viewWithTag = cell.contentView.viewWithTag(100) {
                 viewWithTag.removeFromSuperview()
         }
-        let section = self.sections[indexPath.section]
+        let section = self.sections![indexPath.section]
         let task = section.tasks[indexPath.row]
         
         let taskView = DesignableEditTaskView.instanceFromNib(setTask: task)
         taskView.translatesAutoresizingMaskIntoConstraints = false
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
         taskView.tag = 100
+        taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
+        taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
         cell.contentView.addSubview(taskView)
         return cell
     }
     
     
-    @IBAction func showDeleteAction(_ sender: Any) {
-            animateScaleIn(desiredView: popupDeleteView)
+    @IBAction func showDeleteAction(_ sender: UIButton) {
+        if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as! DesignableEditTaskView? {
+            card.titleLabel.text = "Delete \(taskView.taskObj!.title)?"
+            self.tempID = taskView.taskObj!.id
         }
+        animateScaleIn(desiredView: popupDeleteView, doneOrCancel: false)
+    }
         
-    @IBAction func doneDeleteAction(_ sender: Any) {
-            animateScaleOut(desiredView: popupDeleteView)
+    @IBAction func doneDeleteAction(_ sender: UIButton) {
+        animateScaleOut(desiredView: popupDeleteView)
+        if sender.tag == 91 {
+            let docRef = db.collection("tasks").document(self.tempID!)
+            docRef.getDocument() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting document: \(err)")
+                } else {
+                    querySnapshot!.reference.delete()
+                    self.getData()
+                    self.homeView.refreshDates()
+                }
+            }
+        } else {
+            tempID = nil
         }
+    }
     
-    @IBAction func showDoneAction(_ sender: Any) {
-            animateScaleIn(desiredView: popupDoneView)
+    @IBAction func showDoneAction(_ sender: UIButton) {
+        if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as! DesignableEditTaskView? {
+            card.titleLabel.text = "You've done \(taskView.taskObj!.title)!"
+            card.subtitleLabel.text = "Remaining Tasks: \(taskTable.numberOfRows(inSection: 0))"
+            let docRef = db.collection("tasks").document(taskView.taskObj!.id)
+            docRef.getDocument() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting document: \(err)")
+                } else {
+                    querySnapshot!.reference.updateData([
+                        "isComplete" : true
+                    ])
+                    self.getData()
+                    self.homeView.refreshDates()
+                }
+            }
+            animateScaleIn(desiredView: popupDoneView, doneOrCancel: true)
         }
+    }
         
-    @IBAction func doneDoneAction(_ sender: Any) {
+    @IBAction func doneDoneAction(_ sender: UIButton) {
             animateScaleOut(desiredView: popupDoneView)
         }
     
         
     /// Animates a view to scale in and display
-    func animateScaleIn(desiredView: UIView) {
+    func animateScaleIn(desiredView: UIView, doneOrCancel: Bool) {
         let backgroundView = self.view!
         backgroundView.addSubview(desiredView)
         desiredView.center = backgroundView.center
         desiredView.isHidden = false
+        
+        
         
         desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         desiredView.alpha = 0

@@ -13,6 +13,7 @@ class DesignablePopUpCard: UIView {
     //@IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
             didSet {
