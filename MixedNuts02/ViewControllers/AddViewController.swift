@@ -40,6 +40,12 @@ class AddViewController: UIViewController {
                     print("Document added with ID: \(ref!.documentID)")
                 }
             }
+            titleField.text = ""
+            courseField.text = ""
+            self.dueDate.date = Date()
+            self.dueTime.date = Date()
+            self.workDate.date = Date()
+            self.workTime.date = Date()
         }
     }
     

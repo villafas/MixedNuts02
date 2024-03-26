@@ -144,7 +144,6 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 } else {
                     querySnapshot!.reference.delete()
                     self.getData()
-                    self.homeView.refreshDates()
                 }
             }
         } else {
@@ -165,7 +164,6 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         "isComplete" : true
                     ])
                     self.getData()
-                    self.homeView.refreshDates()
                 }
             }
             animateScaleIn(desiredView: popupDoneView, doneOrCancel: true)
