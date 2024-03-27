@@ -63,6 +63,8 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         dateTitle = "Past"
                     } else if task.dueDate.startOfDay == Date().startOfDay{
                         dateTitle = "Today"
+                    } else if task.dueDate.startOfDay == Calendar.current.date(byAdding: .day, value: 1, to: Date())?.startOfDay{
+                        dateTitle = "Tomorrow"
                     } else {
                         dateTitle = formatter.string(from: task.dueDate.startOfDay)
                     }
@@ -125,6 +127,10 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func totalItems(_ sections: [DaySection]) -> Int {
+        return sections.reduce(0) { $0 + $1.tasks.count }
+    }
+    
     
     @IBAction func showDeleteAction(_ sender: UIButton) {
         if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as! DesignableEditTaskView? {
@@ -154,7 +160,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func showDoneAction(_ sender: UIButton) {
         if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as! DesignableEditTaskView? {
             card.titleLabel.text = "You've done \(taskView.taskObj!.title)!"
-            card.subtitleLabel.text = "Remaining Tasks: \(taskTable.numberOfRows(inSection: 0))"
+            card.subtitleLabel.text = "Remaining Tasks: \((totalItems(self.sections!)) - 1)"
             let docRef = db.collection("tasks").document(taskView.taskObj!.id)
             docRef.getDocument() { (querySnapshot, err) in
                 if let err = err {

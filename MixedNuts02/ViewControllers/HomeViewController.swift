@@ -24,7 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var calendarView: UICalendarView!
     
     var taskList = [Task]()
-    var dateList = [Date]()
+    var dateList: [Date]!
+    var selectedDay: DateComponents?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         db = Firestore.firestore()
-
+        
         refreshDates()
         
         configureCalendarView()
+        
+        if selectedDay != nil {
+            refreshTasks(dateComp: selectedDay!)
+        }
 
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
         taskTable.delegate = self
@@ -69,7 +74,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func refreshDates(){
-        db.collection("tasks").getDocuments() { [self] (querySnapshot, err) in
+        self.dateList = [Date]()
+        db.collection("tasks").whereField("isComplete", isEqualTo: false).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -78,6 +84,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
                 }
                 self.calendarView.reloadDecorations(forDateComponents: self.dateToComponents(dates: self.getDateRange()), animated: true)
+            }
+        }
+    }
+    
+    func refreshTasks(dateComp: DateComponents){
+        db.collection("tasks")
+            .whereField("dueDate", isDateEqual: dateComp)
+            .order(by: "isComplete", descending: false)
+            .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var taskList = [Task]()
+                for document in querySnapshot!.documents {
+                    let task = Task(snapshot: document)
+                    taskList.append(task)
+                }
+                self.taskList = taskList
+                self.taskTable.reloadData();
+                self.subtitleLabel.text = "You have \(self.taskList.count) tasks for the day"
             }
         }
     }
@@ -143,23 +169,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // MAIN LOGIC
         // Go through all of the tasks in the table, and position them on the right day
-        db.collection("tasks")
-            .whereField("dueDate", isDateEqual: dateComponents!)
-            .order(by: "isComplete", descending: false)
-            .getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var taskList = [Task]()
-                for document in querySnapshot!.documents {
-                    let task = Task(snapshot: document)
-                    taskList.append(task)
-                }
-                self.taskList = taskList
-                self.taskTable.reloadData();
-                self.subtitleLabel.text = "You have \(self.taskList.count) tasks for the day"
-            }
-        }
+        self.selectedDay = dateComponents
+        refreshTasks(dateComp: dateComponents!)
     }
     
     func getDateRange() -> [Date] {
