@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wzN-ZL-XTA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wzN-ZL-XTA">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -114,6 +115,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
+                                                    <action selector="signUpTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G0E-la-xJZ"/>
                                                     <segue destination="uEt-ap-46o" kind="show" id="5ah-Xa-WtS"/>
                                                 </connections>
                                             </button>
@@ -192,6 +194,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="thk-jL-lS2"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="d8W-nN-OWo" id="2l9-Qu-XFc"/>
+                        <outlet property="passwordTextField" destination="vJn-74-GgL" id="8HO-CH-ORS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -364,12 +370,12 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-7r-cCp">
-                                                <rect key="frame" x="68" y="475" width="291" height="17"/>
+                                                <rect key="frame" x="68" y="474.33333333333337" width="291" height="18"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="I agree to the ">
                                                         <attributes>
                                                             <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="15" name="PoppinsLatin-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="15"/>
                                                             <font key="NSOriginalFont" metaFont="system" size="15"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -377,7 +383,7 @@
                                                     <fragment content="Terms &amp; Conditions">
                                                         <attributes>
                                                             <color key="NSColor" red="0.0" green="0.22352941179999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="15" name="PoppinsLatin-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="15"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -442,6 +448,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" style="editor" id="APV-yK-wrq"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="Wmo-Bd-UXq" id="qTo-gi-vF5"/>
+                        <outlet property="emailTextField" destination="MJL-Ek-SGE" id="pG4-Jl-iOB"/>
+                        <outlet property="nameTextField" destination="tfl-tc-fco" id="yn8-5i-pdT"/>
+                        <outlet property="passwordTextField" destination="zHd-LR-9Gf" id="SV0-FA-IiC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FsH-CE-tQc" sceneMemberID="firstResponder"/>
             </objects>
@@ -1171,7 +1183,7 @@
         <!--Personal Info-->
         <scene sceneID="uSS-Sv-s0V">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Hxr-Dq-9jw" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Hxr-Dq-9jw" customClass="ProfileViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrs-jE-QUH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1180,7 +1192,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="do5-qQ-wqr">
-                                        <rect key="frame" x="20" y="0.0" width="353" height="385"/>
+                                        <rect key="frame" x="20" y="0.0" width="353" height="486"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="YYg-3k-GKD">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="204"/>
@@ -1271,6 +1283,69 @@
                                                             <constraint firstAttribute="height" constant="81" id="A0f-wP-VUR"/>
                                                             <constraint firstItem="Akw-O7-SgX" firstAttribute="centerX" secondItem="8mQ-da-Q4H" secondAttribute="centerX" id="gOb-0G-ee2"/>
                                                             <constraint firstItem="Akw-O7-SgX" firstAttribute="centerY" secondItem="8mQ-da-Q4H" secondAttribute="centerY" id="gdP-hE-IdW"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                                <color key="value" red="0.0039215686269999999" green="0.2156862745" blue="0.4039215686" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KyF-Aw-hoD">
+                                                <rect key="frame" x="0.0" y="405" width="353" height="81"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1O-VJ-2Tz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="81"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5pR-Uj-0YV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="81"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-ND-VDf">
+                                                                        <rect key="frame" x="0.0" y="18" width="42" height="45"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="42" id="Jrg-1T-U1u"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="message"/>
+                                                                    </button>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="DGi-J2-tNT">
+                                                                        <rect key="frame" x="52" y="18.000000000000004" width="301" height="45.333333333333343"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="0YW-CA-0FR">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="253.66666666666666" height="45.333333333333336"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufi-sz-bhz">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="253.66666666666666" height="22.666666666666668"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                                                        <nil key="textColor"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kimjennie@sheridancollege.ca" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcT-y5-vmL">
+                                                                                        <rect key="frame" x="0.0" y="22.666666666666629" width="253.66666666666666" height="22.666666666666671"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                                                        <color key="textColor" red="0.25490196079999999" green="0.2901960784" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="81" id="Fig-GX-nl8"/>
+                                                                    <constraint firstAttribute="width" constant="353" id="ak1-dv-NMS"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="81" id="JH1-A4-pbV"/>
+                                                            <constraint firstItem="5pR-Uj-0YV" firstAttribute="centerY" secondItem="P1O-VJ-2Tz" secondAttribute="centerY" id="Xyh-Vf-fCS"/>
+                                                            <constraint firstItem="5pR-Uj-0YV" firstAttribute="centerX" secondItem="P1O-VJ-2Tz" secondAttribute="centerX" id="dTY-e2-7oe"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
