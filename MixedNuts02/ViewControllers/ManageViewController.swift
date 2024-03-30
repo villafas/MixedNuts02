@@ -8,14 +8,15 @@
 import UIKit
 import Firebase
 
-class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
+    
     @IBOutlet var popupDeleteView: UIView!
     @IBOutlet var popupDoneView: UIView!
     @IBOutlet weak var taskTable: SelfSizedTableView!
     
     var db: Firestore!
     var tempID: String?
+    var selectedRow: IndexPath?
     
     struct DaySection {
         var day: String
@@ -43,7 +44,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
         taskTable.delegate = self
         taskTable.dataSource = self
-
+        
         getData()
     }
     
@@ -106,16 +107,34 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath == selectedRow{
+            return 459.0
+        }
+        
         return 96.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath)
+        cell.selectionStyle = .none
         if let viewWithTag = cell.contentView.viewWithTag(100) {
-                viewWithTag.removeFromSuperview()
+            viewWithTag.removeFromSuperview()
         }
         let section = self.sections![indexPath.section]
         let task = section.tasks[indexPath.row]
+        
+        if (indexPath == selectedRow){
+            let taskView = DesignableExpandedTaskView.instanceFromNib(setTask: task)
+            taskView.translatesAutoresizingMaskIntoConstraints = false
+            taskView.heightAnchor.constraint(equalToConstant: 443).isActive = true
+            taskView.tag = 100
+            taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
+            taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
+            taskView.saveButton.addTarget(self, action: #selector(saveAction(_:)), for: .touchUpInside)
+            taskView.updateButtons(urlText: taskView.urlField.text!)
+            cell.contentView.addSubview(taskView)
+            return cell
+        }
         
         let taskView = DesignableEditTaskView.instanceFromNib(setTask: task)
         taskView.translatesAutoresizingMaskIntoConstraints = false
@@ -127,15 +146,47 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath == self.selectedRow{
+            self.taskTable.deselectRow(at: indexPath, animated: true)
+            self.selectedRow = nil
+        } else {
+            self.selectedRow = indexPath
+        }
+        self.taskTable.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        self.selectedRow = nil
+    }
+    
     func totalItems(_ sections: [DaySection]) -> Int {
         return sections.reduce(0) { $0 + $1.tasks.count }
     }
     
+    @IBAction func saveAction(_ sender: UIButton) {
+        if let taskView = sender.superview?.superview?.superview as! DesignableExpandedTaskView? {
+            let docRef = db.collection("tasks").document(taskView.taskObj!.id)
+            docRef.getDocument() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting document: \(err)")
+                } else {
+                    querySnapshot!.reference.updateData([
+                        "taskURL" : taskView.urlField.text!
+                    ])
+                    querySnapshot!.reference.updateData([
+                        "notes" : taskView.notesView.text!
+                    ])
+                    self.getData()
+                }
+            }
+        }
+    }
     
     @IBAction func showDeleteAction(_ sender: UIButton) {
-        if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as! DesignableEditTaskView? {
-            card.titleLabel.text = "Delete \(taskView.taskObj!.title)?"
-            self.tempID = taskView.taskObj!.id
+        if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView? {
+            card.titleLabel.text = "Delete \(taskView!.taskObj!.title)?"
+            self.tempID = taskView!.taskObj!.id
         }
         animateScaleIn(desiredView: popupDeleteView, doneOrCancel: false)
     }
@@ -149,6 +200,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("Error getting document: \(err)")
                 } else {
                     querySnapshot!.reference.delete()
+                    self.selectedRow = nil
                     self.getData()
                 }
             }
@@ -158,10 +210,10 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func showDoneAction(_ sender: UIButton) {
-        if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as! DesignableEditTaskView? {
-            card.titleLabel.text = "You've done \(taskView.taskObj!.title)!"
+        if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
+            card.titleLabel.text = "\(taskView!.taskObj!.title)"
             card.subtitleLabel.text = "Remaining Tasks: \((totalItems(self.sections!)) - 1)"
-            let docRef = db.collection("tasks").document(taskView.taskObj!.id)
+            let docRef = db.collection("tasks").document(taskView!.taskObj!.id)
             docRef.getDocument() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting document: \(err)")
@@ -169,6 +221,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     querySnapshot!.reference.updateData([
                         "isComplete" : true
                     ])
+                    self.selectedRow = nil
                     self.getData()
                 }
             }

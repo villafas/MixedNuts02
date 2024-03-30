@@ -24,9 +24,32 @@ class DesignableUIButton: UIButton {
         }
     }
     
+    @IBInspectable var bkgColor: UIColor = UIColor.lightGray {
+        didSet {
+            
+        }
+    }
+    
+    @IBInspectable var textColor: UIColor = UIColor.lightGray {
+        didSet {
+            
+        }
+    }
 
     func updateView() {
         
+    }
+    
+    func setDisabled(){
+        self.isUserInteractionEnabled = false
+        configuration?.baseBackgroundColor = UIColor.lightGray
+        configuration?.baseForegroundColor = .darkGray
+    }
+    
+    func setEnabled(){
+        self.isUserInteractionEnabled = true
+        configuration?.baseBackgroundColor = self.bkgColor
+        configuration?.baseForegroundColor = self.textColor
     }
 
 }

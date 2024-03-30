@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */; };
+		2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
 		5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330E2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion */; };
 		581333112BA0A463001E17B4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 581333102BA0A463001E17B4 /* FirebaseAnalyticsSwift */; };
@@ -72,7 +74,7 @@
 		CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */; };
 		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
 		CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */; };
-		CE45AF912BB1ED4400832038 /* SectionTitleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */; };
+		CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleView.swift */; };
 		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
 		CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddViewController.swift */; };
 		CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */; };
@@ -82,6 +84,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedTaskView.xib; sourceTree = "<group>"; };
+		2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableExpandedTaskView.swift; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581ADE642B9A152F00CA0B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +126,7 @@
 		CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
-		CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleVIew.swift; sourceTree = "<group>"; };
+		CE45AF902BB1ED4400832038 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
 		CE7316872BADDF6000D95353 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableUITextView.swift; sourceTree = "<group>"; };
@@ -255,7 +259,8 @@
 				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
 				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
 				CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */,
-				CE45AF902BB1ED4400832038 /* SectionTitleVIew.swift */,
+				2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */,
+				CE45AF902BB1ED4400832038 /* SectionTitleView.swift */,
 				CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */,
 			);
 			path = Designables;
@@ -266,6 +271,7 @@
 			children = (
 				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
 				CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */,
+				275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 				CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */,
 				CE0A746B2BA8DDF300361881 /* Poppins-BlackItalic.ttf in Resources */,
 				CE0A74722BA8DDF300361881 /* Poppins-SemiBold.ttf in Resources */,
+				275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */,
 				CE0A74732BA8DDF300361881 /* Poppins-Italic.ttf in Resources */,
 				CE0A74652BA8DDF300361881 /* Poppins-BoldItalic.ttf in Resources */,
 				CE0A74672BA8DDF300361881 /* Poppins-Medium.ttf in Resources */,
@@ -396,7 +403,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */,
-				CE45AF912BB1ED4400832038 /* SectionTitleVIew.swift in Sources */,
+				CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */,
+				2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */,
 				CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
@@ -558,7 +566,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZA24M56L3B;
+				DEVELOPMENT_TEAM = DA7NC8489D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixedNuts02/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -586,7 +594,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZA24M56L3B;
+				DEVELOPMENT_TEAM = DA7NC8489D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixedNuts02/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -11,6 +11,7 @@ import Firebase
 class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var taskTable: SelfSizedTableView!
+    @IBOutlet weak var subtitleField: UILabel!
     
     var db: Firestore!
     
@@ -39,6 +40,11 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.taskList!.append(task)
                 }
                 self.taskTable.reloadData();
+                if (self.taskList!.count == 1){
+                    self.subtitleField.text = "You've Cleared 1 Task This Semester"
+                } else {
+                    self.subtitleField.text = "You've Cleared \(self.taskList!.count) Tasks This Semester"
+                }
             }
         }
 

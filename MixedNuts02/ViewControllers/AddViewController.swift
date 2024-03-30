@@ -14,6 +14,8 @@ class AddViewController: UIViewController {
     @IBOutlet weak var dueDate: DesignableDatePicker!
     @IBOutlet weak var dueTime: DesignableDatePicker!
     @IBOutlet weak var courseField: DesignableUITextField!
+    @IBOutlet weak var urlField: DesignableUITextField!
+    @IBOutlet weak var notesView: DesignableUITextView!
     @IBOutlet weak var workDate: DesignableDatePicker!
     @IBOutlet weak var workTime: DesignableDatePicker!
     
@@ -31,7 +33,7 @@ class AddViewController: UIViewController {
         if let title = titleField.text, let course = courseField.text, !title.isEmpty, !course.isEmpty {
             let dueDate = combineDateWithTime(date: dueDate.date, time: dueTime.date)!
             let workDate = combineDateWithTime(date: workDate.date, time: workTime.date)!
-            var task = Task(id: "", title: title, course: course, dueDate: dueDate, workDate: workDate, isComplete: false)
+            var task = Task(id: "", title: title, course: course, taskURL: urlField.text, notes: notesView.text, dueDate: dueDate, workDate: workDate, isComplete: false)
             var ref: DocumentReference? = nil
             ref = db.collection("tasks").addDocument(data: task.toAnyObject()) { err in
                 if let err = err {
@@ -42,6 +44,8 @@ class AddViewController: UIViewController {
             }
             titleField.text = ""
             courseField.text = ""
+            urlField.text = ""
+            notesView.text = ""
             self.dueDate.date = Date()
             self.dueTime.date = Date()
             self.workDate.date = Date()

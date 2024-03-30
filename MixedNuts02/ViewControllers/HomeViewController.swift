@@ -89,6 +89,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func refreshTasks(dateComp: DateComponents){
+        var count = 0;
         db.collection("tasks")
             .whereField("dueDate", isDateEqual: dateComp)
             .order(by: "isComplete", descending: false)
@@ -99,11 +100,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 var taskList = [Task]()
                 for document in querySnapshot!.documents {
                     let task = Task(snapshot: document)
+                    if !task.isComplete {
+                        count += 1
+                    }
                     taskList.append(task)
                 }
                 self.taskList = taskList
                 self.taskTable.reloadData();
-                self.subtitleLabel.text = "You have \(self.taskList.count) tasks for the day"
+                if count == 1 {
+                    self.subtitleLabel.text = "You have 1 task for the day"
+                } else {
+                    self.subtitleLabel.text = "You have \(count) tasks for the day"
+                }
             }
         }
     }
