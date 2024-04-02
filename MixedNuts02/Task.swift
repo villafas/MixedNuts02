@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 struct Task {
-    let id: String
+    var id: String
     let title: String
     let course: String
     let taskURL: String?

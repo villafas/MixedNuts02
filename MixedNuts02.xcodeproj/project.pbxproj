@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27535FB82BB9DA2F0068EC9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */; };
 		275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */; };
 		2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
@@ -71,7 +72,6 @@
 		CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748C2BA8DE1600361881 /* TaskView.xib */; };
 		CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748E2BA8DE1F00361881 /* Main.storyboard */; };
 		CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74902BA8DE2C00361881 /* Assets.xcassets */; };
-		CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */; };
 		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
 		CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */; };
 		CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleView.swift */; };
@@ -84,6 +84,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27525FD92BBA411500578A30 /* MixedNuts02.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixedNuts02.entitlements; sourceTree = "<group>"; };
+		27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedTaskView.xib; sourceTree = "<group>"; };
 		2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableExpandedTaskView.swift; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +125,6 @@
 		CE0A748C2BA8DE1600361881 /* TaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		CE0A748E2BA8DE1F00361881 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE0A74902BA8DE2C00361881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		CE45AF902BB1ED4400832038 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
@@ -192,6 +193,7 @@
 		581ADE632B9A152F00CA0B6D /* MixedNuts02 */ = {
 			isa = PBXGroup;
 			children = (
+				27525FD92BBA411500578A30 /* MixedNuts02.entitlements */,
 				CE0A744E2BA8DDF300361881 /* Poppins */,
 				581ADE642B9A152F00CA0B6D /* AppDelegate.swift */,
 				581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */,
@@ -202,7 +204,7 @@
 				CE0A74902BA8DE2C00361881 /* Assets.xcassets */,
 				581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */,
 				581ADE722B9A153100CA0B6D /* Info.plist */,
-				CE0A74922BA8E12C00361881 /* GoogleService-Info.plist */,
+				27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
 			);
 			path = MixedNuts02;
@@ -368,7 +370,6 @@
 			files = (
 				CE0A746E2BA8DDF300361881 /* Poppins-LightItalic.ttf in Resources */,
 				CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */,
-				CE0A74932BA8E12C00361881 /* GoogleService-Info.plist in Resources */,
 				CE0A746F2BA8DDF300361881 /* Poppins-Bold.ttf in Resources */,
 				CE0A746C2BA8DDF300361881 /* OFL.txt in Resources */,
 				CE0A74692BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf in Resources */,
@@ -380,6 +381,7 @@
 				CE0A74662BA8DDF300361881 /* Poppins-Light.ttf in Resources */,
 				CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				CE0A74712BA8DDF300361881 /* Poppins-Thin.ttf in Resources */,
+				27535FB82BB9DA2F0068EC9B /* GoogleService-Info.plist in Resources */,
 				581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */,
 				CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */,
 				CE0A746D2BA8DDF300361881 /* Poppins-Regular.ttf in Resources */,
@@ -564,9 +566,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MixedNuts02/MixedNuts02.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DA7NC8489D;
+				DEVELOPMENT_TEAM = VDQS4882Z8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixedNuts02/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -579,7 +582,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apptist.MixedNuts02;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apptist.MixedNuts02App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -592,9 +595,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MixedNuts02/MixedNuts02.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DA7NC8489D;
+				DEVELOPMENT_TEAM = VDQS4882Z8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixedNuts02/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -607,7 +611,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apptist.MixedNuts02;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apptist.MixedNuts02App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -14,7 +14,8 @@ class LogInViewController: UIViewController {
     //MARK: - Load Funcs
     
     override func viewDidLoad() {
-      super.viewDidLoad()
+        super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
    }
     
     @IBAction func signInTapped (_ sender: UIButton){

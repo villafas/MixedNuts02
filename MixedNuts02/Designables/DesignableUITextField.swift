@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class DesignableUITextField: UITextField {
+class DesignableUITextField: UITextField, UITextFieldDelegate {
     
     // Provides left padding for images
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
@@ -40,7 +40,7 @@ class DesignableUITextField: UITextField {
     
     @IBInspectable var insetX: CGFloat = 0
     @IBInspectable var insetY: CGFloat = 0
-
+    
         // placeholder position
         override func textRect(forBounds bounds: CGRect) -> CGRect {
             return bounds.insetBy(dx: insetX + leftPadding, dy: insetY)
@@ -52,6 +52,7 @@ class DesignableUITextField: UITextField {
         }
     
     func updateView() {
+        self.delegate = self
         layer.borderWidth = 1.0
         layer.borderColor = color.cgColor
         layer.cornerRadius = 20.0
@@ -70,6 +71,11 @@ class DesignableUITextField: UITextField {
         
         // Placeholder text color
         //attributedPlaceholder = NSAttributedString(string: placeholder != nil ?  placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: color])
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.resignFirstResponder()
+        return true;
     }
 
 }

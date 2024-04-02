@@ -17,6 +17,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var db: Firestore!
     var tempID: String?
     var selectedRow: IndexPath?
+    var notifID: String?
     
     struct DaySection {
         var day: String
@@ -35,6 +36,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         popupDeleteView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         popupDoneView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        self.hideKeyboardWhenTappedAround() 
         // Do any additional setup after loading the view.
     }
     
@@ -87,6 +89,25 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
                 self.taskTable.reloadData();
+                if self.notifID != nil{
+                    self.selectNotificationTask()
+                }
+            }
+        }
+    }
+    
+    func selectNotificationTask(){
+        for section in 0..<self.sections!.count{
+            var count = 0
+            for task in self.sections![section].tasks {
+                if task.id == notifID {
+                    let index = IndexPath(row: count, section: section)
+                    self.selectedRow = index
+                    taskTable.selectRow(at: index, animated: true, scrollPosition: .middle)
+                    notifID = nil
+                    return
+                }
+                count += 1
             }
         }
     }
@@ -127,6 +148,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let taskView = DesignableExpandedTaskView.instanceFromNib(setTask: task)
             taskView.translatesAutoresizingMaskIntoConstraints = false
             taskView.heightAnchor.constraint(equalToConstant: 443).isActive = true
+            taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
             taskView.tag = 100
             taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
             taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
@@ -139,6 +161,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let taskView = DesignableEditTaskView.instanceFromNib(setTask: task)
         taskView.translatesAutoresizingMaskIntoConstraints = false
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
+        taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
         taskView.tag = 100
         taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
         taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
@@ -194,6 +217,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func doneDeleteAction(_ sender: UIButton) {
         animateScaleOut(desiredView: popupDeleteView)
         if sender.tag == 91 {
+            self.deleteNotifications(taskId: self.tempID!, deletePending: true)
             let docRef = db.collection("tasks").document(self.tempID!)
             docRef.getDocument() { (querySnapshot, err) in
                 if let err = err {

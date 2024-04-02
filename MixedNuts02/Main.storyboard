@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wzN-ZL-XTA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -36,19 +36,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="764"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-xx-Fjv">
-                                                <rect key="frame" x="79" y="83.666666666666686" width="240" height="173"/>
+                                                <rect key="frame" x="79" y="60" width="240" height="173"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="173" id="fgp-x2-sn1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVE-hM-D3W">
-                                                <rect key="frame" x="20" y="295.66666666666669" width="353" height="35"/>
+                                                <rect key="frame" x="20" y="272" width="353" height="42"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d8W-nN-OWo" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="372.33333333333331" width="325" height="19.333333333333314"/>
+                                                <rect key="frame" x="34" y="355.66666666666669" width="325" height="52.666666666666686"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
@@ -65,10 +65,13 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="insetY">
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                        <color key="value" systemColor="secondarySystemBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJn-74-GgL" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="417.33333333333331" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="434" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666629" id="10b-A2-E5P"/>
                                                 </constraints>
@@ -88,10 +91,13 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="insetY">
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                        <color key="value" systemColor="secondarySystemBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvM-Wm-a9e">
-                                                <rect key="frame" x="221" y="474.33333333333337" width="138" height="30.333333333333314"/>
+                                                <rect key="frame" x="208" y="491" width="151" height="33.666666666666629"/>
                                                 <color key="tintColor" red="0.011764705882352941" green="0.62352941176470589" blue="0.74117647058823533" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot password?">
@@ -99,14 +105,14 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bxx-TP-G8l">
-                                                <rect key="frame" x="148" y="608" width="102" height="31"/>
+                                                <rect key="frame" x="148" y="628" width="102" height="31"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Button">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="New Student?">
                                                             <attributes>
-                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="NSColor" systemColor="labelColor"/>
                                                                 <font key="NSFont" metaFont="system" size="16"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                 <integer key="NSUnderline" value="1"/>
@@ -119,7 +125,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjM-HD-vd1" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="543.66666666666663" width="320" height="57"/>
+                                                <rect key="frame" x="39" y="563.66666666666663" width="320" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="ZGG-gt-LVb"/>
                                                 </constraints>
@@ -138,7 +144,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In to continue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Jr-hWy">
-                                                <rect key="frame" x="79" y="332" width="240" height="17.666666666666686"/>
+                                                <rect key="frame" x="79" y="312" width="240" height="21"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -213,13 +219,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="764"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2t-aA-sue">
-                                                <rect key="frame" x="20" y="67" width="353" height="35"/>
+                                                <rect key="frame" x="20" y="67" width="353" height="42"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfl-tc-fco" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="143.66666666666666" width="325" height="19.333333333333343"/>
+                                                <rect key="frame" x="34" y="154" width="325" height="52.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 <userDefinedRuntimeAttributes>
@@ -236,10 +242,13 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="insetY">
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                        <color key="value" systemColor="secondarySystemBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zHd-LR-9Gf" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="248.99999999999997" width="325" height="56.666666666666657"/>
+                                                <rect key="frame" x="34" y="326" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666686" id="71q-1C-3rw"/>
                                                 </constraints>
@@ -259,10 +268,13 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="insetY">
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                        <color key="value" systemColor="secondarySystemBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmo-Bd-UXq" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="339" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="416" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666686" id="krP-TE-CzT"/>
                                                 </constraints>
@@ -282,16 +294,19 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="insetY">
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                        <color key="value" systemColor="secondarySystemBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input details to create a new account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1J-qx-e4g">
-                                                <rect key="frame" x="34" y="103" width="325" height="17.666666666666671"/>
+                                                <rect key="frame" x="34" y="110" width="325" height="21"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJL-Ek-SGE" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="196.33333333333334" width="325" height="19.333333333333343"/>
+                                                <rect key="frame" x="34" y="239.99999999999997" width="325" height="52.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
@@ -308,10 +323,13 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="insetY">
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bkgColor">
+                                                        <color key="value" systemColor="secondarySystemBackgroundColor"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fR-vg-R5W" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="505.66666666666663" width="325" height="57"/>
+                                                <rect key="frame" x="34" y="582.66666666666663" width="325" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="HAX-Ae-Y1X"/>
                                                 </constraints>
@@ -330,7 +348,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJI-R3-JJm" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="580.66666666666663" width="325" height="57"/>
+                                                <rect key="frame" x="34" y="657.66666666666663" width="325" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="LMh-xR-F6g"/>
                                                 </constraints>
@@ -338,7 +356,7 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="CANCEL">
                                                     <fontDescription key="titleFontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                     <color key="baseForegroundColor" red="0.0" green="0.18039215689999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="baseBackgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 </buttonConfiguration>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -353,7 +371,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIQ-7b-MiL">
-                                                <rect key="frame" x="34" y="451" width="32" height="31"/>
+                                                <rect key="frame" x="34" y="528" width="32" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="hpK-Sf-0ff"/>
                                                 </constraints>
@@ -365,11 +383,19 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-7r-cCp">
-                                                <rect key="frame" x="68" y="457.33333333333331" width="291" height="18"/>
+                                                <rect key="frame" x="68" y="534.33333333333337" width="291" height="18"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="I agree to the ">
+                                                    <fragment content="I agree to the">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" systemColor="labelColor"/>
+                                                            <font key="NSFont" metaFont="system" size="15"/>
+                                                            <font key="NSOriginalFont" metaFont="system" size="15"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content=" ">
+                                                        <attributes>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <font key="NSFont" metaFont="system" size="15"/>
                                                             <font key="NSOriginalFont" metaFont="system" size="15"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -377,7 +403,7 @@
                                                     </fragment>
                                                     <fragment content="Terms &amp; Conditions">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.0" green="0.22352941179999999" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="NSColor" red="0.05882352591" green="0.1764705926" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <font key="NSFont" metaFont="system" size="15"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
@@ -455,7 +481,12 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="0wa-YS-bBR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tabBarAppearance>
+                        <tabBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <segue destination="nev-uu-tlB" kind="relationship" relationship="viewControllers" id="4BS-OM-69x"/>
@@ -633,7 +664,7 @@
         <!--Manage View Controller-->
         <scene sceneID="yFV-6y-LqD">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="MEH-K9-Yh4" customClass="ManageViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageViewController" automaticallyAdjustsScrollViewInsets="NO" id="MEH-K9-Yh4" customClass="ManageViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yiw-1i-DkR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -683,10 +714,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="title" destination="Qyf-wF-ywU" id="o77-1Z-Nf5"/>
+                                                    <outlet property="title" destination="Qyf-wF-ywU" id="1hL-Eu-c8q"/>
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="task" id="Vyj-uF-oDO">
@@ -766,16 +796,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="353" height="160"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="-25" translatesAutoresizingMaskIntoConstraints="NO" id="dZ3-eW-uXp">
-                                            <rect key="frame" x="35.333333333333343" y="0.0" width="282.33333333333326" height="76"/>
+                                            <rect key="frame" x="20" y="0.0" width="313.33333333333337" height="76"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Are you sure to delete ICE 14?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpL-E2-k2R">
-                                                    <rect key="frame" x="0.0" y="0.0" width="217.66666666666666" height="82.333333333333329"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="231" height="78.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Once it is deleted, it cannot be restored" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBM-bw-fa7">
-                                                    <rect key="frame" x="0.0" y="57.333333333333307" width="282.33333333333331" height="18.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="53.333333333333307" width="313.33333333333331" height="22.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -786,7 +816,7 @@
                                             <rect key="frame" x="49.666666666666686" y="84" width="254" height="76"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-bN-odP" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="21.666666666666682" width="98" height="32.666666666666657"/>
+                                                    <rect key="frame" x="0.0" y="19.666666666666682" width="98" height="36.666666666666657"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="98" id="n0t-fC-WCR"/>
                                                     </constraints>
@@ -806,7 +836,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="91" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0K-8a-UV5" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                    <rect key="frame" x="156" y="21.666666666666682" width="98" height="32.666666666666657"/>
+                                                    <rect key="frame" x="156" y="19.666666666666682" width="98" height="36.666666666666657"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="98" id="iba-Am-iNc"/>
                                                     </constraints>
@@ -1199,7 +1229,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jennie Kim" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4R-3t-ZWm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="30"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="24"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tvt-h3-c7o">
@@ -1309,7 +1339,11 @@
                             <constraint firstItem="Iiu-Fs-Xhb" firstAttribute="top" secondItem="zrs-jE-QUH" secondAttribute="top" constant="103" id="Hjf-LK-Fyg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Personal Info" style="editor" id="wlP-eq-eT0"/>
+                    <navigationItem key="navigationItem" title="Personal Info" style="editor" id="wlP-eq-eT0">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" style="plain" id="Vq0-p3-8rg">
+                            <color key="tintColor" red="0.011764705882352941" green="0.62352941176470589" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="headerColor">
                             <color key="value" red="0.0019731693900000001" green="0.22318279739999999" blue="0.40594589710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1345,16 +1379,16 @@
                             <offsetWrapper key="textShadowOffset" horizontal="-180" vertical="0.0"/>
                         </textAttributes>
                         <navigationBarAppearance key="standardAppearance">
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="compactAppearance">
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="scrollEdgeAppearance">
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </navigationBarAppearance>
                         <navigationBarAppearance key="compactScrollEdgeAppearance">
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1567,7 +1601,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yv0-zd-lji">
                                                         <rect key="frame" x="0.0" y="45" width="353" height="58"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Or Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTL-GT-ZzT" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select a course" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wTL-GT-ZzT" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="58"/>
                                                                 <color key="textColor" red="0.25490196079999999" green="0.2901960784" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
@@ -1878,7 +1912,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mdp-Qz-maQ"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="r5q-HJ-Wkf" firstAttribute="centerX" secondItem="4Tg-Y1-gRp" secondAttribute="centerX" id="2U2-RN-vsv"/>
                             <constraint firstAttribute="trailing" secondItem="4Tg-Y1-gRp" secondAttribute="trailing" id="2i6-2O-jlp"/>
@@ -1928,7 +1962,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="courseField" destination="wTL-GT-ZzT" id="hUv-Ub-VJo"/>
+                        <outlet property="courseField" destination="wTL-GT-ZzT" id="UqI-jJ-Kpp"/>
                         <outlet property="dueDate" destination="Lf4-XA-b2y" id="ZYI-G1-CG6"/>
                         <outlet property="dueTime" destination="uST-mU-aua" id="iPX-m9-e6M"/>
                         <outlet property="notesView" destination="0Rt-2D-paY" id="V9V-Kg-Fu1"/>
@@ -1945,52 +1979,52 @@
     </scenes>
     <designables>
         <designable name="2fR-vg-R5W">
-            <size key="intrinsicContentSize" width="88.666666666666671" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="87" height="36.666666666666664"/>
         </designable>
         <designable name="MJL-Ek-SGE">
-            <size key="intrinsicContentSize" width="96.333333333333329" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="196.66666666666666" height="52.666666666666664"/>
         </designable>
         <designable name="PBs-Mj-0Kp">
-            <size key="intrinsicContentSize" width="79.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="119" height="54.333333333333336"/>
         </designable>
         <designable name="Rvf-yE-Gvn">
-            <size key="intrinsicContentSize" width="69" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="68.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="TjM-HD-vd1">
-            <size key="intrinsicContentSize" width="82.666666666666671" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="82.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="Wmo-Bd-UXq">
-            <size key="intrinsicContentSize" width="124" height="18"/>
+            <size key="intrinsicContentSize" width="228" height="51"/>
         </designable>
         <designable name="Yo4-bN-odP">
-            <size key="intrinsicContentSize" width="74" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="81.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="d8W-nN-OWo">
-            <size key="intrinsicContentSize" width="96.333333333333329" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="196.66666666666666" height="52.666666666666664"/>
         </designable>
         <designable name="f0K-8a-UV5">
-            <size key="intrinsicContentSize" width="69.666666666666671" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="75.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="gCX-bZ-uBB">
-            <size key="intrinsicContentSize" width="224.33333333333334" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="284.66666666666669" height="54.333333333333336"/>
         </designable>
         <designable name="iJI-R3-JJm">
-            <size key="intrinsicContentSize" width="88" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="36.666666666666664"/>
         </designable>
         <designable name="r5q-HJ-Wkf">
-            <size key="intrinsicContentSize" width="63.666666666666664" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="65.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="tfl-tc-fco">
-            <size key="intrinsicContentSize" width="67.666666666666671" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="164" height="52.666666666666664"/>
         </designable>
         <designable name="vJn-74-GgL">
-            <size key="intrinsicContentSize" width="66.666666666666671" height="18"/>
+            <size key="intrinsicContentSize" width="162.33333333333334" height="51"/>
         </designable>
         <designable name="wTL-GT-ZzT">
-            <size key="intrinsicContentSize" width="107.66666666666667" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="153" height="54.333333333333336"/>
         </designable>
         <designable name="zHd-LR-9Gf">
-            <size key="intrinsicContentSize" width="66.666666666666671" height="18"/>
+            <size key="intrinsicContentSize" width="162.33333333333334" height="51"/>
         </designable>
     </designables>
     <resources>
@@ -2015,6 +2049,12 @@
         <image name="sheridanBearImage" width="313" height="313"/>
         <image name="taskSlot" width="52" height="44"/>
         <image name="taskSlotSelected" width="52" height="44"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

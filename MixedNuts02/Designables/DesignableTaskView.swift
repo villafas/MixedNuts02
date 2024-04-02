@@ -14,7 +14,6 @@ class DesignableTaskView: UIView {
     @IBOutlet weak var taskDate: UILabel!
     @IBOutlet weak var taskButton: UIButton!
     var viewHeight = 81.0
-    var viewWidth = 353.0
     
     var taskObj: Task?
     

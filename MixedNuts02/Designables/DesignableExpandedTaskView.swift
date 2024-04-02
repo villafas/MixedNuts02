@@ -74,5 +74,4 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         // always return true so that changes propagate
         return true
     }
-    
 }

@@ -20,6 +20,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround() 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +70,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         let taskView = DesignableTaskView.instanceFromNib(setTask: task)
         taskView.translatesAutoresizingMaskIntoConstraints = false
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
+        taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
         taskView.tag = 100
         cell.contentView.addSubview(taskView)
         return cell

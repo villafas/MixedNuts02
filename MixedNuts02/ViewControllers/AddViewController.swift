@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var titleField: DesignableUITextField!
     @IBOutlet weak var dueDate: DesignableDatePicker!
@@ -20,13 +20,22 @@ class AddViewController: UIViewController {
     @IBOutlet weak var workTime: DesignableDatePicker!
     
     var db: Firestore!
+    var courses: [String] = ["Select a course"]
+    var selectedCourse: String?
+    let coursePicker = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        coursePicker.delegate = self
+        coursePicker.dataSource = self
+        courseField.inputView = coursePicker
+        
         db = Firestore.firestore()
-
+        self.hideKeyboardWhenTappedAround() 
         // Do any additional setup after loading the view.
+        
+        getCourses()
     }
 
     @IBAction func submitPressed(_ sender: Any) {
@@ -40,6 +49,8 @@ class AddViewController: UIViewController {
                     print("Error adding document: \(err)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    task.id = ref!.documentID
+                    self.scheduleNotifications(taskObj: task)
                 }
             }
             titleField.text = ""
@@ -68,5 +79,39 @@ class AddViewController: UIViewController {
         mergedComponments.second = timeComponents.second!
         
         return calendar.date(from: mergedComponments)
+    }
+    
+    func getCourses(){
+        db.collection("courses").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let course = document.data()["title"] as! String
+                    self.courses.append(course)
+                }
+                self.coursePicker.reloadComponent(0)
+            }
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.courses.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.courses[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            courseField.text = ""
+        } else {
+            courseField.text = courses[row]
+        }
     }
 }
