@@ -51,9 +51,9 @@ class DesignableTaskView: UIView {
     class func instanceFromNib(setTask: Task) -> DesignableTaskView{
         let task = UINib(nibName: "TaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableTaskView
         task.taskObj = setTask
-        task.taskTitle.text = "\(setTask.title) \(setTask.course)"
+        task.taskTitle.text = "\(setTask.title) • \(setTask.course)"
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm a, dd/MMM"
+        formatter.dateFormat = "hh:mm a, dd/MMM"
         task.taskDate.text = "\(formatter.string(from: setTask.dueDate))"
         if task.taskObj?.isComplete == true {
             task.taskIsDone()

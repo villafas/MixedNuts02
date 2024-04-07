@@ -145,6 +145,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let task = section.tasks[indexPath.row]
         
         if (indexPath == selectedRow){
+            self.deleteNotifications(taskId: task.id, deletePending: false)
             let taskView = DesignableExpandedTaskView.instanceFromNib(setTask: task)
             taskView.translatesAutoresizingMaskIntoConstraints = false
             taskView.heightAnchor.constraint(equalToConstant: 443).isActive = true
@@ -170,7 +171,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath == self.selectedRow{
+        if indexPath == self.selectedRow {
             self.taskTable.deselectRow(at: indexPath, animated: true)
             self.selectedRow = nil
         } else {
@@ -235,6 +236,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func showDoneAction(_ sender: UIButton) {
         if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
+            self.deleteNotifications(taskId: taskView!.taskObj!.id, deletePending: true)
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
             card.subtitleLabel.text = "Remaining Tasks: \((totalItems(self.sections!)) - 1)"
             let docRef = db.collection("tasks").document(taskView!.taskObj!.id)

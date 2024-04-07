@@ -275,6 +275,26 @@ extension UIViewController {
         }
     }
     
+    func sampleNotification(){
+        let content = UNMutableNotificationContent()
+        content.title = "YOU'RE 2 WEEKS LATE!?"
+        content.body = "Hurry up and submit PPP 5!"
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "OWzmE20GfPngZo429Y0i"
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+
+        let request = UNNotificationRequest(identifier: "Temp", content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Error scheduling notification: \(error.localizedDescription)")
+            } else {
+                print("Notification scheduled successfully")
+            }
+        }
+    }
+    
     func scheduleNotifications(taskObj: Task){
         // Define time intervals
         let intervals: [TimeInterval] = [-3*24*60*60,

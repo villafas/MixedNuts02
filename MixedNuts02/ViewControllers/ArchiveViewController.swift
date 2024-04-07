@@ -32,7 +32,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         taskTable.delegate = self
         taskTable.dataSource = self
 
-        db.collection("tasks").whereField("isComplete", isEqualTo: true).order(by: "dueDate").getDocuments() { (querySnapshot, err) in
+        db.collection("tasks").whereField("isComplete", isEqualTo: true).order(by: "dueDate", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {

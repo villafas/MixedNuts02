@@ -24,6 +24,8 @@ class LogInViewController: UIViewController {
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        
+        sampleNotification()
     }
 
 }
