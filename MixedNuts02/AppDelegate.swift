@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseCore
-import FirebaseMessaging
+import FirebaseAuth
 import UserNotifications
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +24,20 @@ import UserNotifications
         options: authOptions,
         completionHandler: { _, _ in }
       )
+      
+      // Check if a user is logged in
+          Auth.auth().addStateDidChangeListener { auth, user in
+              if let user = user {
+                  print("\(user.email!) is logged in.")
+                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController") as? UITabBarController
+                  // This is to get the SceneDelegate object from your view controller
+                  // then call the change root view controller function to change to main tab bar
+                  (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController!)
+              } else {
+                  print("There is no active user.")
+              }
+          }
       
       return true
     }

@@ -24,7 +24,7 @@
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LogInViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="LogInViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,19 +36,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="764"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-xx-Fjv">
-                                                <rect key="frame" x="79" y="75" width="240" height="173"/>
+                                                <rect key="frame" x="79" y="60" width="240" height="173"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="173" id="fgp-x2-sn1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVE-hM-D3W">
-                                                <rect key="frame" x="20" y="287" width="353" height="42"/>
+                                                <rect key="frame" x="20" y="272" width="353" height="42"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d8W-nN-OWo" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="370.66666666666669" width="325" height="22.666666666666686"/>
+                                                <rect key="frame" x="34" y="355.66666666666669" width="325" height="52.666666666666686"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
@@ -71,7 +71,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJn-74-GgL" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="419" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="434" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666629" id="10b-A2-E5P"/>
                                                 </constraints>
@@ -97,7 +97,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvM-Wm-a9e">
-                                                <rect key="frame" x="208" y="476" width="151" height="33.666666666666686"/>
+                                                <rect key="frame" x="208" y="491" width="151" height="33.666666666666629"/>
                                                 <color key="tintColor" red="0.011764705882352941" green="0.62352941176470589" blue="0.74117647058823533" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot password?">
@@ -105,7 +105,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bxx-TP-G8l">
-                                                <rect key="frame" x="148" y="613" width="102" height="31"/>
+                                                <rect key="frame" x="148" y="628" width="102" height="31"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Button">
@@ -125,7 +125,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjM-HD-vd1" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="548.66666666666663" width="320" height="57"/>
+                                                <rect key="frame" x="39" y="563.66666666666663" width="320" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="ZGG-gt-LVb"/>
                                                 </constraints>
@@ -144,7 +144,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In to continue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Jr-hWy">
-                                                <rect key="frame" x="79" y="327" width="240" height="21"/>
+                                                <rect key="frame" x="79" y="312" width="240" height="21"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -199,6 +199,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="thk-jL-lS2"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="d8W-nN-OWo" id="dU6-TB-6Mc"/>
+                        <outlet property="passwordTextField" destination="vJn-74-GgL" id="BeN-EG-gR2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -207,7 +211,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="ctP-DY-QRt">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="uEt-ap-46o" customClass="SignUpViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" automaticallyAdjustsScrollViewInsets="NO" id="uEt-ap-46o" customClass="SignUpViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dU-m1-tWg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +229,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfl-tc-fco" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="154" width="325" height="22.666666666666657"/>
+                                                <rect key="frame" x="34" y="154" width="325" height="52.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 <userDefinedRuntimeAttributes>
@@ -248,12 +252,12 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zHd-LR-9Gf" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="266" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="326" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666686" id="71q-1C-3rw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
                                                         <color key="value" red="0.0" green="0.18039215689999999" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -274,7 +278,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmo-Bd-UXq" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="356" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="416" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666686" id="krP-TE-CzT"/>
                                                 </constraints>
@@ -306,7 +310,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJL-Ek-SGE" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="210" width="325" height="22.666666666666657"/>
+                                                <rect key="frame" x="34" y="239.99999999999997" width="325" height="52.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
@@ -329,7 +333,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fR-vg-R5W" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="522.66666666666663" width="325" height="57"/>
+                                                <rect key="frame" x="34" y="582.66666666666663" width="325" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="HAX-Ae-Y1X"/>
                                                 </constraints>
@@ -344,11 +348,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="signUpTapped:" destination="uEt-ap-46o" eventType="touchUpInside" id="KZl-pg-8Ao"/>
+                                                    <action selector="signUpTapped:" destination="uEt-ap-46o" eventType="touchUpInside" id="Raw-Ye-SS8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJI-R3-JJm" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="597.66666666666663" width="325" height="57"/>
+                                                <rect key="frame" x="34" y="657.66666666666663" width="325" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="LMh-xR-F6g"/>
                                                 </constraints>
@@ -371,7 +375,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIQ-7b-MiL">
-                                                <rect key="frame" x="34" y="468" width="32" height="31"/>
+                                                <rect key="frame" x="34" y="528" width="32" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="hpK-Sf-0ff"/>
                                                 </constraints>
@@ -383,7 +387,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-7r-cCp">
-                                                <rect key="frame" x="68" y="474.33333333333337" width="291" height="18"/>
+                                                <rect key="frame" x="68" y="534.33333333333337" width="291" height="18"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="I agree to the">
                                                         <attributes>
@@ -469,6 +473,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" style="editor" id="APV-yK-wrq"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="Wmo-Bd-UXq" id="b9P-A6-RiH"/>
+                        <outlet property="emailTextField" destination="MJL-Ek-SGE" id="NXi-3O-7vz"/>
+                        <outlet property="nameTextField" destination="tfl-tc-fco" id="0ho-NZ-Sy9"/>
+                        <outlet property="passwordTextField" destination="zHd-LR-9Gf" id="L6Z-Jd-rqT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FsH-CE-tQc" sceneMemberID="firstResponder"/>
             </objects>
@@ -944,7 +954,6 @@
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="doneDoneAction:" destination="MEH-K9-Yh4" eventType="touchUpInside" id="CtK-MC-ABR"/>
-                                <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ca4-SJ-fun"/>
                             </connections>
                         </button>
                     </subviews>
@@ -1206,7 +1215,7 @@
         <!--Personal Info-->
         <scene sceneID="uSS-Sv-s0V">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Hxr-Dq-9jw" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Hxr-Dq-9jw" customClass="ProfileViewController" customModule="MixedNuts02" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrs-jE-QUH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1345,6 +1354,9 @@
                     <navigationItem key="navigationItem" title="Personal Info" style="editor" id="wlP-eq-eT0">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" style="plain" id="Vq0-p3-8rg">
                             <color key="tintColor" red="0.011764705882352941" green="0.62352941176470589" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="logoutIsPressed:" destination="Hxr-Dq-9jw" id="bwz-oe-baS"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <userDefinedRuntimeAttributes>
@@ -1909,7 +1921,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="doneDoneAction:" destination="MEH-K9-Yh4" eventType="touchUpInside" id="e5i-9P-dkt"/>
-                                    <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h49-8M-vwN"/>
                                     <action selector="submitPressed:" destination="bd9-EI-jkH" eventType="touchUpInside" id="bq8-AY-iWu"/>
                                 </connections>
                             </button>
@@ -1985,10 +1996,10 @@
             <size key="intrinsicContentSize" width="87" height="36.666666666666664"/>
         </designable>
         <designable name="MJL-Ek-SGE">
-            <size key="intrinsicContentSize" width="108.66666666666667" height="22.666666666666668"/>
+            <size key="intrinsicContentSize" width="196.66666666666666" height="52.666666666666664"/>
         </designable>
         <designable name="PBs-Mj-0Kp">
-            <size key="intrinsicContentSize" width="89" height="24.333333333333332"/>
+            <size key="intrinsicContentSize" width="119" height="54.333333333333336"/>
         </designable>
         <designable name="Rvf-yE-Gvn">
             <size key="intrinsicContentSize" width="68.333333333333329" height="36.666666666666664"/>
@@ -1997,19 +2008,19 @@
             <size key="intrinsicContentSize" width="82.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="Wmo-Bd-UXq">
-            <size key="intrinsicContentSize" width="140" height="21"/>
+            <size key="intrinsicContentSize" width="228" height="51"/>
         </designable>
         <designable name="Yo4-bN-odP">
             <size key="intrinsicContentSize" width="81.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="d8W-nN-OWo">
-            <size key="intrinsicContentSize" width="108.66666666666667" height="22.666666666666668"/>
+            <size key="intrinsicContentSize" width="196.66666666666666" height="52.666666666666664"/>
         </designable>
         <designable name="f0K-8a-UV5">
             <size key="intrinsicContentSize" width="75.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="gCX-bZ-uBB">
-            <size key="intrinsicContentSize" width="254.66666666666666" height="24.333333333333332"/>
+            <size key="intrinsicContentSize" width="284.66666666666669" height="54.333333333333336"/>
         </designable>
         <designable name="iJI-R3-JJm">
             <size key="intrinsicContentSize" width="87.666666666666671" height="36.666666666666664"/>
@@ -2018,16 +2029,16 @@
             <size key="intrinsicContentSize" width="65.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="tfl-tc-fco">
-            <size key="intrinsicContentSize" width="76" height="22.666666666666668"/>
+            <size key="intrinsicContentSize" width="164" height="52.666666666666664"/>
         </designable>
         <designable name="vJn-74-GgL">
-            <size key="intrinsicContentSize" width="74.333333333333329" height="21"/>
+            <size key="intrinsicContentSize" width="162.33333333333334" height="51"/>
         </designable>
         <designable name="wTL-GT-ZzT">
-            <size key="intrinsicContentSize" width="122.66666666666667" height="24.333333333333332"/>
+            <size key="intrinsicContentSize" width="153" height="54.333333333333336"/>
         </designable>
         <designable name="zHd-LR-9Gf">
-            <size key="intrinsicContentSize" width="74.333333333333329" height="21"/>
+            <size key="intrinsicContentSize" width="162.33333333333334" height="51"/>
         </designable>
     </designables>
     <resources>
