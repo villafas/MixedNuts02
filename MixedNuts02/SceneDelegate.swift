@@ -55,11 +55,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // change the root view controller to your specific view controller
         window.rootViewController = vc
         // add animation
-        UIView.transition(with: window,
-                          duration: 0.5,
-                          options: [.transitionCurlUp],
-                          animations: nil,
-                          completion: nil)
+//        UIView.transition(with: window,
+//                          duration: 0.5,
+//                          options: [.transitionCurlUp],
+//                          animations: nil,
+//                          completion: nil)
     }
     
     func setNotificationSelection(_ taskId: String) {
