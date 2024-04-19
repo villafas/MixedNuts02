@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27535FB82BB9DA2F0068EC9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */; };
+		274DCC4C2BD2F00800B91AD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */; };
 		27577B852BD2132600E80FE8 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B842BD2132600E80FE8 /* AppUser.swift */; };
 		27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B862BD21B9000E80FE8 /* BadgesViewController.swift */; };
 		27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */; };
@@ -88,8 +88,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27525FD92BBA411500578A30 /* MixedNuts02.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixedNuts02.entitlements; sourceTree = "<group>"; };
-		27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27577B842BD2132600E80FE8 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		27577B862BD21B9000E80FE8 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 				CE0A74902BA8DE2C00361881 /* Assets.xcassets */,
 				581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */,
 				581ADE722B9A153100CA0B6D /* Info.plist */,
-				27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */,
+				274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
 				27577B842BD2132600E80FE8 /* AppUser.swift */,
 			);
@@ -393,7 +393,7 @@
 				CE0A74662BA8DDF300361881 /* Poppins-Light.ttf in Resources */,
 				CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				CE0A74712BA8DDF300361881 /* Poppins-Thin.ttf in Resources */,
-				27535FB82BB9DA2F0068EC9B /* GoogleService-Info.plist in Resources */,
+				274DCC4C2BD2F00800B91AD9 /* GoogleService-Info.plist in Resources */,
 				581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */,
 				CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */,
 				CE0A746D2BA8DDF300361881 /* Poppins-Regular.ttf in Resources */,
