@@ -38,7 +38,9 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         getCourses()
     }
 
+    //MARK: - Task addition
     @IBAction func submitPressed(_ sender: Any) {
+        // if required fields are not empty, add task to db
         if let title = titleField.text, let course = courseField.text, !title.isEmpty, !course.isEmpty {
             let dueDate = combineDateWithTime(date: dueDate.date, time: dueTime.date)!
             let workDate = combineDateWithTime(date: workDate.date, time: workTime.date)!
@@ -65,7 +67,9 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    //MARK: - Datetime formatting
     func combineDateWithTime(date: Date, time: Date) -> Date? {
+        // since date and time fields are seperate, combine them to pass to db
         let calendar = NSCalendar.current
         
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
@@ -82,6 +86,7 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return calendar.date(from: mergedComponments)
     }
     
+    //MARK: - Read courses db
     func getCourses(){
         db.collection("courses").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -96,6 +101,7 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    //MARK: - Picker view delegate (UNDER DEVELOPMENT)
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

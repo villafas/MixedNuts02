@@ -9,7 +9,8 @@ import UIKit
 
 @IBDesignable
 class DesignableTaskView: UIView {
-
+    //MARK: - Task View customization
+    
     @IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var taskDate: UILabel!
     @IBOutlet weak var taskButton: UIButton!
@@ -48,6 +49,7 @@ class DesignableTaskView: UIView {
         backgroundColor = bkgColor
     }
     
+    //MARK: - View instantiation
     class func instanceFromNib(setTask: Task) -> DesignableTaskView{
         let task = UINib(nibName: "TaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableTaskView
         task.taskObj = setTask

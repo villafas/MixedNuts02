@@ -9,6 +9,7 @@ import UIKit
 
 @IBDesignable
 class DesignablePopUpCard: UIView {
+    //MARK: - Pop up card customization
     
     //@IBOutlet weak var taskTitle: UILabel!
     @IBOutlet weak var cancelButton: UIButton!

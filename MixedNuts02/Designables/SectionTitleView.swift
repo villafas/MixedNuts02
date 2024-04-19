@@ -8,7 +8,7 @@
 import UIKit
 
 class SectionTitleView: UITableViewCell {
-
+    //MARK: - Section Customization
     @IBOutlet weak var title: UILabel?
     
 }

@@ -15,6 +15,8 @@ class BadgesViewController: UICollectionViewController, UICollectionViewDelegate
         // Do any additional setup after loading the view.
     }
     
+    //MARK: - Collection view delegate
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -34,6 +36,7 @@ class BadgesViewController: UICollectionViewController, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Badge", for: indexPath) as! BadgeCollectionViewCell
         
+        // Hard code values until further development
         if (indexPath.row == 0){
             cell.number.text = "10"
             cell.title.text = "Tasks Completed"
@@ -52,6 +55,7 @@ class BadgesViewController: UICollectionViewController, UICollectionViewDelegate
         return cell
     }
     
+    //MARK: - Collection view size 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width/2.1, height: UIScreen.main.bounds.height/3)
         }

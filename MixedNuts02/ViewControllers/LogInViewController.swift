@@ -32,6 +32,7 @@ class LogInViewController: UIViewController {
 //        //sampleNotification()
 //    }
     
+    //MARK: - Sign in user
     // Sign In Action
     @IBAction func signInTapped(_ sender: UIButton) {
         guard let email = emailTextField.text, !email.isEmpty,
@@ -66,6 +67,7 @@ class LogInViewController: UIViewController {
 //        }
 //    }
     
+    //MARK: - Alert
     private func presentAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -73,6 +75,7 @@ class LogInViewController: UIViewController {
     }
 }
 
+//MARK: - Navigation
 extension UIViewController{
     func navigateToHomeScreen() {
         if let mainTabBarController = storyboard?.instantiateViewController(identifier: "MainTabBarController") {

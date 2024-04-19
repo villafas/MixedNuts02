@@ -8,7 +8,7 @@
 import UIKit
 
 class BadgeCollectionViewCell: UICollectionViewCell {
-    
+    //MARK: - Collection view cell customization
     @IBOutlet weak var number: UILabel!
     @IBOutlet weak var title: UILabel!
 

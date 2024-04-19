@@ -10,18 +10,19 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set profile info
         nameLabel.text = AppUser.shared.displayName
         emailLabel.text = AppUser.shared.email
         
-        // Do any additional setup after loading the view.
     }
+    
+    //MARK: - Delete account logic
     
     @IBAction func deleteIsPressed(_ sender: Any) {
         presentAlert(title: "Account Deletion", message: "Are you sure you want to delete your account? This action cannot be reversed.")
@@ -54,6 +55,8 @@ class ProfileViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    //MARK: - Logout logic
+    
     // Action that will trigger logging out
     @IBAction func logoutIsPressed(_ sender: Any) {
         do {
@@ -67,7 +70,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    
+    //MARK: - Navigation
     // Function to send the user back to the login page
     func navigateToLoginScreen() {
         if let loginViewController = storyboard?.instantiateViewController(identifier: "LoginNavigationController") {

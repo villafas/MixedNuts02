@@ -52,13 +52,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func setUserName(){
+        // Show user's name in welcome message
         self.mainTitle.text = "Welcome Back, \(AppUser.shared.displayName ?? "User")!"
     }
     
+    //MARK: - Calendar view config
+    
     func configureCalendarView(){
+        // if calendar view exists, do not configure
         if calendarViewBox.viewWithTag(99) != nil {
             return
         }
+        
+        // configure calendar view logic
         calendarView = UICalendarView()
         calendarView.calendar = Calendar(identifier: .gregorian)
         let startDate = Calendar.current.date(byAdding: .year, value: -3, to: Date())
@@ -81,28 +87,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func refreshDates(){
+        // refresh dates containing tasks to show necessary decorations
         self.dateList = [Date]()
         
         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-        
+        // get tasks that are not complete
         userDbRef.collection("tasks").whereField("isComplete", isEqualTo: false).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
+                    // save date of tasks in list
                     let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
                     if !self.dateList.contains(taskDate) { self.dateList.append(taskDate) }
                 }
+                // reload decorations for those dates
                 self.calendarView.reloadDecorations(forDateComponents: self.dateToComponents(dates: self.getDateRange()), animated: true)
             }
         }
     }
     
+    //MARK: - Data reading
+    
     func refreshTasks(dateComp: DateComponents){
-        var count = 0;
+        // logic for showing tasks when a date is selected
+        var count = 0; // count for tasks in that day
 
         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
         
+        // get tasks for the selected day
         userDbRef.collection("tasks")
             .whereField("dueDate", isDateEqual: dateComp)
             .order(by: "isComplete", descending: false)
@@ -114,15 +127,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 for document in querySnapshot!.documents {
                     let task = Task(snapshot: document)
                     if !task.isComplete {
+                        // add to counter if a task is not completed
                         count += 1
                     }
                     taskList.append(task)
                 }
                 self.taskList = taskList
                 self.taskTable.reloadData();
-                if count == 1 {
+                if count == 1 { // task singular for 1 day
                     self.subtitleLabel.text = "You have 1 task for the day"
-                } else {
+                } else { // else, tasks plural
                     self.subtitleLabel.text = "You have \(count) tasks for the day"
                 }
             }
@@ -130,6 +144,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func dateToComponents(dates: [Date]) -> [DateComponents]{
+        // conversion to assist with different date formats
         var components = [DateComponents]()
         for d in dates {
             let comp = Calendar.current.dateComponents([.year, .month, .day], from: d)
@@ -139,19 +154,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return components
     }
     
+    //MARK: - table view delegate
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // row count
         return taskList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // row height
         return 96.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // table cell creation
         let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath)
+        // if cell exists, delete prior to adding
         if let viewWithTag = cell.contentView.viewWithTag(100) {
                 viewWithTag.removeFromSuperview()
         }
+        // Create cell using task view
         let taskView = DesignableTaskView.instanceFromNib(setTask: taskList[indexPath.row])
         taskView.translatesAutoresizingMaskIntoConstraints = false
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
@@ -162,7 +184,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    //MARK: - Calendar view delegate
+    
     func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        // calendar decorations
         if dateList.contains(dateComponents.date!.startOfDay) {
             return UICalendarView.Decoration.default(color: decorationColor, size: .small)
         }
@@ -171,32 +196,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        //print(dateComponents)
-        // HARD CODED
-//        var day = dateComponents!.day
-//        if day == 15 {
-//            createTask("ICE 14 ICE 14 Advanced Java Frameworks", "7:00PM, 15/March")
-//            createTask("Assignment 2 iOS Development", "11:59PM, 15/March")
-//            createTask("Quiz 5 Software Management", "11:59PM, 15/March")
-//            subtitleLabel.text = "You have 3 tasks for the day"
-//
-//        } else {
-//            taskStackView.arrangedSubviews.forEach{(element) in
-//                if element is DesignableTaskView{
-//                    taskStackView.removeArrangedSubview(element)
-//                    element.removeFromSuperview()
-//                }
-//            }
-//            subtitleLabel.text = "You have 5 remaining tasks for this week"
-//        }
-        
-        // MAIN LOGIC
-        // Go through all of the tasks in the table, and position them on the right day
+        // calendar date is selected
         self.selectedDay = dateComponents
         refreshTasks(dateComp: dateComponents!)
     }
     
+    //MARK: - Date formatting
+    
     func getDateRange() -> [Date] {
+        // date range for limiting decoration refreshing and improve efficiency
         var dates = [Date]()
         let current = Date()
         var start = current.getLastMonthStart()
@@ -211,6 +219,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 }
 
 extension Date {
+    // Date extension for conversion and formatting
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
     }
@@ -258,6 +267,10 @@ extension CollectionReference {
 
 // Put this piece of code anywhere you like
 extension UIViewController {
+    // allow keyboards to be tapped out of
+    
+    //MARK: - Keyboard dismissal
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -268,6 +281,9 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    //MARK: - Notification Logic
+    
+    // sample for testing
     func scheduleNotification(taskObj: Task) {
         let content = UNMutableNotificationContent()
         content.title = "Reminder"
@@ -288,6 +304,7 @@ extension UIViewController {
         }
     }
     
+    // sample for testing
     func sampleNotification(){
         let content = UNMutableNotificationContent()
         content.title = "YOU'RE 2 WEEKS LATE!?"
@@ -308,6 +325,7 @@ extension UIViewController {
         }
     }
     
+    // schedule the different notification times
     func scheduleNotifications(taskObj: Task){
         // Define time intervals
         let intervals: [TimeInterval] = [-3*24*60*60,

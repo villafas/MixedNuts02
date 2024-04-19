@@ -20,13 +20,12 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        //        passwordTextField.isSecureTextEntry = true
-        //        confirmPasswordTextField.isSecureTextEntry = true
     }
     
+    //MARK: - Buttons logic
+    
     @IBAction func checkbox_Tapped(_ sender: UIButton){
+        // Checkbox toggle logic
         if sender.isSelected {
             sender.isSelected = false
         } else {
@@ -39,7 +38,7 @@ class SignUpViewController: UIViewController {
     }
     
     
-    
+    //MARK: - Create user
     @IBAction func signUpTapped(_ sender: UIButton) {
         // Ensure text fields are not empty
         guard let email = emailTextField.text, !email.isEmpty,
@@ -85,8 +84,7 @@ class SignUpViewController: UIViewController {
             
             let db = Firestore.firestore()
             
-            //
-            
+            // Create a table for the user that matches the uid
             let ref = db.collection("users").document(user.uid)
             ref.setData([:]) { err in
                 if let err = err {

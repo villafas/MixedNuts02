@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 
+//MARK: - Task Model
 struct Task {
     var id: String
     let title: String

@@ -29,11 +29,12 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    var sections: [DaySection]?
+    var sections: [DaySection]? // holds format for table view structure
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set bounds for popups
         popupDeleteView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         popupDoneView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         self.hideKeyboardWhenTappedAround() 
@@ -50,16 +51,20 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         getData()
     }
     
+    //MARK: - Data reading
+    
     func getData(){
         sections = [DaySection]()
         
         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-                
+        
+        // get tasks from db
         userDbRef.collection("tasks").whereField("isComplete", isEqualTo: false).order(by: "dueDate").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
+                    // format sections
                     let task = Task(snapshot: document)
                     var dateTitle = ""
                     let formatter = DateFormatter()
@@ -98,7 +103,10 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: - Notification task selection
+    
     func selectNotificationTask(){
+        // iterate through the tasks in each section to find the task corresponding to the notification
         for section in 0..<self.sections!.count{
             var count = 0
             for task in self.sections![section].tasks {
@@ -114,11 +122,14 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: - Table view delegate
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections!.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // section title
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTitle")! as! SectionTitleView
         cell.title!.text = sections![section].day
         return cell
@@ -130,6 +141,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // if task is selected, expand its size
         if indexPath == selectedRow{
             return 459.0
         }
@@ -138,6 +150,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Cell configuration
         let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath)
         cell.selectionStyle = .none
         if let viewWithTag = cell.contentView.viewWithTag(100) {
@@ -146,6 +159,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let section = self.sections![indexPath.section]
         let task = section.tasks[indexPath.row]
         
+        // if selected, show expanded task
         if (indexPath == selectedRow){
             self.deleteNotifications(taskId: task.id, deletePending: false)
             let taskView = DesignableExpandedTaskView.instanceFromNib(setTask: task)
@@ -161,6 +175,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return cell
         }
         
+        // otherwise, show regular task view
         let taskView = DesignableEditTaskView.instanceFromNib(setTask: task)
         taskView.translatesAutoresizingMaskIntoConstraints = false
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
@@ -173,6 +188,7 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Row selection
         if indexPath == self.selectedRow {
             self.taskTable.deselectRow(at: indexPath, animated: true)
             self.selectedRow = nil
@@ -183,14 +199,19 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        // row deselection
         self.selectedRow = nil
     }
     
     func totalItems(_ sections: [DaySection]) -> Int {
+        // get the total number of tasks in all sections
         return sections.reduce(0) { $0 + $1.tasks.count }
     }
     
+    //MARK: - Task editing
+    
     @IBAction func saveAction(_ sender: UIButton) {
+        // update fields
         if let taskView = sender.superview?.superview?.superview as! DesignableExpandedTaskView? {
             let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
             let docRef = userDbRef.collection("tasks").document(taskView.taskObj!.id)
@@ -210,15 +231,18 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: - Delete task
     @IBAction func showDeleteAction(_ sender: UIButton) {
+        // show delete popup
         if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView? {
             card.titleLabel.text = "Delete \(taskView!.taskObj!.title)?"
             self.tempID = taskView!.taskObj!.id
         }
         animateScaleIn(desiredView: popupDeleteView, doneOrCancel: false)
     }
-        
+    
     @IBAction func doneDeleteAction(_ sender: UIButton) {
+        // delete is confirmed, so delete document
         animateScaleOut(desiredView: popupDeleteView)
         if sender.tag == 91 {
             self.deleteNotifications(taskId: self.tempID!, deletePending: true)
@@ -238,7 +262,9 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    //MARK: - Complete task
     @IBAction func showDoneAction(_ sender: UIButton) {
+        // show congrats popup
         if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
             self.deleteNotifications(taskId: taskView!.taskObj!.id, deletePending: true)
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
@@ -261,10 +287,12 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
         
     @IBAction func doneDoneAction(_ sender: UIButton) {
+        // dismiss popup
             animateScaleOut(desiredView: popupDoneView)
         }
     
-        
+    
+    //MARK: - Popup animations
     /// Animates a view to scale in and display
     func animateScaleIn(desiredView: UIView, doneOrCancel: Bool) {
         let backgroundView = self.view!

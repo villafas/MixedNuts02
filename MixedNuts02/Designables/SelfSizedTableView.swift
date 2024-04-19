@@ -8,7 +8,8 @@
 import UIKit
 
 class SelfSizedTableView: UITableView {
-
+    //MARK: - Table view sizing for proper constraints
+    
     override var contentSize:CGSize{
         didSet {
             invalidateIntrinsicContentSize()

@@ -8,8 +8,9 @@
 import Foundation
 import Firebase
 
+//MARK: - Logged User Model
 class AppUser {
-    static let shared = AppUser()
+    static let shared = AppUser() // make available globally
     
     var uid: String?
     var displayName: String?

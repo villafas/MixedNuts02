@@ -8,7 +8,8 @@
 import UIKit
 
 class DesignableViewBox: UIView {
-
+    //MARK: - View customization (Rounded corners)
+    
     @IBInspectable var cornerRadius: CGFloat = 0 {
             didSet {
                 layer.cornerRadius = cornerRadius

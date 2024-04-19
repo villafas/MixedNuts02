@@ -9,6 +9,7 @@ import UIKit
 
 @IBDesignable
 class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UITextFieldDelegate {
+    //MARK: - Expanded task view customization
     
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var urlField: DesignableUITextField!
@@ -16,6 +17,7 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
     @IBOutlet weak var notesView: DesignableUITextView!
     @IBOutlet weak var saveButton: DesignableUIButton!
     
+    //MARK: - Expanded task view instantiation
     override class func instanceFromNib(setTask: Task) -> DesignableExpandedTaskView{
         let task = UINib(nibName: "ExpandedTaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableExpandedTaskView
         task.taskObj = setTask
@@ -35,6 +37,7 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         return task
     }
     
+    //MARK: - URL Navigation
     @IBAction func goToUrl(_ sender: Any) {
         if let url = URL(string: (taskObj?.taskURL)!) {
                UIApplication.shared.open(url)
@@ -45,6 +48,7 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         //updateButtons()
     }
     
+    //MARK: - Button toggling
     func updateButtons(urlText: String){
         if urlText == taskObj?.taskURL && notesView.text == taskObj?.notes{
             saveButton.setDisabled()
@@ -63,12 +67,13 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         updateButtons(urlText: urlField.text!)
     }
     
+    //MARK: - Text field delegate
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
         // text hasn't changed yet, you have to compute the text AFTER the edit yourself
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
 
-        // do whatever you need with this updated string (your code)
+        // do whatever you need with this updated string
         updateButtons(urlText: updatedString!)
         
         // always return true so that changes propagate

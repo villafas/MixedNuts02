@@ -32,6 +32,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         taskTable.delegate = self
         taskTable.dataSource = self
         
+        //MARK: - Get completed tasks from db
         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
 
         userDbRef.collection("tasks").whereField("isComplete", isEqualTo: true).order(by: "dueDate", descending: true).getDocuments() { (querySnapshot, err) in
@@ -54,6 +55,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     
+    //MARK: - Table view delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskList!.count
     }
