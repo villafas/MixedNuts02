@@ -29,7 +29,7 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         coursePicker.delegate = self
         coursePicker.dataSource = self
-        courseField.inputView = coursePicker
+        //courseField.inputView = coursePicker
         
         db = Firestore.firestore()
         self.hideKeyboardWhenTappedAround() 
@@ -43,8 +43,9 @@ class AddViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             let dueDate = combineDateWithTime(date: dueDate.date, time: dueTime.date)!
             let workDate = combineDateWithTime(date: workDate.date, time: workTime.date)!
             var task = Task(id: "", title: title, course: course, taskURL: urlField.text, notes: notesView.text, dueDate: dueDate, workDate: workDate, isComplete: false)
+            let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
             var ref: DocumentReference? = nil
-            ref = db.collection("tasks").addDocument(data: task.toAnyObject()) { err in
+            ref = userDbRef.collection("tasks").addDocument(data: task.toAnyObject()) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
                 } else {

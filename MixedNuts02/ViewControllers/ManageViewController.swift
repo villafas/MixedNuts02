@@ -53,7 +53,9 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func getData(){
         sections = [DaySection]()
         
-        db.collection("tasks").whereField("isComplete", isEqualTo: false).order(by: "dueDate").getDocuments() { (querySnapshot, err) in
+        let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+                
+        userDbRef.collection("tasks").whereField("isComplete", isEqualTo: false).order(by: "dueDate").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -190,7 +192,8 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func saveAction(_ sender: UIButton) {
         if let taskView = sender.superview?.superview?.superview as! DesignableExpandedTaskView? {
-            let docRef = db.collection("tasks").document(taskView.taskObj!.id)
+            let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+            let docRef = userDbRef.collection("tasks").document(taskView.taskObj!.id)
             docRef.getDocument() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting document: \(err)")
@@ -219,7 +222,8 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         animateScaleOut(desiredView: popupDeleteView)
         if sender.tag == 91 {
             self.deleteNotifications(taskId: self.tempID!, deletePending: true)
-            let docRef = db.collection("tasks").document(self.tempID!)
+            let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+            let docRef = userDbRef.collection("tasks").document(self.tempID!)
             docRef.getDocument() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting document: \(err)")
@@ -239,7 +243,8 @@ class ManageViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.deleteNotifications(taskId: taskView!.taskObj!.id, deletePending: true)
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
             card.subtitleLabel.text = "Remaining Tasks: \((totalItems(self.sections!)) - 1)"
-            let docRef = db.collection("tasks").document(taskView!.taskObj!.id)
+            let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+            let docRef = userDbRef.collection("tasks").document(taskView!.taskObj!.id)
             docRef.getDocument() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting document: \(err)")

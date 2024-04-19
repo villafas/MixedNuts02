@@ -31,8 +31,10 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
         taskTable.delegate = self
         taskTable.dataSource = self
+        
+        let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
 
-        db.collection("tasks").whereField("isComplete", isEqualTo: true).order(by: "dueDate", descending: true).getDocuments() { (querySnapshot, err) in
+        userDbRef.collection("tasks").whereField("isComplete", isEqualTo: true).order(by: "dueDate", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {

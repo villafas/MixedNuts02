@@ -35,6 +35,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         db = Firestore.firestore()
         
+        setUserName()
+        
         refreshDates()
         
         configureCalendarView()
@@ -47,6 +49,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         taskTable.delegate = self
         taskTable.dataSource = self
         taskTable.reloadData()
+    }
+    
+    func setUserName(){
+        self.mainTitle.text = "Welcome Back, \(AppUser.shared.displayName ?? "User")!"
     }
     
     func configureCalendarView(){
@@ -76,7 +82,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func refreshDates(){
         self.dateList = [Date]()
-        db.collection("tasks").whereField("isComplete", isEqualTo: false).getDocuments() { (querySnapshot, err) in
+        
+        let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+        
+        userDbRef.collection("tasks").whereField("isComplete", isEqualTo: false).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -91,7 +100,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func refreshTasks(dateComp: DateComponents){
         var count = 0;
-        db.collection("tasks")
+
+        let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+        
+        userDbRef.collection("tasks")
             .whereField("dueDate", isDateEqual: dateComp)
             .order(by: "isComplete", descending: false)
             .getDocuments() { (querySnapshot, err) in
@@ -146,6 +158,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
         taskView.tag = 100
         cell.contentView.addSubview(taskView)
+        cell.backgroundColor = UIColor.white
         return cell
     }
     

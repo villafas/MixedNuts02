@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		27535FB82BB9DA2F0068EC9B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */; };
+		27577B852BD2132600E80FE8 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B842BD2132600E80FE8 /* AppUser.swift */; };
+		27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B862BD21B9000E80FE8 /* BadgesViewController.swift */; };
+		27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */; };
+		2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */; };
 		275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */; };
 		2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
@@ -86,6 +90,10 @@
 /* Begin PBXFileReference section */
 		27525FD92BBA411500578A30 /* MixedNuts02.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixedNuts02.entitlements; sourceTree = "<group>"; };
 		27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		27577B842BD2132600E80FE8 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		27577B862BD21B9000E80FE8 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
+		27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedTaskView.xib; sourceTree = "<group>"; };
 		2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableExpandedTaskView.swift; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +214,7 @@
 				581ADE722B9A153100CA0B6D /* Info.plist */,
 				27535FB72BB9DA2F0068EC9B /* GoogleService-Info.plist */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
+				27577B842BD2132600E80FE8 /* AppUser.swift */,
 			);
 			path = MixedNuts02;
 			sourceTree = "<group>";
@@ -239,12 +248,14 @@
 		CE0A74752BA8DDFE00361881 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */,
 				CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */,
 				CE0A74772BA8DDFE00361881 /* HomeViewController.swift */,
 				CE0A74782BA8DDFE00361881 /* ManageViewController.swift */,
 				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
 				CE7316872BADDF6000D95353 /* AddViewController.swift */,
 				CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */,
+				27577B862BD21B9000E80FE8 /* BadgesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -264,6 +275,7 @@
 				2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */,
 				CE45AF902BB1ED4400832038 /* SectionTitleView.swift */,
 				CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */,
+				27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -410,8 +422,11 @@
 				CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
+				27577B852BD2132600E80FE8 /* AppUser.swift in Sources */,
+				2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
 				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
+				27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */,
 				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
@@ -421,6 +436,7 @@
 				CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */,
 				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
+				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
 				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,
 				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,
 				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
@@ -577,6 +593,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -606,6 +623,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
