@@ -14,32 +14,34 @@ import UserNotifications
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       // Database config
+      // Initialize FirebaseManager which configures Firebase
       FirebaseApp.configure()
+      _ = FirebaseManager.shared
       
       // Push notifs config
       UNUserNotificationCenter.current().delegate = self
 
       let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
       UNUserNotificationCenter.current().requestAuthorization(
-        options: authOptions,
+        options: authOptions,				
         completionHandler: { _, _ in }
       )
       
       // Check if a user is logged in
-          Auth.auth().addStateDidChangeListener { auth, user in
-              if let user = user {
-                  print("\(user.email!) is logged in.")
-                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                  let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController") as? UITabBarController
-                  // Set user information globally
-                  AppUser.shared.setUser(uid: user.uid, displayName: user.displayName, email: user.email)
-                  // This is to get the SceneDelegate object from your view controller
-                  // then call the change root view controller function to change to main tab bar
-                  (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController!)
-              } else {
-                  print("There is no active user.")
-              }
+      Auth.auth().addStateDidChangeListener { auth, user in
+          if let user = user {
+              print("\(user.email!) is logged in.")
+              let storyboard = UIStoryboard(name: "Main", bundle: nil)
+              let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController") as? UITabBarController
+              // Set user information globally
+              AppUser.shared.setUser(uid: user.uid, displayName: user.displayName, email: user.email)
+              // This is to get the SceneDelegate object from your view controller
+              // then call the change root view controller function to change to main tab bar
+              (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController!)
+          } else {
+              print("There is no active user.")
           }
+      }
       
       return true
     }

@@ -8,8 +8,10 @@
 import Foundation
 import Firebase
 
-//MARK: - Task Model
-struct Task {
+struct Task: Codable{
+    
+    //MARK: - Properties
+    
     var id: String
     let title: String
     let course: String
@@ -18,6 +20,9 @@ struct Task {
     let dueDate: Date
     let workDate: Date
     let isComplete: Bool
+    
+    
+    //MARK: - Constructors
     
     // Standard init
     init(id: String, title: String, course: String, taskURL: String?, notes: String?, dueDate: Date, workDate: Date, isComplete: Bool){
@@ -42,7 +47,10 @@ struct Task {
         workDate = ((snapshot.data()["workDate"]) as! Timestamp).dateValue();
         isComplete = snapshot.data()["isComplete"] as! Bool
     }
-
+    
+    
+    //MARK: - Conversion Methods
+    
     // Func converting model for easier writing to database
     func toAnyObject() -> [String : Any] {
         return [

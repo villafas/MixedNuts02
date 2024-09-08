@@ -10,8 +10,12 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    //MARK: - Properties
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
+    
+    //MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,17 +8,25 @@
 import Foundation
 import Firebase
 
-//MARK: - Logged User Model
 class AppUser {
+    
+    //MARK: - Properties
+    
     static let shared = AppUser() // make available globally
     
     var uid: String?
     var displayName: String?
     var email: String?
     
+    
+    //MARK: -  Constructors
+    
     private init() {
         // Private init to prevent others from creating instances
     }
+    
+    
+    //MARK: - Methods
     
     func setUser(uid: String?, displayName: String?, email: String?) {
         self.uid = uid

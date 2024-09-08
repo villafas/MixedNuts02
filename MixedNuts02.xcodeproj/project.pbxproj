@@ -12,8 +12,13 @@
 		27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B862BD21B9000E80FE8 /* BadgesViewController.swift */; };
 		27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */; };
 		2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */; };
+		275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */; };
+		275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */; };
 		275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */; };
+		2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */; };
+		2766C70A2C893DA6007C0B5A /* CollectionReference+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */; };
 		2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */; };
+		277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
 		5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330E2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion */; };
 		581333112BA0A463001E17B4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 581333102BA0A463001E17B4 /* FirebaseAnalyticsSwift */; };
@@ -94,8 +99,13 @@
 		27577B862BD21B9000E80FE8 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedTaskView.xib; sourceTree = "<group>"; };
+		2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+Extensions.swift"; sourceTree = "<group>"; };
 		2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableExpandedTaskView.swift; sourceTree = "<group>"; };
+		277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581ADE642B9A152F00CA0B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +192,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		275B0BAF2C8762B40047B9AE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27577B842BD2132600E80FE8 /* AppUser.swift */,
+				CE0A74982BA8F28100361881 /* Task.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		275B0BB22C8766F20047B9AE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CE0A744E2BA8DDF300361881 /* Poppins */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		275B0BB32C8768880047B9AE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */,
+				2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */,
+				2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		277FDC6A2C88914100B5CA65 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		277FDC6B2C88916C00B5CA65 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		581ADE582B9A152F00CA0B6D = {
 			isa = PBXGroup;
 			children = (
@@ -202,19 +255,21 @@
 			isa = PBXGroup;
 			children = (
 				27525FD92BBA411500578A30 /* MixedNuts02.entitlements */,
-				CE0A744E2BA8DDF300361881 /* Poppins */,
+				274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */,
+				581ADE722B9A153100CA0B6D /* Info.plist */,
+				581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */,
+				CE0A748E2BA8DE1F00361881 /* Main.storyboard */,
 				581ADE642B9A152F00CA0B6D /* AppDelegate.swift */,
 				581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */,
-				CE0A74752BA8DDFE00361881 /* ViewControllers */,
-				CE0A747E2BA8DE0F00361881 /* Designables */,
-				CE0A748B2BA8DE1600361881 /* Views */,
-				CE0A748E2BA8DE1F00361881 /* Main.storyboard */,
 				CE0A74902BA8DE2C00361881 /* Assets.xcassets */,
-				581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */,
-				581ADE722B9A153100CA0B6D /* Info.plist */,
-				274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */,
-				CE0A74982BA8F28100361881 /* Task.swift */,
-				27577B842BD2132600E80FE8 /* AppUser.swift */,
+				CE0A747E2BA8DE0F00361881 /* Designables */,
+				275B0BB32C8768880047B9AE /* Extensions */,
+				275B0BB22C8766F20047B9AE /* Fonts */,
+				275B0BAF2C8762B40047B9AE /* Models */,
+				277FDC6B2C88916C00B5CA65 /* Network */,
+				CE0A74752BA8DDFE00361881 /* ViewControllers */,
+				277FDC6A2C88914100B5CA65 /* ViewModels */,
+				CE0A748B2BA8DE1600361881 /* Views */,
 			);
 			path = MixedNuts02;
 			sourceTree = "<group>";
@@ -427,6 +482,7 @@
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
 				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
 				27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */,
+				275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */,
 				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
@@ -437,10 +493,14 @@
 				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
+				275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */,
+				277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */,
 				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,
+				2766C70A2C893DA6007C0B5A /* CollectionReference+Extensions.swift in Sources */,
 				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,
 				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
+				2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +570,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -567,7 +627,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
