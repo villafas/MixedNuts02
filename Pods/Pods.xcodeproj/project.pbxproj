@@ -66,12 +66,12 @@
 		6BCABBE0E125778F6A288BE74178F1A0 /* ScrollPosition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollPosition.swift; path = Framework/Sources/ScrollPosition.swift; sourceTree = "<group>"; };
 		6F147E8FAB32A0812DF21A4AC293E393 /* SpreadsheetViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpreadsheetViewDataSource.swift; path = Framework/Sources/SpreadsheetViewDataSource.swift; sourceTree = "<group>"; };
 		893C6AD0C5EF03BF55363C91A2110668 /* CellRange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CellRange.swift; path = Framework/Sources/CellRange.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E5CD0720B954E96AB94FFCE93F008EF /* Pods-MixedNuts02-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MixedNuts02-acknowledgements.plist"; sourceTree = "<group>"; };
 		9F0E9AEB6A0721BF67B1A5560970517B /* Pods-MixedNuts02.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MixedNuts02.release.xcconfig"; sourceTree = "<group>"; };
 		AC1ED9341F5827C55BC04559F07871F6 /* SpreadsheetView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SpreadsheetView.modulemap; sourceTree = "<group>"; };
 		AE0D979C63AE2844A30728CCE8A0183F /* SpreadsheetView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpreadsheetView-prefix.pch"; sourceTree = "<group>"; };
-		AE9B884EBD08952D3197671321FAA308 /* SpreadsheetView */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SpreadsheetView; path = SpreadsheetView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE9B884EBD08952D3197671321FAA308 /* SpreadsheetView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpreadsheetView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B447855CD1E7AF6C4C862316F927076A /* Pods-MixedNuts02-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MixedNuts02-umbrella.h"; sourceTree = "<group>"; };
 		C0B299D8D132B7E15B557D27643C7A62 /* Pods-MixedNuts02.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MixedNuts02.modulemap"; sourceTree = "<group>"; };
 		C5209AA3394ECDAFE7BD3263905874F7 /* CircularScrolling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularScrolling.swift; path = Framework/Sources/CircularScrolling.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				DA9665392DFE9E4C6F90181C97E48DFC /* Pods-MixedNuts02 */,
-				AE9B884EBD08952D3197671321FAA308 /* SpreadsheetView */,
+				AE9B884EBD08952D3197671321FAA308 /* SpreadsheetView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,7 +219,6 @@
 				E401136A6F8046D6A6DF84151A758435 /* SpreadsheetViewDelegate.swift */,
 				6490EFDBED0B88BD11CA7187F71F50B8 /* Support Files */,
 			);
-			name = SpreadsheetView;
 			path = SpreadsheetView;
 			sourceTree = "<group>";
 		};
@@ -271,7 +270,7 @@
 			);
 			name = SpreadsheetView;
 			productName = SpreadsheetView;
-			productReference = AE9B884EBD08952D3197671321FAA308 /* SpreadsheetView */;
+			productReference = AE9B884EBD08952D3197671321FAA308 /* SpreadsheetView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C3287311B7D088E57FD3CCF2C8B819FF /* Pods-MixedNuts02 */ = {
@@ -311,7 +310,6 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
 			productRefGroup = 7074910068E0CE296E5C6F9CA9450A6F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,7 +404,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SpreadsheetView/SpreadsheetView-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SpreadsheetView/SpreadsheetView-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,7 +438,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SpreadsheetView/SpreadsheetView-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SpreadsheetView/SpreadsheetView-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
