@@ -12,24 +12,58 @@ class HomeViewModel {
     //MARK: - Variables
     
     private let firebaseManager = FirebaseManager.shared
-    
-    var taskList = [Task]()
+
     var dateList: [Date]!
-    var selectedDay: DateComponents?
     var errorMessage: String?
     
+    var tempID: String?
+    
+    var taskCollection = [DailyTasks]() // holds format for table view structure
+    
     var onTasksUpdated: (() -> Void)?
-    var onDatesUpdated: (() -> Void)?
+    var onDatesUpdated: (() -> Void)? // REMOVE
     var onError: ((String) -> Void)?
     
     
     //MARK: - Methods
+    func fetchTasks() {
+        firebaseManager.fetchTasks() { [weak self] result in
+            switch result {
+            case .success(let fetchedTasks):
+                self?.taskCollection = [DailyTasks]()
+                // Arrange tasks in proper sections
+                for task in fetchedTasks {
+                    if self?.taskCollection.count == 0 {
+                        self?.taskCollection.append(DailyTasks(day: task.dueDate, tasks: [task]))
+                    } else {
+                        var added = false
+                        for i in 0..<(self?.taskCollection.count)! {
+                            if self?.taskCollection[i].day.startOfDay == task.dueDate.startOfDay {
+                                self?.taskCollection[i].tasks.append(task)
+                                added = true
+                                break
+                            }
+                        }
+                        if added == false {
+                            self?.taskCollection.append(DailyTasks(day: task.dueDate, tasks: [task]))
+                        }
+                    }
+                }
+                
+                self?.onTasksUpdated?()  // Notify the view controller to update the UI
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
+            }
+        }
+    }
     
+    // OLD
     func fetchTasks(forDate dateComp: DateComponents) {
         firebaseManager.fetchTasks(forDate: dateComp) { [weak self] result in
             switch result {
             case .success(let fetchedTasks):
-                self?.taskList = fetchedTasks
+                //self?.taskList = fetchedTasks
                 self?.onTasksUpdated?()  // Notify the view controller to update the UI
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription

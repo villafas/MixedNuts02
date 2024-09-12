@@ -15,10 +15,16 @@
 		275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */; };
 		275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */; };
 		275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */; };
+		2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765A86B2C8E1CF900A456A1 /* DesignableTaskCountView.swift */; };
+		27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27661EB42C9114DE00B863FA /* DailyTasks.swift */; };
+		27661EB72C911B2A00B863FA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27661EB62C911B2A00B863FA /* UIView+Extensions.swift */; };
 		2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */; };
 		2766C70A2C893DA6007C0B5A /* CollectionReference+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */; };
 		2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */; };
+		276B2F492C8D2EE80053A860 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B2F482C8D2EE80053A860 /* HomeViewController.swift */; };
+		27723B9A2C91EAB9007EBDE2 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */; };
 		277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */; };
+		27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
 		5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330E2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion */; };
 		581333112BA0A463001E17B4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 581333102BA0A463001E17B4 /* FirebaseAnalyticsSwift */; };
@@ -49,6 +55,7 @@
 		581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE642B9A152F00CA0B6D /* AppDelegate.swift */; };
 		581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */; };
 		581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */; };
+		7DDA9D1D320D5C19D0BAC245 /* Pods_MixedNuts02.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */; };
 		CE0A74622BA8DDF300361881 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */; };
 		CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */; };
 		CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74512BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf */; };
@@ -69,8 +76,6 @@
 		CE0A74732BA8DDF300361881 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74602BA8DDF300361881 /* Poppins-Italic.ttf */; };
 		CE0A74742BA8DDF300361881 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74612BA8DDF300361881 /* Poppins-MediumItalic.ttf */; };
 		CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */; };
-		CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74772BA8DDFE00361881 /* HomeViewController.swift */; };
-		CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74782BA8DDFE00361881 /* ManageViewController.swift */; };
 		CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74792BA8DDFE00361881 /* LogInViewController.swift */; };
 		CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */; };
 		CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */; };
@@ -102,15 +107,24 @@
 		275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedTaskView.xib; sourceTree = "<group>"; };
+		2765A86B2C8E1CF900A456A1 /* DesignableTaskCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTaskCountView.swift; sourceTree = "<group>"; };
+		27661EB42C9114DE00B863FA /* DailyTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasks.swift; sourceTree = "<group>"; };
+		27661EB62C911B2A00B863FA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+Extensions.swift"; sourceTree = "<group>"; };
 		2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableExpandedTaskView.swift; sourceTree = "<group>"; };
+		276B2F482C8D2EE80053A860 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCountView.xib; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581ADE642B9A152F00CA0B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		581ADE702B9A153100CA0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		581ADE722B9A153100CA0B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MixedNuts02.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF28D08E6BDEFC419DEB791 /* Pods-MixedNuts02.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MixedNuts02.debug.xcconfig"; path = "Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02.debug.xcconfig"; sourceTree = "<group>"; };
+		C3836E4E359F606E18808ECC /* Pods-MixedNuts02.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MixedNuts02.release.xcconfig"; path = "Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02.release.xcconfig"; sourceTree = "<group>"; };
 		CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		CE0A74512BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -131,8 +145,6 @@
 		CE0A74602BA8DDF300361881 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		CE0A74612BA8DDF300361881 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		CE0A74772BA8DDFE00361881 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		CE0A74782BA8DDFE00361881 /* ManageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
 		CE0A74792BA8DDFE00361881 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableDatePicker.swift; sourceTree = "<group>"; };
 		CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignablePopUpCard.swift; sourceTree = "<group>"; };
@@ -186,6 +198,7 @@
 				581333272BA0A463001E17B4 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				581333372BA0A463001E17B4 /* FirebaseMessaging in Frameworks */,
 				581333332BA0A463001E17B4 /* FirebaseInstallations in Frameworks */,
+				7DDA9D1D320D5C19D0BAC245 /* Pods_MixedNuts02.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +210,7 @@
 			children = (
 				27577B842BD2132600E80FE8 /* AppUser.swift */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
+				27661EB42C9114DE00B863FA /* DailyTasks.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +229,7 @@
 				275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */,
 				2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */,
 				2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */,
+				27661EB62C911B2A00B863FA /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +255,8 @@
 			children = (
 				581ADE632B9A152F00CA0B6D /* MixedNuts02 */,
 				581ADE622B9A152F00CA0B6D /* Products */,
+				651E39EC321DCBCF069FD596 /* Pods */,
+				A3D2CA7ED1F42CC7B9C1A621 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,6 +291,23 @@
 			path = MixedNuts02;
 			sourceTree = "<group>";
 		};
+		651E39EC321DCBCF069FD596 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AEF28D08E6BDEFC419DEB791 /* Pods-MixedNuts02.debug.xcconfig */,
+				C3836E4E359F606E18808ECC /* Pods-MixedNuts02.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A3D2CA7ED1F42CC7B9C1A621 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE0A744E2BA8DDF300361881 /* Poppins */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,12 +339,12 @@
 			children = (
 				2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */,
 				CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */,
-				CE0A74772BA8DDFE00361881 /* HomeViewController.swift */,
-				CE0A74782BA8DDFE00361881 /* ManageViewController.swift */,
+				276B2F482C8D2EE80053A860 /* HomeViewController.swift */,
 				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
 				CE7316872BADDF6000D95353 /* AddViewController.swift */,
 				CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */,
 				27577B862BD21B9000E80FE8 /* BadgesViewController.swift */,
+				27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -331,6 +365,7 @@
 				CE45AF902BB1ED4400832038 /* SectionTitleView.swift */,
 				CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */,
 				27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */,
+				2765A86B2C8E1CF900A456A1 /* DesignableTaskCountView.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -341,6 +376,7 @@
 				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
 				CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */,
 				275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */,
+				27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -352,9 +388,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 581ADE752B9A153100CA0B6D /* Build configuration list for PBXNativeTarget "MixedNuts02" */;
 			buildPhases = (
+				BF06290A1869C7DEB1B54905 /* [CP] Check Pods Manifest.lock */,
 				581ADE5D2B9A152F00CA0B6D /* Sources */,
 				581ADE5E2B9A152F00CA0B6D /* Frameworks */,
 				581ADE5F2B9A152F00CA0B6D /* Resources */,
+				487502872E0C759E98012FF8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -438,6 +476,7 @@
 				CE0A746E2BA8DDF300361881 /* Poppins-LightItalic.ttf in Resources */,
 				CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */,
 				CE0A746F2BA8DDF300361881 /* Poppins-Bold.ttf in Resources */,
+				27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */,
 				CE0A746C2BA8DDF300361881 /* OFL.txt in Resources */,
 				CE0A74692BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				CE0A74682BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf in Resources */,
@@ -466,6 +505,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		487502872E0C759E98012FF8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF06290A1869C7DEB1B54905 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MixedNuts02-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		581ADE5D2B9A152F00CA0B6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -473,9 +554,10 @@
 			files = (
 				CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */,
 				CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */,
+				276B2F492C8D2EE80053A860 /* HomeViewController.swift in Sources */,
 				2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */,
-				CE0A747B2BA8DDFE00361881 /* HomeViewController.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
+				27661EB72C911B2A00B863FA /* UIView+Extensions.swift in Sources */,
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
 				27577B852BD2132600E80FE8 /* AppUser.swift in Sources */,
 				2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */,
@@ -483,6 +565,7 @@
 				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
 				27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */,
 				275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */,
+				27723B9A2C91EAB9007EBDE2 /* TimetableViewController.swift in Sources */,
 				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
@@ -491,14 +574,15 @@
 				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
 				CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */,
 				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
+				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
 				275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */,
 				277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */,
-				CE0A747C2BA8DDFE00361881 /* ManageViewController.swift in Sources */,
 				2766C70A2C893DA6007C0B5A /* CollectionReference+Extensions.swift in Sources */,
 				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,
 				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
+				2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
 				2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */,
 			);
@@ -555,7 +639,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -618,7 +702,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -639,6 +723,7 @@
 		};
 		581ADE762B9A153100CA0B6D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEF28D08E6BDEFC419DEB791 /* Pods-MixedNuts02.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -670,6 +755,7 @@
 		};
 		581ADE772B9A153100CA0B6D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3836E4E359F606E18808ECC /* Pods-MixedNuts02.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

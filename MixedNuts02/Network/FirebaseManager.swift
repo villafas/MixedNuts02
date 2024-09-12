@@ -27,6 +27,30 @@ class FirebaseManager {
     
     //MARK: - Methods
     
+    func fetchTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        
+        tasksCollection
+            .whereField("isComplete", isEqualTo: false)
+            .order(by: "dueDate")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                var tasks: [Task] = []
+                for document in querySnapshot!.documents {
+                    let task = Task(snapshot: document)
+                    tasks.append(task)
+                }
+                
+                completion(.success(tasks))
+            }
+    }
+    
+    // OLD
     func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
