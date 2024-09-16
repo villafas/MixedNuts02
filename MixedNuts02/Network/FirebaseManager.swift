@@ -50,6 +50,41 @@ class FirebaseManager {
             }
     }
     
+    //Created by Gavin Shaw - September 16
+    
+    //Method is created to fetch all users from the Firebase db
+    func fetchUsers(completion: @escaping (Result<[AppUser], Error>) -> Void) {
+            db.collection("users").getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                var users: [AppUser] = []
+                for document in querySnapshot!.documents {
+                    let user = AppUser(snapshot: document)
+                    users.append(user)
+                }
+                completion(.success(users))
+            }
+        }
+    
+    
+    //Update Exisiting User
+//    func updateUser(_ user: AppUser, completion: @escaping (Error?) -> Void) {
+//        // Unwrap user.uid safely
+//        guard let userId = user.uid else {
+//            completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User ID is nil"]))
+//            return
+//        }
+//        
+//        let userRef = db.collection("users").document(userId)
+//        userRef.updateData(user.toAnyObject()) { error in
+//            completion(error)
+//        }
+//    }
+
+    
     // OLD
     func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
