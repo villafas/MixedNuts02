@@ -25,7 +25,7 @@ class UsersTableViewController: UITableViewController {
     }
     
     // MARK: - Fetch Users
-    
+    //Gavin Shaw - Sept  16 th
     func fetchUsers() {
         // Use FirebaseManager to fetch users
         FirebaseManager.shared.fetchUsers { [weak self] result in
@@ -53,17 +53,4 @@ class UsersTableViewController: UITableViewController {
         cell.detailTextLabel?.text = user.email // Display user's email
         return cell
     }
-    // MARK: - Handle User Actions (Add, Update, Delete)
-    
-    //    // Update an existing user
-    //    func updateUser(_ user: AppUser) {
-    //        FirebaseManager.shared.updateUser(user) { error in
-    //            if let error = error {
-    //                print("Failed to update user: \(error.localizedDescription)")
-    //            } else {
-    //                print("User updated successfully.")
-    //                self.fetchUsers() // Refresh the list after updating
-    //            }
-    //        }
-    //    }
 }
