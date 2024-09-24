@@ -96,6 +96,7 @@
 		CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */; };
 		CED3CD312BB1BDC800C9A544 /* EditTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */; };
 		DCA89E722C9899B6007E4E4F /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA89E712C9899B6007E4E4F /* UsersTableViewController.swift */; };
+		DCD7F1542CA3159800C04712 /* FriendUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7F1532CA3159800C04712 /* FriendUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +167,7 @@
 		CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableEditTaskView.swift; sourceTree = "<group>"; };
 		CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTaskView.xib; sourceTree = "<group>"; };
 		DCA89E712C9899B6007E4E4F /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		DCD7F1532CA3159800C04712 /* FriendUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				27577B842BD2132600E80FE8 /* AppUser.swift */,
+				DCD7F1532CA3159800C04712 /* FriendUser.swift */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
 				27661EB42C9114DE00B863FA /* DailyTasks.swift */,
 			);
@@ -576,6 +579,7 @@
 				CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */,
 				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
 				CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */,
+				DCD7F1542CA3159800C04712 /* FriendUser.swift in Sources */,
 				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
 				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
@@ -744,6 +748,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -776,6 +781,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -29,8 +29,6 @@ class AppUser {
         
     }
     
-    
-    
     //MARK: -  Constructors
     
     private init() {

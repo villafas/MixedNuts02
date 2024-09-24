@@ -84,6 +84,9 @@ class SignUpViewController: UIViewController {
             
             let db = Firestore.firestore()
             
+            //
+            
+            
             // Create a table for the user that matches the uid
             let ref = db.collection("users").document(user.uid)
             ref.setData([:]) { err in

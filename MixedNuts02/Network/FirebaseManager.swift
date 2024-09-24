@@ -53,16 +53,16 @@ class FirebaseManager {
     //Created by Gavin Shaw - September 16
     
     //Method is created to fetch all users from the Firebase db
-    func fetchUsers(completion: @escaping (Result<[AppUser], Error>) -> Void) {
+    func fetchUsers(completion: @escaping (Result<[FriendUser], Error>) -> Void) {
             db.collection("users").getDocuments { (querySnapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                     return
                 }
                 
-                var users: [AppUser] = []
+                var users: [FriendUser] = []
                 for document in querySnapshot!.documents {
-                    let user = AppUser(snapshot: document)
+                    let user = FriendUser(snapshot: document)
                     users.append(user)
                 }
                 completion(.success(users))
