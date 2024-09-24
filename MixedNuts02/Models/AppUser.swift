@@ -18,6 +18,18 @@ class AppUser {
     var displayName: String?
     var email: String?
     
+    // MARK: - Initializers
+    
+    init(snapshot: QueryDocumentSnapshot) {
+        
+        let data = snapshot.data()
+        self.uid = snapshot.documentID
+        self.displayName = data["displayName"] as? String ?? "No Name"
+        self.email = data["email"] as? String ?? "No Email"
+        
+    }
+    
+    
     
     //MARK: -  Constructors
     

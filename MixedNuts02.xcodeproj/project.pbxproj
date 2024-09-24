@@ -95,6 +95,7 @@
 		CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */; };
 		CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */; };
 		CED3CD312BB1BDC800C9A544 /* EditTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */; };
+		DCA89E722C9899B6007E4E4F /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA89E712C9899B6007E4E4F /* UsersTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +165,7 @@
 		CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableDoneCard.swift; sourceTree = "<group>"; };
 		CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableEditTaskView.swift; sourceTree = "<group>"; };
 		CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTaskView.xib; sourceTree = "<group>"; };
+		DCA89E712C9899B6007E4E4F /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +347,7 @@
 				CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */,
 				27577B862BD21B9000E80FE8 /* BadgesViewController.swift */,
 				27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */,
+				DCA89E712C9899B6007E4E4F /* UsersTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
 				2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
+				DCA89E722C9899B6007E4E4F /* UsersTableViewController.swift in Sources */,
 				2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
