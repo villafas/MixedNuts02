@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2715B2902C9F2DAA005D5682 /* CourseScheduleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2715B28F2C9F2DAA005D5682 /* CourseScheduleView.xib */; };
+		2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715B2942CA0883B005D5682 /* CourseScheduleView.swift */; };
 		274DCC4C2BD2F00800B91AD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */; };
 		27577B852BD2132600E80FE8 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B842BD2132600E80FE8 /* AppUser.swift */; };
 		27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B862BD21B9000E80FE8 /* BadgesViewController.swift */; };
@@ -22,8 +24,15 @@
 		2766C70A2C893DA6007C0B5A /* CollectionReference+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */; };
 		2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */; };
 		276B2F492C8D2EE80053A860 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B2F482C8D2EE80053A860 /* HomeViewController.swift */; };
-		27723B9A2C91EAB9007EBDE2 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */; };
+		277173E62C9B147300459C7F /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E52C9B147300459C7F /* Term.swift */; };
+		277173E82C9B50C300459C7F /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E72C9B50C300459C7F /* Time.swift */; };
+		277173EA2C9B50E000459C7F /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E92C9B50E000459C7F /* DaySchedule.swift */; };
+		27723B9C2C9362E9007EBDE2 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27723B9B2C9362E9007EBDE2 /* Course.swift */; };
 		277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */; };
+		278874F72C990B4500FB7F13 /* AddContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278874F62C990B4500FB7F13 /* AddContainerViewController.swift */; };
+		278874F92C990CC300FB7F13 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278874F82C990CC300FB7F13 /* AddCourseViewController.swift */; };
+		27CB34212CA21E0D002B65A0 /* DropdownTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB34202CA21E0D002B65A0 /* DropdownTableView.xib */; };
+		27CB34232CA21E23002B65A0 /* DropdownTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CB34222CA21E23002B65A0 /* DropdownTableView.swift */; };
 		27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
 		5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330E2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion */; };
@@ -90,7 +99,7 @@
 		CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */; };
 		CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleView.swift */; };
 		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
-		CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddViewController.swift */; };
+		CE7316882BADDF6000D95353 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316872BADDF6000D95353 /* AddTaskViewController.swift */; };
 		CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */; };
 		CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */; };
 		CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */; };
@@ -98,6 +107,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2715B28F2C9F2DAA005D5682 /* CourseScheduleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseScheduleView.xib; sourceTree = "<group>"; };
+		2715B2942CA0883B005D5682 /* CourseScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseScheduleView.swift; sourceTree = "<group>"; };
 		274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27525FD92BBA411500578A30 /* MixedNuts02.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixedNuts02.entitlements; sourceTree = "<group>"; };
 		27577B842BD2132600E80FE8 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
@@ -114,8 +125,15 @@
 		2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionReference+Extensions.swift"; sourceTree = "<group>"; };
 		2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableExpandedTaskView.swift; sourceTree = "<group>"; };
 		276B2F482C8D2EE80053A860 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		277173E52C9B147300459C7F /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		277173E72C9B50C300459C7F /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		277173E92C9B50E000459C7F /* DaySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
+		27723B9B2C9362E9007EBDE2 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		278874F62C990B4500FB7F13 /* AddContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContainerViewController.swift; sourceTree = "<group>"; };
+		278874F82C990CC300FB7F13 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		27CB34202CA21E0D002B65A0 /* DropdownTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableView.xib; sourceTree = "<group>"; };
+		27CB34222CA21E23002B65A0 /* DropdownTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableView.swift; sourceTree = "<group>"; };
 		27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCountView.xib; sourceTree = "<group>"; };
 		581ADE612B9A152F00CA0B6D /* MixedNuts02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MixedNuts02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		581ADE642B9A152F00CA0B6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,7 +177,7 @@
 		CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		CE45AF902BB1ED4400832038 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
-		CE7316872BADDF6000D95353 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		CE7316872BADDF6000D95353 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableUITextView.swift; sourceTree = "<group>"; };
 		CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableDoneCard.swift; sourceTree = "<group>"; };
 		CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableEditTaskView.swift; sourceTree = "<group>"; };
@@ -209,8 +227,12 @@
 			isa = PBXGroup;
 			children = (
 				27577B842BD2132600E80FE8 /* AppUser.swift */,
-				CE0A74982BA8F28100361881 /* Task.swift */,
+				27723B9B2C9362E9007EBDE2 /* Course.swift */,
 				27661EB42C9114DE00B863FA /* DailyTasks.swift */,
+				277173E92C9B50E000459C7F /* DaySchedule.swift */,
+				CE0A74982BA8F28100361881 /* Task.swift */,
+				277173E52C9B147300459C7F /* Term.swift */,
+				277173E72C9B50C300459C7F /* Time.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,14 +359,15 @@
 		CE0A74752BA8DDFE00361881 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */,
-				CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */,
-				276B2F482C8D2EE80053A860 /* HomeViewController.swift */,
-				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
-				CE7316872BADDF6000D95353 /* AddViewController.swift */,
+				278874F62C990B4500FB7F13 /* AddContainerViewController.swift */,
+				278874F82C990CC300FB7F13 /* AddCourseViewController.swift */,
+				CE7316872BADDF6000D95353 /* AddTaskViewController.swift */,
 				CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */,
 				27577B862BD21B9000E80FE8 /* BadgesViewController.swift */,
-				27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */,
+				276B2F482C8D2EE80053A860 /* HomeViewController.swift */,
+				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
+				2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */,
+				CE0A74762BA8DDFE00361881 /* SignUpViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -352,20 +375,17 @@
 		CE0A747E2BA8DE0F00361881 /* Designables */ = {
 			isa = PBXGroup;
 			children = (
-				CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */,
 				CE0A747F2BA8DE0F00361881 /* DesignableDatePicker.swift */,
-				CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */,
-				CE0A74812BA8DE0F00361881 /* DesignableUITextField.swift */,
-				CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */,
-				CE0A74822BA8DE0F00361881 /* DesignableUIButton.swift */,
-				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
-				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
+				CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */,
 				CED3CD2E2BB1BD2E00C9A544 /* DesignableEditTaskView.swift */,
 				2768952D2BB745170084E4DF /* DesignableExpandedTaskView.swift */,
-				CE45AF902BB1ED4400832038 /* SectionTitleView.swift */,
-				CEB02F062BB254C500C3A1C7 /* DesignableDoneCard.swift */,
-				27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */,
+				CE0A74802BA8DE0F00361881 /* DesignablePopUpCard.swift */,
 				2765A86B2C8E1CF900A456A1 /* DesignableTaskCountView.swift */,
+				CE0A74842BA8DE0F00361881 /* DesignableTaskView.swift */,
+				CE0A74822BA8DE0F00361881 /* DesignableUIButton.swift */,
+				CE0A74812BA8DE0F00361881 /* DesignableUITextField.swift */,
+				CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */,
+				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -373,10 +393,17 @@
 		CE0A748B2BA8DE1600361881 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
+				27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */,
+				2715B2942CA0883B005D5682 /* CourseScheduleView.swift */,
+				27CB34222CA21E23002B65A0 /* DropdownTableView.swift */,
+				CE45AF902BB1ED4400832038 /* SectionTitleView.swift */,
+				CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */,
+				2715B28F2C9F2DAA005D5682 /* CourseScheduleView.xib */,
+				27CB34202CA21E0D002B65A0 /* DropdownTableView.xib */,
 				CED3CD302BB1BDC800C9A544 /* EditTaskView.xib */,
 				275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */,
 				27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */,
+				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,8 +500,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2715B2902C9F2DAA005D5682 /* CourseScheduleView.xib in Resources */,
 				CE0A746E2BA8DDF300361881 /* Poppins-LightItalic.ttf in Resources */,
 				CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */,
+				27CB34212CA21E0D002B65A0 /* DropdownTableView.xib in Resources */,
 				CE0A746F2BA8DDF300361881 /* Poppins-Bold.ttf in Resources */,
 				27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */,
 				CE0A746C2BA8DDF300361881 /* OFL.txt in Resources */,
@@ -552,35 +581,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278874F72C990B4500FB7F13 /* AddContainerViewController.swift in Sources */,
+				278874F92C990CC300FB7F13 /* AddCourseViewController.swift in Sources */,
 				CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */,
 				CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */,
 				276B2F492C8D2EE80053A860 /* HomeViewController.swift in Sources */,
 				2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
+				277173E62C9B147300459C7F /* Term.swift in Sources */,
 				27661EB72C911B2A00B863FA /* UIView+Extensions.swift in Sources */,
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
 				27577B852BD2132600E80FE8 /* AppUser.swift in Sources */,
 				2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
+				27CB34232CA21E23002B65A0 /* DropdownTableView.swift in Sources */,
 				CE0A747D2BA8DDFE00361881 /* LogInViewController.swift in Sources */,
 				27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */,
 				275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */,
-				27723B9A2C91EAB9007EBDE2 /* TimetableViewController.swift in Sources */,
-				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
+				CE7316882BADDF6000D95353 /* AddTaskViewController.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
+				277173E82C9B50C300459C7F /* Time.swift in Sources */,
 				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,
 				CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */,
 				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
 				CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */,
 				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
+				27723B9C2C9362E9007EBDE2 /* Course.swift in Sources */,
 				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
+				2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
 				275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */,
 				277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */,
 				2766C70A2C893DA6007C0B5A /* CollectionReference+Extensions.swift in Sources */,
 				CE0A74862BA8DE0F00361881 /* DesignablePopUpCard.swift in Sources */,
+				277173EA2C9B50E000459C7F /* DaySchedule.swift in Sources */,
 				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
 				2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,

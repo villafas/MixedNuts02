@@ -8,31 +8,28 @@
 import Foundation
 import Firebase
 
-struct Task: Codable{
+struct Task{
     
     //MARK: - Properties
     
     var id: String
     let title: String
     let course: String
-    let taskURL: String?
     let notes: String?
     let dueDate: Date
-    let workDate: Date
+    let markWeight: Int? // %
     let isComplete: Bool
-    
     
     //MARK: - Constructors
     
     // Standard init
-    init(id: String, title: String, course: String, taskURL: String?, notes: String?, dueDate: Date, workDate: Date, isComplete: Bool){
+    init(id: String, title: String, course: String, notes: String?, dueDate: Date, markWeight: Int?, isComplete: Bool){
         self.id = id
         self.title = title
         self.course = course
-        self.taskURL = taskURL
         self.notes = notes
         self.dueDate = dueDate
-        self.workDate = workDate
+        self.markWeight = markWeight
         self.isComplete = isComplete
     }
     
@@ -41,10 +38,9 @@ struct Task: Codable{
         id = snapshot.documentID
         title = snapshot.data()["title"] as! String
         course = snapshot.data()["course"] as! String
-        taskURL = snapshot.data()["taskURL"] as? String
         notes = snapshot.data()["notes"] as? String
-        dueDate = ((snapshot.data()["dueDate"]) as! Timestamp).dateValue();
-        workDate = ((snapshot.data()["workDate"]) as! Timestamp).dateValue();
+        dueDate = ((snapshot.data()["dueDate"]) as! Timestamp).dateValue()
+        markWeight = snapshot.data()["markWeight"] as? Int
         isComplete = snapshot.data()["isComplete"] as! Bool
     }
     
@@ -56,10 +52,9 @@ struct Task: Codable{
         return [
             "title": title,
             "course": course,
-            "taskURL": taskURL ?? "",
             "notes": notes ?? "",
             "dueDate": dueDate,
-            "workDate": workDate,
+            "markWeight": markWeight ?? 0,
             "isComplete": isComplete
         ]
     }

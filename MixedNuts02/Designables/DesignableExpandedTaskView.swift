@@ -32,14 +32,14 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         }
         task.urlField.delegate = task.self
         task.notesView.delegate = task.self
-        task.urlField.text = task.taskObj?.taskURL
+        //task.urlField.text = task.taskObj?.taskURL
         task.notesView.text = task.taskObj?.notes
         return task
     }
     
     //MARK: - URL Navigation
     @IBAction func goToUrl(_ sender: Any) {
-        if let url = URL(string: (taskObj?.taskURL)!) {
+        if let url = URL(string: ("")) {
                UIApplication.shared.open(url)
             }
     }
@@ -50,13 +50,13 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
     
     //MARK: - Button toggling
     func updateButtons(urlText: String){
-        if urlText == taskObj?.taskURL && notesView.text == taskObj?.notes{
+        if urlText == "" && notesView.text == taskObj?.notes{
             saveButton.setDisabled()
         } else {
             saveButton.setEnabled()
         }
         
-        if taskObj?.taskURL == "" || taskObj?.taskURL != urlText{
+        if "" == "" || "" != urlText{
             urlButton.setDisabled()
         } else {
             urlButton.setEnabled()
