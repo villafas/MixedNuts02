@@ -56,6 +56,7 @@
 		581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */; };
 		581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */; };
 		7DDA9D1D320D5C19D0BAC245 /* Pods_MixedNuts02.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */; };
+		97E75C7A2CA608DF00983F18 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E75C792CA608DF00983F18 /* Cells.swift */; };
 		CE0A74622BA8DDF300361881 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */; };
 		CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */; };
 		CE0A74642BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74512BA8DDF300361881 /* Poppins-ExtraLightItalic.ttf */; };
@@ -123,6 +124,7 @@
 		581ADE702B9A153100CA0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		581ADE722B9A153100CA0B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MixedNuts02.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97E75C792CA608DF00983F18 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		AEF28D08E6BDEFC419DEB791 /* Pods-MixedNuts02.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MixedNuts02.debug.xcconfig"; path = "Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02.debug.xcconfig"; sourceTree = "<group>"; };
 		C3836E4E359F606E18808ECC /* Pods-MixedNuts02.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MixedNuts02.release.xcconfig"; path = "Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02.release.xcconfig"; sourceTree = "<group>"; };
 		CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				27577B842BD2132600E80FE8 /* AppUser.swift */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
 				27661EB42C9114DE00B863FA /* DailyTasks.swift */,
+				97E75C792CA608DF00983F18 /* Cells.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */,
 				CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */,
 				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
+				97E75C7A2CA608DF00983F18 /* Cells.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
 				275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */,
