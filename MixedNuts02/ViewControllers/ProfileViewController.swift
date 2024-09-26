@@ -61,6 +61,37 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Logout logic
     
+    
+    // New Logout function with confirmation alert
+    @IBAction func logoutIsPress(_ sender: Any) {
+        // Create an alert controller
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        
+        // Add the "Confirm" action
+        let confirmAction = UIAlertAction(title: "Logout", style: .destructive) { _ in
+            // If the user confirms, perform the logout
+            do {
+                try Auth.auth().signOut()
+                AppUser.shared.clearUser()
+                // Optionally: Navigate back to the login screen or another appropriate screen
+                self.navigateToLoginScreen()
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+                // Optionally: Show an error message to the user
+            }
+        }
+        
+        // Add the "Cancel" action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Add both actions to the alert
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        // Present the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+
     // Action that will trigger logging out
     @IBAction func logoutIsPressed(_ sender: Any) {
         do {
