@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class AddTaskViewController: UIViewController, UITextFieldDelegate {
+class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     //MARK: - Properties
     
@@ -20,8 +20,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timeField: DesignableUITextField!
     @IBOutlet weak var markWeightField: DesignableUITextField!
     @IBOutlet weak var notesView: DesignableUITextView!
-    
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    let overlayView = UIView()
     
     // Field visibility toggles
     var isNotesFieldVisible = false
@@ -32,7 +33,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     // Field view constraints
     @IBOutlet weak var notesFieldHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markWeightFieldHeightConstraint: NSLayoutConstraint!
-    
     
     // Field dropdown tables & data
     var courseDropdown: DropdownTableView?
@@ -54,6 +54,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         markWeightField.delegate = self
+        configureOverlayView()
         configureCourseDropdown()
         configureTimeDropdown()
         updateAllFieldsVisibility()
@@ -63,6 +64,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         hideElementWhenTappedAround()
         // Do any additional setup after loading the view.
         
+        scrollView.delegate = self
+        
         getCourses()
     }
     
@@ -70,25 +73,25 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitPressed(_ sender: Any) {
         // if required fields are not empty, add task to db
         /*if let title = titleField.text, let course = courseField.text, !title.isEmpty, !course.isEmpty {
-            let dueDate = combineDateWithTime(date: datePicker.date, time: timePicker.date)!
-            var task = Task(id: "", title: title, course: course, notes: notesView.text, dueDate: dueDate, markWeight: 0, isComplete: false)
-            let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-            var ref: DocumentReference? = nil
-            ref = userDbRef.collection("tasks").addDocument(data: task.toAnyObject()) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(ref!.documentID)")
-                    task.id = ref!.documentID
-                    self.scheduleNotifications(taskObj: task)
-                }
-            }
-            titleField.text = ""
-            courseField.text = ""
-            notesView.text = ""
-            self.datePicker.date = Date()
-            self.timePicker.date = Date()
-        }*/
+         let dueDate = combineDateWithTime(date: datePicker.date, time: timePicker.date)!
+         var task = Task(id: "", title: title, course: course, notes: notesView.text, dueDate: dueDate, markWeight: 0, isComplete: false)
+         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
+         var ref: DocumentReference? = nil
+         ref = userDbRef.collection("tasks").addDocument(data: task.toAnyObject()) { err in
+         if let err = err {
+         print("Error adding document: \(err)")
+         } else {
+         print("Document added with ID: \(ref!.documentID)")
+         task.id = ref!.documentID
+         self.scheduleNotifications(taskObj: task)
+         }
+         }
+         titleField.text = ""
+         courseField.text = ""
+         notesView.text = ""
+         self.datePicker.date = Date()
+         self.timePicker.date = Date()
+         }*/
     }
     
     //MARK: - Notes toggle
@@ -139,19 +142,88 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: - Visibility handler
+    //MARK: - Expandables Visibility Handlers
     
     func updateAllFieldsVisibility(){
         updateNotesFieldVisibility()
         updateMarkWeightFieldVisibility()
     }
     
+    //MARK: - Dropdown Animations
+    
+    func showCourseDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            courseDropdown!.alpha = 1
+            isCourseDropdownVisible = true
+            overlayView.isHidden = false
+            view.layoutIfNeeded()
+        }
+    }
+    
+    func hideCourseDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            courseDropdown!.alpha = 0
+            isCourseDropdownVisible = false
+            overlayView.isHidden = true
+            view.layoutIfNeeded()
+        }
+    }
+    
+    func showTimeDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            timeDropdown!.alpha = 1
+            isTimeDropdownVisible = true
+            overlayView.isHidden = false
+            view.layoutIfNeeded()
+        }
+    }
+    
+    func hideTimeDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            timeDropdown!.alpha = 0
+            isTimeDropdownVisible = false
+            overlayView.isHidden = true
+            view.layoutIfNeeded()
+        }
+    }
+    
+    
+    //MARK: - Overlay Config
+    
+    func configureOverlayView(){
+        // Setup the overlay view
+        overlayView.backgroundColor = UIColor.clear // transparent
+        overlayView.frame = view.bounds
+        overlayView.isHidden = true // Initially hidden
+        scrollView.addSubview(overlayView)
+    }
+    
+    //MARK: - Dropdown Frame Configs
+    
+    func setTimeDropdownFrame(){
+        // Calculate the position of the text field within the scroll view
+        let textFieldFrame = timeField.convert(timeField.bounds, to: scrollView)
+        
+        // Set the dropdown's frame to appear right below the text field
+        timeDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
+    }
+    
+    func setCourseDropdownFrame(){
+        // Calculate the position of the text field within the scroll view
+        let textFieldFrame = courseField.convert(courseField.bounds, to: scrollView)
+        
+        // Set the dropdown's frame to appear right below the text field
+        courseDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
+    }
+    
     //MARK: - Dropdown Configs
     func configureCourseDropdown(){
         courseDropdown = DropdownTableView.instanceFromNib(setOptions: courseOptions, scrollEnabled: false)
-        courseDropdown!.isHidden = true
+        courseDropdown!.alpha = 0
         courseDropdown!.textField = courseField
         scrollView.addSubview(courseDropdown!)
+        
+        setCourseDropdownFrame()
         
         courseField.delegate = self
     }
@@ -159,11 +231,21 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     func configureTimeDropdown(){
         timeDropdown = DropdownTableView.instanceFromNib(setOptions: timeOptions, scrollEnabled: false)
         timeDropdown!.isCustomTimeDropdown = true
-        timeDropdown!.isHidden = true
+        timeDropdown!.alpha = 0
         timeDropdown!.textField = timeField
         scrollView.addSubview(timeDropdown!)
         
+        setTimeDropdownFrame()
+        
         timeField.delegate = self
+    }
+    
+    func checkVisibleDropdowns() -> Bool {
+        if isTimeDropdownVisible == false || isCourseDropdownVisible == false {
+            return true
+        }
+        
+        return false
     }
     
     //MARK: - Text Field Delegate
@@ -174,17 +256,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             
             if isCourseDropdownVisible {
-                courseDropdown!.isHidden = true
-                isCourseDropdownVisible = false
+                hideCourseDropdown()
             } else {
-                // Calculate the position of the text field within the scroll view
-                let textFieldFrame = textField.convert(textField.bounds, to: scrollView)
-                
-                // Set the dropdown's frame to appear right below the text field
-                courseDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
-                
-                courseDropdown!.isHidden = false
-                isCourseDropdownVisible = true
+                setCourseDropdownFrame()
+                showCourseDropdown()
             }
             //courseDropdownTable.isHidden.toggle()
         }
@@ -194,17 +269,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             
             if isTimeDropdownVisible {
-                timeDropdown!.isHidden = true
-                isTimeDropdownVisible = false
+                hideTimeDropdown()
             } else {
-                // Calculate the position of the text field within the scroll view
-                let textFieldFrame = textField.convert(textField.bounds, to: scrollView)
-                
-                // Set the dropdown's frame to appear right below the text field
-                timeDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
-                
-                timeDropdown!.isHidden = false
-                isTimeDropdownVisible = true
+                setTimeDropdownFrame()
+                showTimeDropdown()
             }
             //courseDropdownTable.isHidden.toggle()
         }
@@ -230,6 +298,19 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
             return isNumber && newLength <= 3
         } else {
             return true
+        }
+    }
+    
+    //MARK: - Scroll View Delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // This function is called every time the scroll view is scrolled
+        if isCourseDropdownVisible{
+            hideCourseDropdown()
+        }
+        
+        if isTimeDropdownVisible{
+            hideTimeDropdown()
         }
     }
     
@@ -266,6 +347,24 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         dateFormatter.dateStyle = .medium
         dateTextField.text = dateFormatter.string(from: sender.date)
         selectedDate = sender.date
+    }
+    
+    func scaleDatePicker(_ datePicker: UIDatePicker, within textField: UITextField) {
+        // Get the sizes of the date picker and the text field
+        datePicker.contentHorizontalAlignment = .center
+        datePicker.clipsToBounds = true
+        let datePickerSize = datePicker.bounds.size
+        let textFieldSize = textField.bounds.size
+        
+        // Calculate the scaling factors for width and height
+        let scaleWidth = textFieldSize.width / datePickerSize.width
+        let scaleHeight = textFieldSize.height / datePickerSize.height
+        
+        // Apply scaling
+        let scaleTransform = CGAffineTransform(scaleX: scaleWidth, y: scaleHeight)
+        
+        // Apply the transformation to the date picker
+        datePicker.transform = scaleTransform
     }
     
     
@@ -319,29 +418,14 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         
         // Check if the tap was outside the dropdown
         if isCourseDropdownVisible && !courseDropdown!.frame.contains(tapLocation){
-            courseDropdown!.isHidden = true
-            isCourseDropdownVisible = false
+            hideCourseDropdown()
+        }
+        
+        if isTimeDropdownVisible && !timeDropdown!.frame.contains(tapLocation){
+            hideTimeDropdown()
         }
         
         // Hide the keyboard
         view.endEditing(true)
-    }
-    
-    func scaleDatePicker(_ datePicker: UIDatePicker, within textField: UITextField) {
-        // Get the sizes of the date picker and the text field
-        datePicker.contentHorizontalAlignment = .center
-        datePicker.clipsToBounds = true
-        let datePickerSize = datePicker.bounds.size
-        let textFieldSize = textField.bounds.size
-
-        // Calculate the scaling factors for width and height
-        let scaleWidth = textFieldSize.width / datePickerSize.width
-        let scaleHeight = textFieldSize.height / datePickerSize.height
-
-        // Apply scaling
-        let scaleTransform = CGAffineTransform(scaleX: scaleWidth, y: scaleHeight)
-
-        // Apply the transformation to the date picker
-        datePicker.transform = scaleTransform
     }
 }

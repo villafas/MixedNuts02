@@ -17,17 +17,19 @@ struct Course {
     let code: String
     let schedule: [DaySchedule]
     let term: String
+    let prof: String?
     let courseURL: String?
     
     //MARK: - Constructors
     
     // Standard init
-    init(id: String, title: String, code: String, schedule: [DaySchedule], term: String, courseURL: String?) {
+    init(id: String, title: String, code: String, schedule: [DaySchedule], term: String, prof: String?, courseURL: String?) {
         self.id = id
         self.title = title
         self.code = code
         self.schedule = schedule
         self.term = term
+        self.prof = prof
         self.courseURL = courseURL
     }
     
@@ -41,6 +43,7 @@ struct Course {
         schedule = scheduleArray.compactMap { DaySchedule(dictionary: $0) }
         
         term = snapshot.data()["term"] as! String
+        prof = snapshot.data()["prof"] as? String
         courseURL = snapshot.data()["courseURL"] as? String
     }
     
@@ -53,6 +56,7 @@ struct Course {
             "code": code,
             "schedule": schedule.map { $0.toDictionary() },
             "term": term,
+            "prof": prof ?? "",
             "courseURL": courseURL ?? ""
         ]
     }

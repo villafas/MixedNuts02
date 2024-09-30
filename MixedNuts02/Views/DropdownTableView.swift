@@ -14,6 +14,7 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     var options: [String] = ["Test"]
     
     var isCustomTimeDropdown = false
+    var isCustomDayDropdown = false
     var timePicker: UIDatePicker?
     
     @IBOutlet weak var tableView: UITableView!
@@ -107,7 +108,12 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
                 
 
             }
-        } else {
+        } 
+        else {
+            if isCustomDayDropdown {
+                textField.becomeFirstResponder()
+                textField.resignFirstResponder()
+            }
             textField.text = options[indexPath.row]
         }
     }

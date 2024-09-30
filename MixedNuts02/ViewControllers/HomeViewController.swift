@@ -167,8 +167,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     func hideOrShowPanel(){
+        let calendarHeight = calendarView.frame.height
+        
         // Scroll in and out of detail panel based on the toggle state
-        navBarHeightConstraint.constant = navBarIsExpanded ? CGFloat(490) : CGFloat(0)
+        navBarHeightConstraint.constant = navBarIsExpanded ? CGFloat(calendarHeight - 20) : CGFloat(0)
         
         UIView.animate(withDuration: 0.3){
             self.view.layoutIfNeeded()

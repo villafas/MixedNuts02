@@ -7,8 +7,8 @@
 
 import UIKit
 
-class AddCourseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-
+class AddCourseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate {
+    
     //MARK: - Properties
     
     @IBOutlet weak var titleField: DesignableUITextField!
@@ -18,18 +18,23 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var urlField: DesignableUITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scheduleButton: UIButton!
+    var tapGesture: UITapGestureRecognizer?
     
-    // Constraints
-    @IBOutlet weak var urlFieldHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var additionalScheduleFieldHeightConstraint: NSLayoutConstraint!
+    let overlayView = UIView()
     
     // Visibility bools
     var isAdditionalFieldVisible = false
     var isUrlFieldVisible = false
+    var isInstructorFieldVisible = false
     var isTermDropdownVisible = false
     
+    // Constraints
+    @IBOutlet weak var urlFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var instructorFieldHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var additionalScheduleFieldHeightConstraint: NSLayoutConstraint!
+    
     // Dropdown properties
-    let termDropdownTable = UITableView()
+    var termDropdown: DropdownTableView?
     let termOptions = ["Fall 2024", "Winter 2025", "Spring 2025"]
     
     var scheduleList: [DaySchedule]!
@@ -42,35 +47,69 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         scheduleList = [DaySchedule]()
         scheduleTable.delegate = self
         scheduleTable.dataSource = self
-
+        configureOverlayView()
         configureTermDropdown()
         updateAllFieldsVisibility()
+        scrollView.delegate = self
         
         hideElementWhenTappedAround()
         
         // Do any additional setup after loading the view.
     }
     
+    //MARK: - Overlay Config
+    
+    func configureOverlayView(){
+        // Setup the overlay view
+        overlayView.backgroundColor = UIColor.clear // transparent
+        overlayView.frame = view.bounds
+        overlayView.isHidden = true // Initially hidden
+        scrollView.addSubview(overlayView)
+    }
+    
+    
+    //MARK: - Dropdown Frame Configs
+    
+    func setTermDropdownFrame(){
+        // Calculate the position of the text field within the scroll view
+        let textFieldFrame = termField.convert(termField.bounds, to: scrollView)
+        
+        // Set the dropdown's frame to appear right below the text field
+        termDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
+    }
+    
     
     //MARK: - Dropdown Configs
-    
-    func configureTermDropdown() {
-        termDropdownTable.tag = 7
-        termDropdownTable.delegate = self
-        termDropdownTable.dataSource = self
-        termDropdownTable.isHidden = true
-        termDropdownTable.layer.cornerRadius = 20
-        termDropdownTable.layer.borderColor = UIColor.gray.cgColor
-        termDropdownTable.layer.borderWidth = 1
-        termDropdownTable.rowHeight = 44
+    func configureTermDropdown(){
+        termDropdown = DropdownTableView.instanceFromNib(setOptions: termOptions, scrollEnabled: true)
+        termDropdown!.alpha = 0
+        termDropdown!.textField = termField
+        scrollView.addSubview(termDropdown!)
         
-        termDropdownTable.register(UITableViewCell.self, forCellReuseIdentifier: "DropdownCell")
-        
-        scrollView.addSubview(termDropdownTable)
+        setTermDropdownFrame()
         
         termField.delegate = self
     }
     
+    //MARK: - Dropdown Animations
+    
+    func showTermDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            termDropdown!.alpha = 1
+            isTermDropdownVisible = true
+            overlayView.isHidden = false
+            view.layoutIfNeeded()
+        }
+    }
+    
+    func hideTermDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            termDropdown!.alpha = 0
+            isTermDropdownVisible = false
+            overlayView.isHidden = true
+            view.layoutIfNeeded()
+        }
+    }
     
     //MARK: - Field Toggles
     
@@ -81,6 +120,17 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         // Animate the height change
         UIView.animate(withDuration: 0.3) {
             self.updateUrlFieldVisibility()
+            self.view.layoutIfNeeded() // Ensure layout updates immediately
+        }
+    }
+    
+    @IBAction func instructorToggled(_ sender: Any) {
+        // Toggle the field visibility
+        isInstructorFieldVisible.toggle()
+        
+        // Animate the height change
+        UIView.animate(withDuration: 0.3) {
+            self.updateInstructorFieldVisibility()
             self.view.layoutIfNeeded() // Ensure layout updates immediately
         }
     }
@@ -101,8 +151,8 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             scheduleButton.alpha = 0
         } else {
             // Set the height to 0 to hide the form field
-            additionalScheduleFieldHeightConstraint.constant = 0
             scheduleButton.alpha = 1
+            additionalScheduleFieldHeightConstraint.constant = 0
         }
     }
     
@@ -117,8 +167,19 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    // Update the height constraint based on whether the field is visible
+    func updateInstructorFieldVisibility() {
+        if isInstructorFieldVisible {
+            // Set the height of the form field (e.g., 100 for a standard height)
+            instructorFieldHeightConstraint.constant = 58
+        } else {
+            // Set the height to 0 to hide the form field
+            instructorFieldHeightConstraint.constant = 0
+        }
+    }
+    
     func updateAllFieldsVisibility(){
-        
+        updateInstructorFieldVisibility()
         updateAdditionalFieldVisibility()
         updateUrlFieldVisibility()
     }
@@ -126,59 +187,55 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: - Schedule handling
     @IBAction func addSchedulePressed(_ sender: Any) {
         scheduleList.append(DaySchedule())
-        UIView.animate(withDuration: 0.3) {
-            self.scheduleTable.reloadData()
+        UIView.animate(withDuration: 0.2, animations: {
+            // First animation block
             if self.scheduleList!.count == 1 {
                 self.additionalToggled()
             }
-            self.view.layoutIfNeeded() // Ensure layout updates immediately
-        }
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            // Second animation block after the first completes
+            UIView.animate(withDuration: 0.3) {
+                self.scheduleTable.reloadData()
+                self.view.layoutIfNeeded()
+            }
+        })
     }
     
     @IBAction func removeSchedulePressed(_ sender: UIButton){
         if let scheduleView = sender.superview?.superview?.superview?.superview?.superview as? CourseScheduleView, let index = scheduleList!.firstIndex(where: { $0 == scheduleView.scheduleObj }) {
             scheduleList.remove(at: index)
-            
         }
         
-        // Animate the height change
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.2, animations: {
+            // First animation block
             self.scheduleTable.reloadData()
-            if self.scheduleList!.count == 0 {
-                self.additionalToggled()
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            // Second animation block after the first completes
+            UIView.animate(withDuration: 0.2) {
+                if self.scheduleList!.count == 0 {
+                    self.additionalToggled()
+                }
+                self.view.layoutIfNeeded()
             }
-            self.view.layoutIfNeeded() // Ensure layout updates immediately
-        }
+        })
     }
     
     //MARK: - TableView Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == termDropdownTable {
-            return termOptions.count
-        }
-        
         return scheduleList!.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == termDropdownTable {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath)
-            
-            if tableView.tag == 7 {
-                cell.textLabel?.text = termOptions[indexPath.row]
-            }
-            
-            return cell
-        }
-        // else
         let cell = tableView.dequeueReusableCell(withIdentifier: "schedule", for: indexPath)
         if let viewWithTag = cell.contentView.viewWithTag(80) {
-                viewWithTag.removeFromSuperview()
+            viewWithTag.removeFromSuperview()
         }
         
-        let scheduleView = CourseScheduleView.instanceFromNib(setSchedule: scheduleList![indexPath.row])
+        let scheduleView = CourseScheduleView.instanceFromNib(setSchedule: scheduleList![indexPath.row], parentScrollView: scrollView, parentOverlayView: overlayView, parentView: self, parentTapGesture: tapGesture!)
         scheduleView.translatesAutoresizingMaskIntoConstraints = false
         scheduleView.heightAnchor.constraint(equalToConstant: 227).isActive = true
         scheduleView.widthAnchor.constraint(equalToConstant: scheduleTable.frame.width).isActive = true
@@ -192,25 +249,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == termDropdownTable {
-            return 44
-        }
-        
         return 227.0
     }
     
     
-    // UITableViewDelegate method to handle selection
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.tag == 7 {
-            termField.text = termOptions[indexPath.row]
-            isTermDropdownVisible = false
-        }
-        
-        tableView.isHidden = true
-    }
-    
-
     //MARK: - Text Field Delegate
     // UITextFieldDelegate method to detect when the text field is tapped
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -219,19 +261,28 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             textField.resignFirstResponder()
             
             if isTermDropdownVisible {
-                termDropdownTable.isHidden = true
-                isTermDropdownVisible = false
+                hideTermDropdown()
             } else {
-                // Calculate the position of the text field within the scroll view
-                let textFieldFrame = textField.convert(textField.bounds, to: scrollView)
-                
-                // Set the dropdown's frame to appear right below the text field
-                termDropdownTable.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 120) // Adjust height as needed
-                
-                termDropdownTable.isHidden = false
-                isTermDropdownVisible = true
+                setTermDropdownFrame()
+                showTermDropdown()
             }
-            //courseDropdownTable.isHidden.toggle()
+        }
+    }
+    
+    //MARK: - Scroll View Delegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // This function is called every time the scroll view is scrolled
+        if isTermDropdownVisible{
+            hideTermDropdown()
+        }
+        for row in 0..<scheduleTable.numberOfRows(inSection: 0) {
+            let indexPath = IndexPath(row: row, section: 0)
+            
+            if let cell = scheduleTable.cellForRow(at: indexPath) {
+                let scheduleView = cell.viewWithTag(80) as? CourseScheduleView
+                scheduleView?.hideWeekdayDropdown()
+            }
         }
     }
     
@@ -242,6 +293,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside))
         tapGesture.cancelsTouchesInView = false // Let other touches work normally
         self.view.addGestureRecognizer(tapGesture)
+        //self.tapGesture = tapGesture
     }
     
     
@@ -250,9 +302,8 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         let tapLocation = sender.location(in: self.view)
         
         // Check if the tap was outside the dropdown
-        if isTermDropdownVisible && !termDropdownTable.frame.contains(tapLocation){
-            termDropdownTable.isHidden = true
-            isTermDropdownVisible = false
+        if isTermDropdownVisible && !termDropdown!.frame.contains(tapLocation){
+            hideTermDropdown()
         }
         
         // Hide the keyboard
@@ -260,5 +311,5 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-
+    
 }

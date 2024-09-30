@@ -9,6 +9,10 @@ import Foundation
 
 enum DayOfWeek: String, CaseIterable {
     case monday, tuesday, wednesday, thursday, friday, saturday, sunday
+    
+    init?(from string: String) {
+            self.init(rawValue: string.lowercased())
+        }
 }
 
 class DaySchedule: Equatable {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class CourseScheduleView: UIView, UITextFieldDelegate {
 
     @IBOutlet weak var classroomField: DesignableUITextField!
     @IBOutlet weak var dayField: DesignableUITextField!
@@ -19,10 +19,14 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
     
     var scheduleObj: DaySchedule?
     
-    let weekdayDropdownTable = UITableView()
-    let weekdayOptions: [DayOfWeek] = DayOfWeek.allCases
+    var weekdayDropdown: DropdownTableView?
+    let weekdayOptions: [String] = DayOfWeek.allCases.map { $0.rawValue.capitalized }
     var isWeekdayDropdownVisible = false
+    var overlayView: UIView?
     
+    var parentScrollView: UIScrollView?
+    var parentTapGesture: UITapGestureRecognizer?
+    var parentView: UIViewController?
     
     //MARK: - Data config & formatting/conversion
     func setDelegates(){
@@ -37,7 +41,7 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
     func setFieldValues(){
         classroomField.text = scheduleObj?.classroom ?? ""
         if let schedule = scheduleObj, let day = schedule.day{
-            weekdayDropdownTable.selectRow(at: indexPathOfDay(day), animated: false, scrollPosition: .none)
+            weekdayDropdown?.tableView.selectRow(at: indexPathOfDay(day), animated: false, scrollPosition: .none)
             dayField.text = day.rawValue.capitalized
         }
         
@@ -49,7 +53,7 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
         }
         
         if let schedule = scheduleObj, let endTime = schedule.endTime{
-            startTimePicker.setDate(endTime.toDate()!, animated: true)
+            endTimePicker.setDate(endTime.toDate()!, animated: true)
             let formatter = DateFormatter()
             formatter.timeStyle = .short
             endTimeTextField.text = formatter.string(from: endTime.toDate()!)
@@ -80,61 +84,69 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
         //selectedDate = sender.date
     }
     
-    //MARK: - Dropdown Configs
+    //MARK: - Dropdown Frame Configs
     
-    func configureCourseDropdown() {
-        weekdayDropdownTable.tag = 5
-        weekdayDropdownTable.delegate = self
-        weekdayDropdownTable.dataSource = self
-        weekdayDropdownTable.isHidden = true
-        weekdayDropdownTable.layer.borderColor = UIColor.gray.cgColor
-        weekdayDropdownTable.layer.borderWidth = 1
-        weekdayDropdownTable.rowHeight = 44
+    func setWeekdayDropdownFrame(){
+        // Calculate the position of the text field within the scroll view
+        let textFieldFrame = dayField.convert(dayField.bounds, to: parentScrollView)
         
-        weekdayDropdownTable.register(UITableViewCell.self, forCellReuseIdentifier: "DropdownCell")
+        // Set the dropdown's frame to appear right below the text field
+        weekdayDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 140) // Adjust height as needed
+    }
+    
+    //MARK: - Dropdown Configs
+    func configureWeekdayDropdown(){
+        weekdayDropdown = DropdownTableView.instanceFromNib(setOptions: weekdayOptions, scrollEnabled: true)
+        weekdayDropdown!.isCustomDayDropdown = true
+        weekdayDropdown!.alpha = 0
+        weekdayDropdown!.textField = dayField
+        parentScrollView!.addSubview(weekdayDropdown!)
+        weekdayDropdown!.tag = 5
         
-        self.addSubview(weekdayDropdownTable)
+        setWeekdayDropdownFrame()
         
         dayField.delegate = self
     }
     
+    //MARK: - Dropdown Animations
+    
+    func showWeekdayDropdown(){
+        UIView.animate(withDuration: 0.1){ [self] in
+            weekdayDropdown!.alpha = 1
+            isWeekdayDropdownVisible = true
+            overlayView!.isHidden = false
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func hideWeekdayDropdown(){
+        if weekdayDropdown == nil {
+            return
+        }
+        
+        UIView.animate(withDuration: 0.1){ [self] in
+            weekdayDropdown!.alpha = 0
+            isWeekdayDropdownVisible = false
+            overlayView!.isHidden = true
+            self.layoutIfNeeded()
+        }
+    }
+
     //MARK: - View instantiation
-    class func instanceFromNib(setSchedule: DaySchedule) -> CourseScheduleView{
+    class func instanceFromNib(setSchedule: DaySchedule, parentScrollView: UIScrollView, parentOverlayView: UIView, parentView: UIViewController, parentTapGesture: UITapGestureRecognizer) -> CourseScheduleView{
         let schedule = UINib(nibName: "CourseScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! CourseScheduleView
+        schedule.parentScrollView = parentScrollView
+        schedule.overlayView = parentOverlayView
+        schedule.parentTapGesture = parentTapGesture
+        schedule.parentView = parentView
         schedule.scheduleObj = setSchedule
-        schedule.configureCourseDropdown()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            schedule.configureWeekdayDropdown()
+        }
+        schedule.hideElementWhenTappedAround()
         schedule.setDelegates()
         schedule.setFieldValues()
         return schedule
-    }
-    
-    
-    //MARK: - Table View Delegate
-    
-    // UITableViewDataSource methods
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weekdayOptions.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath)
-        
-        if tableView.tag == 5 {
-            cell.textLabel?.text = weekdayOptions[indexPath.row].rawValue.capitalized
-        }
-        
-        return cell
-    }
-    
-    // UITableViewDelegate method to handle selection
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.tag == 5 {
-            dayField.text = weekdayOptions[indexPath.row].rawValue.capitalized
-            scheduleObj?.day = weekdayOptions[indexPath.row]
-            isWeekdayDropdownVisible = false
-        }
-        
-        tableView.isHidden = true
     }
     
     //MARK: - Text Field Delegate
@@ -145,17 +157,10 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
             textField.resignFirstResponder()
             
             if isWeekdayDropdownVisible {
-                weekdayDropdownTable.isHidden = true
-                isWeekdayDropdownVisible = false
+                hideWeekdayDropdown()
             } else {
-                // Calculate the position of the text field within the view
-                let textFieldFrame = textField.convert(textField.bounds, to: self)
-                
-                // Set the dropdown's frame to appear right below the text field
-                weekdayDropdownTable.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 120) // Adjust height as needed
-                
-                weekdayDropdownTable.isHidden = false
-                isWeekdayDropdownVisible = true
+                setWeekdayDropdownFrame()
+                showWeekdayDropdown()
             }
             //courseDropdownTable.isHidden.toggle()
         }
@@ -165,6 +170,10 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == classroomField {
             scheduleObj!.classroom = textField.text
+        }
+        
+        if textField == dayField && textField.text != nil{
+            scheduleObj!.day = DayOfWeek(from: textField.text!)
         }
     }
     
@@ -184,6 +193,28 @@ class CourseScheduleView: UIView, UITableViewDelegate, UITableViewDataSource, UI
 
         // Apply the transformation to the date picker
         datePicker.transform = scaleTransform
+    }
+    
+    //MARK: - Tap Dismiss
+    
+    func hideElementWhenTappedAround() {
+        // Add a single tap gesture recognizer to hide both the dropdown and the keyboard
+        let tapGesture = parentTapGesture
+        tapGesture?.addTarget(self, action: #selector(handleTapOutside(_:)))
+    }
+    
+    
+    // Handle tap outside to hide both dropdown and keyboard
+    @objc func handleTapOutside(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: parentView!.view)
+        
+        // Check if the tap was outside the dropdown
+        if isWeekdayDropdownVisible && !weekdayDropdown!.frame.contains(tapLocation){
+            hideWeekdayDropdown()
+        }
+        
+        // Hide the keyboard
+        parentView!.view.endEditing(true)
     }
 
 }
