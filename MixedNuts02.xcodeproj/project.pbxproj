@@ -28,6 +28,8 @@
 		277173E82C9B50C300459C7F /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E72C9B50C300459C7F /* Time.swift */; };
 		277173EA2C9B50E000459C7F /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E92C9B50E000459C7F /* DaySchedule.swift */; };
 		27723B9C2C9362E9007EBDE2 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27723B9B2C9362E9007EBDE2 /* Course.swift */; };
+		2779FAFF2CAB6008003E10C1 /* AddCourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */; };
+		2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779FB002CAB7008003E10C1 /* AddTaskViewModel.swift */; };
 		277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */; };
 		278874F72C990B4500FB7F13 /* AddContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278874F62C990B4500FB7F13 /* AddContainerViewController.swift */; };
 		278874F92C990CC300FB7F13 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278874F82C990CC300FB7F13 /* AddCourseViewController.swift */; };
@@ -129,6 +131,8 @@
 		277173E72C9B50C300459C7F /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		277173E92C9B50E000459C7F /* DaySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
 		27723B9B2C9362E9007EBDE2 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewModel.swift; sourceTree = "<group>"; };
+		2779FB002CAB7008003E10C1 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		278874F62C990B4500FB7F13 /* AddContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContainerViewController.swift; sourceTree = "<group>"; };
 		278874F82C990CC300FB7F13 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				277FDC6D2C88939500B5CA65 /* HomeViewModel.swift */,
+				2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */,
+				2779FB002CAB7008003E10C1 /* AddTaskViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
 				277173E82C9B50C300459C7F /* Time.swift in Sources */,
 				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,
+				2779FAFF2CAB6008003E10C1 /* AddCourseViewModel.swift in Sources */,
 				CED3CD2F2BB1BD2E00C9A544 /* DesignableEditTaskView.swift in Sources */,
 				CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */,
 				CE7C9B972BB3BEB3000BAD94 /* DesignableUITextView.swift in Sources */,
@@ -611,6 +618,7 @@
 				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
 				2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
+				2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
 				275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */,
 				277FDC6E2C88939500B5CA65 /* HomeViewModel.swift in Sources */,

@@ -36,22 +36,23 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     // Field dropdown tables & data
     var courseDropdown: DropdownTableView?
-    let courseOptions = ["test 1", "test 2", "test 3"]
+    var courseOptions = ["Loading..."]
     var timeDropdown: DropdownTableView?
     let timePicker = DesignableDatePicker()
     let timeOptions = ["End of Day", "Start of class", "Custom"]
     
-    var db: Firestore!
-    var courses: [String] = ["Select a course"]
-    var selectedCourse: String?
-    var selectedDate: Date?
+    private let viewModel = AddTaskViewModel()
     
     
     //MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Bind ViewModel to ViewController
+        bindViewModel()
         
+        
+        viewModel.fetchCourses()
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         markWeightField.delegate = self
         configureOverlayView()
@@ -60,39 +61,77 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         updateAllFieldsVisibility()
         scaleDatePicker(datePicker, within: dateTextField)
         
-        db = Firestore.firestore()
         hideElementWhenTappedAround()
         // Do any additional setup after loading the view.
         
         scrollView.delegate = self
-        
-        getCourses()
     }
     
-    //MARK: - Task addition
-    @IBAction func submitPressed(_ sender: Any) {
-        // if required fields are not empty, add task to db
-        /*if let title = titleField.text, let course = courseField.text, !title.isEmpty, !course.isEmpty {
-         let dueDate = combineDateWithTime(date: datePicker.date, time: timePicker.date)!
-         var task = Task(id: "", title: title, course: course, notes: notesView.text, dueDate: dueDate, markWeight: 0, isComplete: false)
-         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-         var ref: DocumentReference? = nil
-         ref = userDbRef.collection("tasks").addDocument(data: task.toAnyObject()) { err in
-         if let err = err {
-         print("Error adding document: \(err)")
-         } else {
-         print("Document added with ID: \(ref!.documentID)")
-         task.id = ref!.documentID
-         self.scheduleNotifications(taskObj: task)
-         }
-         }
-         titleField.text = ""
-         courseField.text = ""
-         notesView.text = ""
-         self.datePicker.date = Date()
-         self.timePicker.date = Date()
-         }*/
+    //MARK: - Add Task
+    
+    @IBAction func createTaskButtonTapped(_ sender: UIButton) {
+        // Gather input from the text fields
+        guard let title = titleField.text, !title.isEmpty,
+              let course = courseField.text, !course.isEmpty,
+              let dueDateStr = dateTextField.text, !dueDateStr.isEmpty,
+              let dueTimeStr = timeField.text, !dueTimeStr.isEmpty else {
+            print("All fields are required.")
+            return
+        }
+        
+        let dueDate = combineDateWithTime(date: datePicker.date, time: timePicker.date)!
+        
+        // Optional values
+        let markWeight = markWeightField.text?.isEmpty == true ? nil : Int(markWeightField.text!)
+        let notes = notesView.text?.isEmpty == true ? nil : notesView.text
+        
+        // Here you can save the course object to your database or use it as needed
+        viewModel.addTask(title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight)
     }
+
+    // Function to clear the input fields after adding a course
+    func clearAllFields() {
+        titleField.text = ""
+        courseField.text = ""
+        courseDropdown?.deselectAllCells()
+        dateTextField.text = ""
+        datePicker.date = Date()
+        timeField.text = ""
+        timePicker.date = Date()
+        isMarkWeightFieldVisible = false
+        isNotesFieldVisible = false
+        updateAllFieldsVisibility()
+    }
+    
+    //MARK: - Model & Controller Binding
+    
+    private func bindViewModel() {
+        // Handle UI Updates on changes to data
+        viewModel.onTaskAdded = { [weak self] in
+            DispatchQueue.main.async {
+                self?.clearAllFields()
+            }
+        }
+        
+        // DELETE
+        viewModel.onCoursesUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.courseOptions = self!.viewModel.courseList.map { $0.title }
+                self?.courseDropdown?.options = self!.courseOptions
+                self?.courseDropdown?.tableView.reloadData()
+            }
+        }
+        
+        viewModel.onError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                // Show error message (e.g., using an alert)
+                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(alert, animated: true)
+            }
+        }
+    }
+    
     
     //MARK: - Notes toggle
     
@@ -114,6 +153,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             notesFieldHeightConstraint.constant = 150
         } else {
             // Set the height to 0 to hide the form field
+            notesView.text = ""
             notesFieldHeightConstraint.constant = 0
         }
     }
@@ -138,6 +178,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             markWeightFieldHeightConstraint.constant = 58
         } else {
             // Set the height to 0 to hide the form field
+            markWeightField.text = ""
             markWeightFieldHeightConstraint.constant = 0
         }
     }
@@ -156,7 +197,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             courseDropdown!.alpha = 1
             isCourseDropdownVisible = true
             overlayView.isHidden = false
-            view.layoutIfNeeded()
+            //view.layoutIfNeeded()
         }
     }
     
@@ -174,7 +215,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             timeDropdown!.alpha = 1
             isTimeDropdownVisible = true
             overlayView.isHidden = false
-            view.layoutIfNeeded()
+            //view.layoutIfNeeded()
         }
     }
     
@@ -216,14 +257,35 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         courseDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
     }
     
+    func setCourseDropdownConstraints() {
+        // Disable autoresizing mask to use Auto Layout
+        courseDropdown?.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Remove previous constraints if necessary
+        NSLayoutConstraint.deactivate(courseDropdown!.constraints)
+        
+        // Set up the constraints
+        NSLayoutConstraint.activate([
+            // Align the dropdown's leading edge with the text field's leading edge
+            courseDropdown!.leadingAnchor.constraint(equalTo: courseField.leadingAnchor),
+            
+            // Align the dropdown's trailing edge with the text field's trailing edge
+            courseDropdown!.trailingAnchor.constraint(equalTo: courseField.trailingAnchor),
+            
+            // Position the dropdown's top edge right below the text field
+            courseDropdown!.topAnchor.constraint(equalTo: courseField.bottomAnchor, constant: 0),
+            
+            // Set the height of the dropdown (adjust 132 to your desired height)
+            courseDropdown!.heightAnchor.constraint(equalToConstant: 132)
+        ])
+    }
+    
     //MARK: - Dropdown Configs
     func configureCourseDropdown(){
         courseDropdown = DropdownTableView.instanceFromNib(setOptions: courseOptions, scrollEnabled: false)
         courseDropdown!.alpha = 0
         courseDropdown!.textField = courseField
         scrollView.addSubview(courseDropdown!)
-        
-        setCourseDropdownFrame()
         
         courseField.delegate = self
     }
@@ -234,8 +296,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         timeDropdown!.alpha = 0
         timeDropdown!.textField = timeField
         scrollView.addSubview(timeDropdown!)
-        
-        setTimeDropdownFrame()
         
         timeField.delegate = self
     }
@@ -346,7 +406,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateTextField.text = dateFormatter.string(from: sender.date)
-        selectedDate = sender.date
+        //selectedDate = sender.date
     }
     
     func scaleDatePicker(_ datePicker: UIDatePicker, within textField: UITextField) {
@@ -385,21 +445,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         mergedComponments.second = timeComponents.second!
         
         return calendar.date(from: mergedComponments)
-    }
-    
-    //MARK: - Read courses db
-    func getCourses(){
-        db.collection("courses").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let course = document.data()["title"] as! String
-                    self.courses.append(course)
-                }
-                //self.coursePicker.reloadComponent(0)
-            }
-        }
     }
     
     //MARK: - Tap Dismiss

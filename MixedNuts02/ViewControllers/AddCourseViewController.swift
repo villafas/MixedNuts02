@@ -16,6 +16,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var termField: DesignableUITextField!
     @IBOutlet weak var scheduleTable: SelfSizedTableView!
     @IBOutlet weak var urlField: DesignableUITextField!
+    @IBOutlet weak var instructorField: DesignableUITextField!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scheduleButton: UIButton!
     var tapGesture: UITapGestureRecognizer?
@@ -33,9 +34,11 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var instructorFieldHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var additionalScheduleFieldHeightConstraint: NSLayoutConstraint!
     
+    private let viewModel = AddCourseViewModel()
+    
     // Dropdown properties
     var termDropdown: DropdownTableView?
-    let termOptions = ["Fall 2024", "Winter 2025", "Spring 2025"]
+    var termOptions: [String] = ["Loading..."]
     
     var scheduleList: [DaySchedule]!
     
@@ -43,7 +46,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Bind ViewModel to ViewController
+        bindViewModel()
         
+        viewModel.fetchTerms()
         scheduleList = [DaySchedule]()
         scheduleTable.delegate = self
         scheduleTable.dataSource = self
@@ -56,6 +62,88 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Do any additional setup after loading the view.
     }
+    
+    //MARK: - Add Course
+    
+    @IBAction func addCourseButtonTapped(_ sender: UIButton) {
+        // Gather input from the text fields
+        guard let title = titleField.text, !title.isEmpty,
+              let code = codeField.text, !code.isEmpty,
+              let term = termField.text, !term.isEmpty,
+              !scheduleList.isEmpty,
+              validateDaySchedules(schedules: scheduleList) else {
+            print("All fields are required.")
+            return
+        }
+        
+        // Optional values
+        let professor = instructorField.text?.isEmpty == true ? nil : instructorField.text
+        let courseURL = urlField.text?.isEmpty == true ? nil : urlField.text
+        
+        // Here you can save the course object to your database or use it as needed
+        viewModel.addCourse(title: title, code: code, schedule: scheduleList, term: term, prof: professor, courseURL: courseURL)
+    }
+    
+    func validateDaySchedules(schedules: [DaySchedule]) -> Bool {
+        for schedule in schedules {
+            if let day = schedule.day,
+               let startTime = schedule.startTime,
+               let endTime = schedule.endTime,
+               let classroom = schedule.classroom {
+                // All fields are filled; do something with the valid schedule
+            } else {
+                // At least one field is empty
+                return false // You can return or handle it as needed
+            }
+        }
+        return true // All schedules are valid
+    }
+    
+    // Function to clear the input fields after adding a course
+    func clearAllFields() {
+        titleField.text = ""
+        codeField.text = ""
+        termField.text = ""
+        termDropdown?.deselectAllCells()
+        instructorField.text = ""
+        isInstructorFieldVisible = false
+        urlField.text = ""
+        isUrlFieldVisible = false
+        isAdditionalFieldVisible = false
+        scheduleList = [DaySchedule]()
+        scheduleTable.reloadData()
+        updateAllFieldsVisibility()
+    }
+    
+    //MARK: - Model & Controller Binding
+    
+    private func bindViewModel() {
+        // Handle UI Updates on changes to data
+        viewModel.onCourseAdded = { [weak self] in
+            DispatchQueue.main.async {
+                self?.clearAllFields()
+            }
+        }
+        
+        // DELETE
+        viewModel.onTermsUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.termOptions = self!.viewModel.termList.map { $0.caption }
+                self?.termDropdown?.options = self!.termOptions
+                self?.termDropdown?.tableView.reloadData()
+            }
+        }
+        
+        viewModel.onError = { [weak self] errorMessage in
+            DispatchQueue.main.async {
+                // Show error message (e.g., using an alert)
+                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self?.present(alert, animated: true)
+            }
+        }
+    }
+    
     
     //MARK: - Overlay Config
     
@@ -86,8 +174,6 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         termDropdown!.textField = termField
         scrollView.addSubview(termDropdown!)
         
-        setTermDropdownFrame()
-        
         termField.delegate = self
     }
     
@@ -98,7 +184,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             termDropdown!.alpha = 1
             isTermDropdownVisible = true
             overlayView.isHidden = false
-            view.layoutIfNeeded()
+            //view.layoutIfNeeded()
         }
     }
     
@@ -163,6 +249,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             urlFieldHeightConstraint.constant = 58
         } else {
             // Set the height to 0 to hide the form field
+            urlField.text = ""
             urlFieldHeightConstraint.constant = 0
         }
     }
@@ -174,6 +261,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             instructorFieldHeightConstraint.constant = 58
         } else {
             // Set the height to 0 to hide the form field
+            instructorField.text = ""
             instructorFieldHeightConstraint.constant = 0
         }
     }
@@ -197,7 +285,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             // Second animation block after the first completes
             UIView.animate(withDuration: 0.3) {
                 self.scheduleTable.reloadData()
-                self.view.layoutIfNeeded()
+                //self.view.layoutIfNeeded()
             }
         })
     }
@@ -293,7 +381,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside))
         tapGesture.cancelsTouchesInView = false // Let other touches work normally
         self.view.addGestureRecognizer(tapGesture)
-        //self.tapGesture = tapGesture
+        self.tapGesture = tapGesture
     }
     
     

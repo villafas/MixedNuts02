@@ -15,6 +15,7 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var isCustomTimeDropdown = false
     var isCustomDayDropdown = false
+    var dayObject: DaySchedule?
     var timePicker: UIDatePicker?
     
     @IBOutlet weak var tableView: UITableView!
@@ -110,11 +111,31 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
             }
         } 
         else {
-            if isCustomDayDropdown {
-                textField.becomeFirstResponder()
-                textField.resignFirstResponder()
-            }
             textField.text = options[indexPath.row]
+            dayObject?.day = DayOfWeek(from: options[indexPath.row])
+            
+            /*
+            // Animate selection
+            guard let cell = tableView.cellForRow(at: indexPath) else { return }
+
+            // Add animation on selection
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform(scaleX: 0.95, y: 0.95) // Shrink the cell a bit
+            }) { _ in
+                UIView.animate(withDuration: 0.1) {
+                    cell.transform = CGAffineTransform.identity // Restore it to its original size
+                }
+            }
+             */
+        }
+    }
+    
+    //MARK: - Table deselect
+    func deselectAllCells() {
+        for cell in tableView.visibleCells {
+            if let indexPath = tableView.indexPath(for: cell) {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
         }
     }
     
@@ -128,7 +149,6 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         tableView.selectRow(at: IndexPath(row: 2, section: 0), animated: true, scrollPosition: .none)
     }
-    
     
     //MARK: - View instantiation
     class func instanceFromNib(setOptions: [String], scrollEnabled: Bool) -> DropdownTableView{

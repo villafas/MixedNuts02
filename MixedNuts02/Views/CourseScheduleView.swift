@@ -98,12 +98,15 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
     func configureWeekdayDropdown(){
         weekdayDropdown = DropdownTableView.instanceFromNib(setOptions: weekdayOptions, scrollEnabled: true)
         weekdayDropdown!.isCustomDayDropdown = true
-        weekdayDropdown!.alpha = 0
+        weekdayDropdown!.dayObject = scheduleObj
         weekdayDropdown!.textField = dayField
+        weekdayDropdown!.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.weekdayDropdown!.isHidden = false
+            self.weekdayDropdown!.alpha = 0
+        }
         parentScrollView!.addSubview(weekdayDropdown!)
         weekdayDropdown!.tag = 5
-        
-        setWeekdayDropdownFrame()
         
         dayField.delegate = self
     }
@@ -140,9 +143,7 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
         schedule.parentTapGesture = parentTapGesture
         schedule.parentView = parentView
         schedule.scheduleObj = setSchedule
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            schedule.configureWeekdayDropdown()
-        }
+        schedule.configureWeekdayDropdown()
         schedule.hideElementWhenTappedAround()
         schedule.setDelegates()
         schedule.setFieldValues()
@@ -170,10 +171,6 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == classroomField {
             scheduleObj!.classroom = textField.text
-        }
-        
-        if textField == dayField && textField.text != nil{
-            scheduleObj!.day = DayOfWeek(from: textField.text!)
         }
     }
     

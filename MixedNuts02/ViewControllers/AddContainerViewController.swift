@@ -57,7 +57,7 @@ class AddContainerViewController: UIViewController {
             
             UIView.animate(withDuration: 0.5) { [self] in
                 navBarTitle.text = "Add Course"
-                view.layoutIfNeeded() // Ensure layout updates immediately
+                //view.layoutIfNeeded() // Ensure layout updates immediately
             }
         } else {
             // Remove the current view controller and switch back to the first one
@@ -67,7 +67,7 @@ class AddContainerViewController: UIViewController {
             
             UIView.animate(withDuration: 0.5) { [self] in
                 navBarTitle.text = "Add Task"
-                view.layoutIfNeeded() // Ensure layout updates immediately
+                //view.layoutIfNeeded() // Ensure layout updates immediately
             }
         }
     }
