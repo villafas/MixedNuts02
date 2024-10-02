@@ -10,7 +10,10 @@ import UIKit
 class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var textField: DesignableUITextField!
-    var scrollEnabled: Bool = true
+    var rowHeight: CGFloat = 44
+    var maxVisibleRows: Int?
+    var height: CGFloat?
+    var scrollEnabled: Bool = false
     var options: [String] = ["Test"]
     
     var isCustomTimeDropdown = false
@@ -37,7 +40,7 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func configureTable(){
-        tableView.rowHeight = 44
+        tableView.rowHeight = rowHeight
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DropdownCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -58,7 +61,7 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = options[indexPath.row]
         
         if (isCustomTimeDropdown && indexPath.row == 2){
-            timePicker = UIDatePicker()
+            //timePicker = UIDatePicker()
             timePicker?.preferredDatePickerStyle = .compact
             timePicker?.datePickerMode = .time
             timePicker?.alpha = 0.011
@@ -73,6 +76,7 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
             timePicker?.transform = finalTransform
             
             timePicker?.addTarget(self, action: #selector(timeChanged(_:)), for: .valueChanged)
+            timePicker?.addTarget(self, action: #selector(timePickerSelected(_:)), for: .editingDidBegin)
             
             cell.addSubview(timePicker!)
         }
@@ -130,6 +134,25 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    //MARK: - Calculate Height
+    func calculateTableHeight(){
+        let numberOfRows = options.count
+                
+        // If the number of rows is greater than the maxVisibleRows, limit the height
+        let visibleRows = min(numberOfRows, maxVisibleRows!)
+        
+        let newHeight = numberOfRows > maxVisibleRows! ? setHeightWithScroll() : CGFloat(visibleRows) * rowHeight
+        
+        height = newHeight
+    }
+    
+    func setHeightWithScroll() -> CGFloat {
+        scrollEnabled = true
+        tableView.isScrollEnabled = scrollEnabled
+        return CGFloat(maxVisibleRows!) * rowHeight + 22
+    }
+    
+    
     //MARK: - Table deselect
     func deselectAllCells() {
         for cell in tableView.visibleCells {
@@ -140,6 +163,9 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     //MARK: - Picker to field
+    @objc func timePickerSelected(_ sender: UIDatePicker){
+        timeChanged(sender)
+    }
     
     @objc func timeChanged(_ sender: UIDatePicker) {
         // Format the date and set it to the text field
@@ -151,10 +177,12 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     //MARK: - View instantiation
-    class func instanceFromNib(setOptions: [String], scrollEnabled: Bool) -> DropdownTableView{
+    class func instanceFromNib(setOptions: [String], maxVisibleRows: Int = 6, isCustomTimeDropdown: Bool = false) -> DropdownTableView{
         let dropdown = UINib(nibName: "DropdownTableView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DropdownTableView
-        dropdown.scrollEnabled = scrollEnabled
+        dropdown.maxVisibleRows = maxVisibleRows
+        dropdown.isCustomTimeDropdown = isCustomTimeDropdown
         dropdown.options = setOptions
+        dropdown.calculateTableHeight()
         dropdown.configureTable()
         return dropdown
     }

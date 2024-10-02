@@ -91,12 +91,12 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
         let textFieldFrame = dayField.convert(dayField.bounds, to: parentScrollView)
         
         // Set the dropdown's frame to appear right below the text field
-        weekdayDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 140) // Adjust height as needed
+        weekdayDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: weekdayDropdown!.height!) // Adjust height as needed
     }
     
     //MARK: - Dropdown Configs
     func configureWeekdayDropdown(){
-        weekdayDropdown = DropdownTableView.instanceFromNib(setOptions: weekdayOptions, scrollEnabled: true)
+        weekdayDropdown = DropdownTableView.instanceFromNib(setOptions: weekdayOptions, maxVisibleRows: 5)
         weekdayDropdown!.isCustomDayDropdown = true
         weekdayDropdown!.dayObject = scheduleObj
         weekdayDropdown!.textField = dayField
@@ -153,6 +153,10 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
     //MARK: - Text Field Delegate
     // UITextFieldDelegate method to detect when the text field is tapped
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let parentView = parentView as? AddCourseViewController{
+            parentView.toggleScrollIgnore()
+        }
+        
         if textField == dayField {
             // Prevent the keyboard from showing
             textField.resignFirstResponder()
@@ -164,6 +168,8 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
                 showWeekdayDropdown()
             }
             //courseDropdownTable.isHidden.toggle()
+        } else {
+            overlayView!.isHidden = false
         }
     }
     
@@ -205,13 +211,18 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
     @objc func handleTapOutside(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: parentView!.view)
         
+        // Hide the keyboard
+        parentView!.view.endEditing(true)
+        
         // Check if the tap was outside the dropdown
-        if isWeekdayDropdownVisible && !weekdayDropdown!.frame.contains(tapLocation){
+        if isWeekdayDropdownVisible{//} && !weekdayDropdown!.frame.contains(tapLocation){
             hideWeekdayDropdown()
         }
         
-        // Hide the keyboard
-        parentView!.view.endEditing(true)
+        if !overlayView!.isHidden {
+            overlayView!.isHidden = true
+        }
+        
     }
 
 }

@@ -28,6 +28,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     var isUrlFieldVisible = false
     var isInstructorFieldVisible = false
     var isTermDropdownVisible = false
+    var ignoreHideOnScroll = false
+    
+    // Literals
+    var ignoreTime = 0.8
     
     // Constraints
     @IBOutlet weak var urlFieldHeightConstraint: NSLayoutConstraint!
@@ -53,6 +57,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         scheduleList = [DaySchedule]()
         scheduleTable.delegate = self
         scheduleTable.dataSource = self
+        titleField.delegate = self
+        codeField.delegate = self
+        instructorField.delegate = self
+        urlField.delegate = self
         configureOverlayView()
         configureTermDropdown()
         updateAllFieldsVisibility()
@@ -131,6 +139,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
                 self?.termOptions = self!.viewModel.termList.map { $0.caption }
                 self?.termDropdown?.options = self!.termOptions
                 self?.termDropdown?.tableView.reloadData()
+                self?.termDropdown?.calculateTableHeight()
             }
         }
         
@@ -150,9 +159,17 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     func configureOverlayView(){
         // Setup the overlay view
         overlayView.backgroundColor = UIColor.clear // transparent
-        overlayView.frame = view.bounds
+        // Assuming overlayView is already added as a subview
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.isHidden = true // Initially hidden
         scrollView.addSubview(overlayView)
+        
+        NSLayoutConstraint.activate([
+            overlayView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            overlayView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
     }
     
     
@@ -163,13 +180,13 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         let textFieldFrame = termField.convert(termField.bounds, to: scrollView)
         
         // Set the dropdown's frame to appear right below the text field
-        termDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
+        termDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: termDropdown!.height!) // Adjust height as needed
     }
     
     
     //MARK: - Dropdown Configs
     func configureTermDropdown(){
-        termDropdown = DropdownTableView.instanceFromNib(setOptions: termOptions, scrollEnabled: true)
+        termDropdown = DropdownTableView.instanceFromNib(setOptions: termOptions, maxVisibleRows: 4)
         termDropdown!.alpha = 0
         termDropdown!.textField = termField
         scrollView.addSubview(termDropdown!)
@@ -344,6 +361,8 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     //MARK: - Text Field Delegate
     // UITextFieldDelegate method to detect when the text field is tapped
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        toggleScrollIgnore()
+        
         if textField == termField{
             // Prevent the keyboard from showing
             textField.resignFirstResponder()
@@ -354,12 +373,18 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
                 setTermDropdownFrame()
                 showTermDropdown()
             }
+        } else {
+            overlayView.isHidden = false
         }
     }
     
     //MARK: - Scroll View Delegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if !ignoreHideOnScroll {
+            view.endEditing(true)
+        }
+        
         // This function is called every time the scroll view is scrolled
         if isTermDropdownVisible{
             hideTermDropdown()
@@ -371,6 +396,17 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
                 let scheduleView = cell.viewWithTag(80) as? CourseScheduleView
                 scheduleView?.hideWeekdayDropdown()
             }
+        }
+        
+        if !overlayView.isHidden {
+            overlayView.isHidden = true
+        }
+    }
+    
+    func toggleScrollIgnore(){
+        ignoreHideOnScroll = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + ignoreTime) {
+            self.ignoreHideOnScroll = false
         }
     }
     
@@ -390,8 +426,12 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         let tapLocation = sender.location(in: self.view)
         
         // Check if the tap was outside the dropdown
-        if isTermDropdownVisible && !termDropdown!.frame.contains(tapLocation){
+        if isTermDropdownVisible {//}&& !termDropdown!.frame.contains(tapLocation){
             hideTermDropdown()
+        }
+        
+        if !overlayView.isHidden {
+            overlayView.isHidden = true
         }
         
         // Hide the keyboard

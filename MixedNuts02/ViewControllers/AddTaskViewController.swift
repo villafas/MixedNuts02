@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate, UITextViewDelegate {
     
     //MARK: - Properties
     
@@ -29,6 +29,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     var isMarkWeightFieldVisible = false
     var isCourseDropdownVisible = false
     var isTimeDropdownVisible = false
+    var ignoreHideOnScroll = false
+    
+    // Literals
+    var ignoreTime = 0.8
     
     // Field view constraints
     @IBOutlet weak var notesFieldHeightConstraint: NSLayoutConstraint!
@@ -38,7 +42,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     var courseDropdown: DropdownTableView?
     var courseOptions = ["Loading..."]
     var timeDropdown: DropdownTableView?
-    let timePicker = DesignableDatePicker()
+    var timePicker = UIDatePicker()
     let timeOptions = ["End of Day", "Start of class", "Custom"]
     
     private let viewModel = AddTaskViewModel()
@@ -51,10 +55,12 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         // Bind ViewModel to ViewController
         bindViewModel()
         
-        
         viewModel.fetchCourses()
+        datePicker.addTarget(self, action: #selector(datePickerSelected(_:)), for: .editingDidBegin)
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         markWeightField.delegate = self
+        titleField.delegate = self
+        
         configureOverlayView()
         configureCourseDropdown()
         configureTimeDropdown()
@@ -119,6 +125,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
                 self?.courseOptions = self!.viewModel.courseList.map { $0.title }
                 self?.courseDropdown?.options = self!.courseOptions
                 self?.courseDropdown?.tableView.reloadData()
+                self?.courseDropdown?.calculateTableHeight()
             }
         }
         
@@ -150,7 +157,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     func updateNotesFieldVisibility() {
         if isNotesFieldVisible {
             // Set the height of the form field (e.g., 100 for a standard height)
-            notesFieldHeightConstraint.constant = 150
+            notesFieldHeightConstraint.constant = 250
         } else {
             // Set the height to 0 to hide the form field
             notesView.text = ""
@@ -234,9 +241,16 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     func configureOverlayView(){
         // Setup the overlay view
         overlayView.backgroundColor = UIColor.clear // transparent
-        overlayView.frame = view.bounds
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.isHidden = true // Initially hidden
         scrollView.addSubview(overlayView)
+        
+        NSLayoutConstraint.activate([
+            overlayView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            overlayView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        ])
     }
     
     //MARK: - Dropdown Frame Configs
@@ -246,7 +260,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         let textFieldFrame = timeField.convert(timeField.bounds, to: scrollView)
         
         // Set the dropdown's frame to appear right below the text field
-        timeDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
+        timeDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: timeDropdown!.height!) // Adjust height as needed
     }
     
     func setCourseDropdownFrame(){
@@ -254,7 +268,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         let textFieldFrame = courseField.convert(courseField.bounds, to: scrollView)
         
         // Set the dropdown's frame to appear right below the text field
-        courseDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: 132) // Adjust height as needed
+        courseDropdown!.frame = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.maxY, width: textFieldFrame.width, height: courseDropdown!.height!) // Adjust height as needed
     }
     
     func setCourseDropdownConstraints() {
@@ -282,7 +296,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     //MARK: - Dropdown Configs
     func configureCourseDropdown(){
-        courseDropdown = DropdownTableView.instanceFromNib(setOptions: courseOptions, scrollEnabled: false)
+        courseDropdown = DropdownTableView.instanceFromNib(setOptions: courseOptions, maxVisibleRows: 5)
         courseDropdown!.alpha = 0
         courseDropdown!.textField = courseField
         scrollView.addSubview(courseDropdown!)
@@ -291,8 +305,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     }
     
     func configureTimeDropdown(){
-        timeDropdown = DropdownTableView.instanceFromNib(setOptions: timeOptions, scrollEnabled: false)
+        timeDropdown = DropdownTableView.instanceFromNib(setOptions: timeOptions)
         timeDropdown!.isCustomTimeDropdown = true
+        timeDropdown!.timePicker = timePicker
         timeDropdown!.alpha = 0
         timeDropdown!.textField = timeField
         scrollView.addSubview(timeDropdown!)
@@ -310,7 +325,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     //MARK: - Text Field Delegate
     // UITextFieldDelegate method to detect when the text field is tapped
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {  
+        toggleScrollIgnore()
+        
         if textField == courseField {
             // Prevent the keyboard from showing
             textField.resignFirstResponder()
@@ -321,10 +338,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
                 setCourseDropdownFrame()
                 showCourseDropdown()
             }
-            //courseDropdownTable.isHidden.toggle()
-        }
-        
-        if textField == timeField {
+        } else if textField == timeField {
             // Prevent the keyboard from showing
             textField.resignFirstResponder()
             
@@ -334,7 +348,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
                 setTimeDropdownFrame()
                 showTimeDropdown()
             }
-            //courseDropdownTable.isHidden.toggle()
+        } else if textField == markWeightField{
+            overlayView.isHidden = false
+        } else {
+            overlayView.isHidden = false
         }
     }
     
@@ -361,10 +378,18 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         }
     }
     
+    //MARK: - Text View Delegate
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        overlayView.isHidden = false
+    }
+    
     //MARK: - Scroll View Delegate
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // This function is called every time the scroll view is scrolled
+        if !ignoreHideOnScroll {
+            view.endEditing(true)
+        }
         if isCourseDropdownVisible{
             hideCourseDropdown()
         }
@@ -372,6 +397,27 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         if isTimeDropdownVisible{
             hideTimeDropdown()
         }
+        
+        
+        if !overlayView.isHidden {
+            overlayView.isHidden = true
+            
+        }
+    }
+    
+    func toggleScrollIgnore(){
+        ignoreHideOnScroll = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + ignoreTime) {
+            self.ignoreHideOnScroll = false
+        }
+    }
+    
+    func scrollToTextField(_ textField: UITextField, in scrollView: UIScrollView) {
+        // Get the frame of the text field relative to the scroll view
+        let textFieldFrame = textField.convert(textField.bounds, to: scrollView)
+        
+        // Scroll to the text field's frame
+        scrollView.scrollRectToVisible(textFieldFrame, animated: true)
     }
     
     //MARK: - Animation Prototype
@@ -400,6 +446,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
      */
     
     //MARK: - DatePicker to Field
+    
+    @objc func datePickerSelected(_ sender: UIDatePicker){
+        dateChanged(sender)
+    }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
         // Format the date and set it to the text field
@@ -446,7 +496,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         
         return calendar.date(from: mergedComponments)
     }
-    
+
     //MARK: - Tap Dismiss
     
     func hideElementWhenTappedAround() {
@@ -459,15 +509,19 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     // Handle tap outside to hide both dropdown and keyboard
     @objc func handleTapOutside(_ sender: UITapGestureRecognizer) {
-        let tapLocation = sender.location(in: self.view)
+        //let tapLocation = sender.location(in: self.view)
         
         // Check if the tap was outside the dropdown
-        if isCourseDropdownVisible && !courseDropdown!.frame.contains(tapLocation){
+        if isCourseDropdownVisible {//} && !courseDropdown!.frame.contains(tapLocation){
             hideCourseDropdown()
         }
         
-        if isTimeDropdownVisible && !timeDropdown!.frame.contains(tapLocation){
+        if isTimeDropdownVisible {//} && !timeDropdown!.frame.contains(tapLocation){
             hideTimeDropdown()
+        }
+        
+        if !overlayView.isHidden {
+            overlayView.isHidden = true
         }
         
         // Hide the keyboard
