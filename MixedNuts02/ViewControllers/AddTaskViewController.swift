@@ -54,8 +54,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         super.viewDidLoad()
         // Bind ViewModel to ViewController
         bindViewModel()
-        
-        viewModel.fetchCourses()
+    
         datePicker.addTarget(self, action: #selector(datePickerSelected(_:)), for: .editingDidBegin)
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         markWeightField.delegate = self
@@ -71,6 +70,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         // Do any additional setup after loading the view.
         
         scrollView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshCourses()
     }
     
     //MARK: - Add Task
@@ -139,6 +142,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         }
     }
     
+    //MARK: - Data Reading
+    
+    func refreshCourses(){
+        viewModel.fetchCourses()
+    }
     
     //MARK: - Notes toggle
     

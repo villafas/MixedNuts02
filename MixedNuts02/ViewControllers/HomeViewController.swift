@@ -54,12 +54,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Set drop shadow for navBar
         navBarBottom.dropShadow()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        // Set proper Date Decorations
-        //refreshDates()
         
         // Set today's date if none is selected
         if self.selectedDay == nil {
@@ -78,6 +72,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         taskTable.delegate = self
         taskTable.dataSource = self
         //taskTable.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 0, right: 0);
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Set proper Date Decorations
+        //refreshDates()
         
         // Get Tasks
         refreshTasks()
@@ -126,13 +126,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.onTasksUpdated = { [weak self] in
             DispatchQueue.main.async {
                 self?.taskTable.reloadData();
-                self?.calendarView.reloadDecorations(forDateComponents: self!.dateToComponents(dates: self!.getDateRange()), animated: true)
-            }
-        }
-        
-        // DELETE
-        viewModel.onDatesUpdated = { [weak self] in
-            DispatchQueue.main.async {
                 self?.calendarView.reloadDecorations(forDateComponents: self!.dateToComponents(dates: self!.getDateRange()), animated: true)
             }
         }

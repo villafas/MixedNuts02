@@ -14,8 +14,8 @@
             filePath = "MixedNuts02/ViewControllers/AddCourseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "updateInstructorFieldVisibility()"
             landmarkType = "7">
          </BreakpointContent>

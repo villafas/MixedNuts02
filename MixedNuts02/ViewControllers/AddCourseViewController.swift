@@ -71,6 +71,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        refreshTerms()
+    }
+    
     //MARK: - Add Course
     
     @IBAction func addCourseButtonTapped(_ sender: UIButton) {
@@ -153,6 +157,11 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //MARK: - Data Reading
+    
+    func refreshTerms(){
+        viewModel.fetchTerms()
+    }
     
     //MARK: - Overlay Config
     
