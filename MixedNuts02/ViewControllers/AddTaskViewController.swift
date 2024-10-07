@@ -54,7 +54,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         super.viewDidLoad()
         // Bind ViewModel to ViewController
         bindViewModel()
-    
+        
         datePicker.addTarget(self, action: #selector(datePickerSelected(_:)), for: .editingDidBegin)
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         markWeightField.delegate = self
@@ -97,7 +97,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         // Here you can save the course object to your database or use it as needed
         viewModel.addTask(title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight)
     }
-
+    
     // Function to clear the input fields after adding a course
     func clearAllFields() {
         titleField.text = ""
@@ -333,7 +333,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     //MARK: - Text Field Delegate
     // UITextFieldDelegate method to detect when the text field is tapped
-    func textFieldDidBeginEditing(_ textField: UITextField) {  
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         toggleScrollIgnore()
         
         if textField == courseField {
@@ -353,6 +353,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             if isTimeDropdownVisible {
                 hideTimeDropdown()
             } else {
+                updateClassTime()
                 setTimeDropdownFrame()
                 showTimeDropdown()
             }
@@ -485,6 +486,17 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         datePicker.transform = scaleTransform
     }
     
+    func updateClassTime(){
+        if let selectedCourse = viewModel.courseList.first(where: { $0.title == courseField.text}),
+           let matchingSchedule = selectedCourse.schedule.first(where: { $0.day?.rawValue.capitalized == getDayOfWeek(from: datePicker.date) }){
+            timeDropdown?.classTime = convertTimeToDate(time: matchingSchedule.startTime!)!
+        } else {
+            timeDropdown?.classTime = nil
+        }
+        
+        timeDropdown?.tableView.reloadData()
+        timeDropdown?.tableView.selectRow(at: timeDropdown?.selectedIndex, animated: false, scrollPosition: .none)
+    }
     
     //MARK: - Datetime formatting
     func combineDateWithTime(date: Date, time: Date) -> Date? {
@@ -504,7 +516,27 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         
         return calendar.date(from: mergedComponments)
     }
-
+    
+    func getDayOfWeek(from date: Date) -> String {
+        let calendar = Calendar.current
+        let weekdayIndex = calendar.component(.weekday, from: date)
+        return calendar.weekdaySymbols[weekdayIndex - 1] // Convert index to get the day name
+    }
+    
+    func convertTimeToDate(time: Time, for date: Date = Date()) -> Date? {
+        var calendar = Calendar.current
+        
+        // Get the year, month, and day components from the given date
+        var components = calendar.dateComponents([.year, .month, .day], from: date)
+        
+        // Set the hour and minute from the Time struct
+        components.hour = time.hour
+        components.minute = time.minute
+        
+        // Convert the components back to a Date object
+        return calendar.date(from: components)
+    }
+    
     //MARK: - Tap Dismiss
     
     func hideElementWhenTappedAround() {

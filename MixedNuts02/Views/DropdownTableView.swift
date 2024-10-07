@@ -19,7 +19,9 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     var isCustomTimeDropdown = false
     var isCustomDayDropdown = false
     var dayObject: DaySchedule?
+    var classTime: Date?
     var timePicker: UIDatePicker?
+    var selectedIndex: IndexPath?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -59,6 +61,8 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath)
         cell.textLabel?.text = options[indexPath.row]
+        cell.textLabel?.textColor = .black
+        cell.selectionStyle = .default
         
         if (isCustomTimeDropdown && indexPath.row == 2){
             //timePicker = UIDatePicker()
@@ -79,6 +83,11 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
             timePicker?.addTarget(self, action: #selector(timePickerSelected(_:)), for: .editingDidBegin)
             
             cell.addSubview(timePicker!)
+        } else if (isCustomTimeDropdown && indexPath.row == 1){
+            if classTime == nil {
+                cell.selectionStyle = .none
+                cell.textLabel?.textColor = .lightGray
+            }
         }
         
         return cell
@@ -99,21 +108,18 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
                     textField.text = formatter.string(from: date)
                 }
             } else if indexPath.row == 1 {
-                // CONFIGURE CLASS TIME HERE
-                let calendar = Calendar.current
-                var dateComponents = DateComponents()
-                dateComponents.hour = 12  // 11 PM
-                dateComponents.minute = 00  // 59 minutes
-                if let date = calendar.date(from: dateComponents) {
+                if let date = classTime {
                     timePicker?.date = date
                     let formatter = DateFormatter()
                     formatter.timeStyle = .short
                     textField.text = formatter.string(from: date)
+                } else {
+                    self.tableView.selectRow(at: selectedIndex, animated: false, scrollPosition: .none)
+                    return
                 }
-                
-
             }
-        } 
+            selectedIndex = indexPath
+        }
         else {
             textField.text = options[indexPath.row]
             dayObject?.day = DayOfWeek(from: options[indexPath.row])
@@ -131,6 +137,14 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
                 }
             }
              */
+        }
+        
+        func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+            // Assuming you don't want row 2 in section 0 to be selectable
+            if isCustomTimeDropdown && classTime == nil && indexPath.row == 1 {
+                return nil  // Return nil to disable selection
+            }
+            return indexPath  // Allow selection for all other rows
         }
     }
     
@@ -174,6 +188,7 @@ class DropdownTableView: UIView, UITableViewDelegate, UITableViewDataSource {
         textField.text = formatter.string(from: sender.date)
         
         tableView.selectRow(at: IndexPath(row: 2, section: 0), animated: true, scrollPosition: .none)
+        selectedIndex = IndexPath(row: 2, section: 0)
     }
     
     //MARK: - View instantiation
