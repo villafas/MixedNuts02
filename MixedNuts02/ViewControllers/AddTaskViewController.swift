@@ -524,7 +524,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     }
     
     func convertTimeToDate(time: Time, for date: Date = Date()) -> Date? {
-        var calendar = Calendar.current
+        let calendar = Calendar.current
         
         // Get the year, month, and day components from the given date
         var components = calendar.dateComponents([.year, .month, .day], from: date)

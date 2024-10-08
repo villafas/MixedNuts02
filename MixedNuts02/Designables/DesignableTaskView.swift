@@ -12,7 +12,7 @@ class DesignableTaskView: UIView {
     //MARK: - Task View customization
     
     @IBOutlet weak var taskTitle: UILabel!
-    @IBOutlet weak var taskDate: UILabel!
+    @IBOutlet weak var taskSubtitle: UILabel!
     @IBOutlet weak var taskButton: UIButton!
     var viewHeight = 81.0
     
@@ -53,10 +53,10 @@ class DesignableTaskView: UIView {
     class func instanceFromNib(setTask: Task) -> DesignableTaskView{
         let task = UINib(nibName: "TaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableTaskView
         task.taskObj = setTask
-        task.taskTitle.text = "\(setTask.title) • \(setTask.course)"
+        task.taskTitle.text = "\(setTask.title)"
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a, dd/MMM"
-        task.taskDate.text = "\(formatter.string(from: setTask.dueDate))"
+        formatter.dateFormat = "hh:mm a" // dd/MMM
+        task.taskSubtitle.text = "\(formatter.string(from: setTask.dueDate)) • \(setTask.course)"
         if task.taskObj?.isComplete == true {
             task.taskIsDone()
         } else {

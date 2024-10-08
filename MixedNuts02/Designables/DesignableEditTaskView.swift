@@ -19,7 +19,7 @@ class DesignableEditTaskView: DesignableTaskView {
         task.taskTitle.text = "\(setTask.title) • \(setTask.course)"
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm a, dd/MMM"
-        task.taskDate.text = "\(formatter.string(from: setTask.dueDate))"
+        task.taskSubtitle.text = "\(formatter.string(from: setTask.dueDate))"
         if task.taskObj?.isComplete == true {
             task.taskIsDone()
         } else {

@@ -16,6 +16,11 @@ class FirebaseManager {
     
     private let db = Firestore.firestore()
     
+    //MARK: - Custom types
+    
+    // Define a tuple type for the result
+    typealias CourseWithSchedule = (course: Course, daySchedule: DaySchedule?)
+    
     
     //MARK: - Constructors
     
@@ -26,13 +31,46 @@ class FirebaseManager {
     
     
     //MARK: - Fetch Methods
-    
     func fetchTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         
         tasksCollection
             .whereField("isComplete", isEqualTo: false)
+            .order(by: "dueDate")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                var tasks: [Task] = []
+                for document in querySnapshot!.documents {
+                    let task = Task(snapshot: document)
+                    tasks.append(task)
+                }
+                
+                completion(.success(tasks))
+            }
+    }
+    
+    func fetchTodaysTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // Get the start of today (00:00:00)
+        let startOfDay = calendar.startOfDay(for: now)
+        
+        // Get the end of today (23:59:59)
+        let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: now)!
+        
+        tasksCollection
+            .whereField("dueDate", isGreaterThanOrEqualTo: startOfDay)
+            .whereField("dueDate", isLessThanOrEqualTo: endOfDay)
+            .order(by: "isComplete")
             .order(by: "dueDate")
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
@@ -69,6 +107,107 @@ class FirebaseManager {
                 }
                 
                 completion(.success(courses))
+            }
+    }
+    
+    func fetchNextCourse(completion: @escaping (Result<CourseWithSchedule?, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let courseCollection = userDbRef.collection("courses")
+        
+        let now = Date()
+        let currentDay = getCurrentDayString() // E.g., "Monday"
+        
+        // Query Firestore for courses scheduled for today
+        courseCollection.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            var currentCourse: CourseWithSchedule?
+            var nextCourse: CourseWithSchedule?
+            var nextCourseStartTime: Date?
+            
+            for document in querySnapshot!.documents {
+                let data = document.data()
+                
+                // Access the course schedule (array of DaySchedule)
+                if let scheduleArray = data["schedule"] as? [[String: Any]] {
+                    for dayScheduleDict in scheduleArray {
+                        if let daySchedule = DaySchedule(dictionary: dayScheduleDict),
+                           daySchedule.day?.rawValue.lowercased() == currentDay.lowercased() {
+                            // Check the start and end times for today
+                            if let startTime = daySchedule.startTime?.toTodaysDate(),
+                               let endTime = daySchedule.endTime?.toTodaysDate() {
+                                if now >= startTime && now <= endTime {
+                                    // This course is currently happening
+                                    currentCourse = (Course(snapshot: document), daySchedule)
+                                    break
+                                } else if now < startTime {
+                                    // This course is upcoming, check if it's the next one
+                                    if nextCourseStartTime == nil || startTime < nextCourseStartTime! {
+                                        nextCourse = (Course(snapshot: document), daySchedule)
+                                        nextCourseStartTime = startTime
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Return the current or next course with its corresponding schedule
+            if let currentCourse = currentCourse {
+                completion(.success(currentCourse))
+            } else if let nextCourse = nextCourse {
+                completion(.success(nextCourse))
+            } else {
+                completion(.success(nil))
+            }
+        }
+    }
+    
+    func fetchWeeklyCourseCount(completion: @escaping (Result<[Int], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // Get the start of the week (e.g., Monday at 00:00:00)
+        let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!
+        
+        // Get the end of the week (e.g., Sunday at 23:59:59)
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
+        let endOfWeekEndOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: endOfWeek)!
+        
+        
+        // Query for tasks due this week (from startOfWeek to endOfWeekEndOfDay)
+        tasksCollection
+            .whereField("dueDate", isGreaterThanOrEqualTo: startOfWeek)
+            .whereField("dueDate", isLessThanOrEqualTo: endOfWeekEndOfDay)
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                var taskCount: [Int] = []
+                var completeCount: Int = 0
+                var incompleteCount: Int = 1
+                for document in querySnapshot!.documents {
+                    let task = Task(snapshot: document)
+                    if task.isComplete == true {
+                        completeCount += 1
+                    } else {
+                        incompleteCount += 1
+                    }
+                }
+                
+                taskCount.append(completeCount)
+                taskCount.append(incompleteCount)
+                
+                completion(.success(taskCount))
             }
     }
     
@@ -195,4 +334,13 @@ class FirebaseManager {
             }
     }
     
+    
+    //MARK: - Helper functions
+    
+    // Helper function to get the current day of the week as a string (e.g., "Monday")
+    func getCurrentDayString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE" // Day format as full name, like "Monday"
+        return dateFormatter.string(from: Date())
+    }
 }

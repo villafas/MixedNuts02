@@ -12,27 +12,27 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
     //MARK: - Expanded task view customization
     
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var urlField: DesignableUITextField!
-    @IBOutlet weak var urlButton: DesignableUIButton!
+    @IBOutlet weak var markWeightField: DesignableUITextField!
     @IBOutlet weak var notesView: DesignableUITextView!
-    @IBOutlet weak var saveButton: DesignableUIButton!
+    @IBOutlet weak var editButton: DesignableUIButton!
     
     //MARK: - Expanded task view instantiation
     override class func instanceFromNib(setTask: Task) -> DesignableExpandedTaskView{
         let task = UINib(nibName: "ExpandedTaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableExpandedTaskView
         task.taskObj = setTask
-        task.taskTitle.text = "\(setTask.title) • \(setTask.course)"
+        task.taskTitle.text = "\(setTask.title)"
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a, dd/MMM"
-        task.taskDate.text = "\(formatter.string(from: setTask.dueDate))"
+        formatter.dateFormat = "hh:mm a"
+        task.taskSubtitle.text = "\(formatter.string(from: setTask.dueDate)) • \(setTask.course)"
         if task.taskObj?.isComplete == true {
             task.taskIsDone()
         } else {
             task.taskIsNotDone()
         }
-        task.urlField.delegate = task.self
-        task.notesView.delegate = task.self
+        //task.markWeightField.delegate = task.self
+        //task.notesView.delegate = task.self
         //task.urlField.text = task.taskObj?.taskURL
+        task.markWeightField.text = "\(task.taskObj?.markWeight ?? 0)"
         task.notesView.text = task.taskObj?.notes
         return task
     }
@@ -49,6 +49,7 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
     }
     
     //MARK: - Button toggling
+    /*
     func updateButtons(urlText: String){
         if urlText == "" && notesView.text == taskObj?.notes{
             saveButton.setDisabled()
@@ -62,9 +63,10 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
             urlButton.setEnabled()
         }
     }
+    */
     
     func textViewDidChange(_ textView: UITextView) {
-        updateButtons(urlText: urlField.text!)
+        //updateButtons(urlText: urlField.text!)
     }
     
     //MARK: - Text field delegate
@@ -74,7 +76,7 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
 
         // do whatever you need with this updated string
-        updateButtons(urlText: updatedString!)
+        //updateButtons(urlText: updatedString!)
         
         // always return true so that changes propagate
         return true
