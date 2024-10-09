@@ -51,7 +51,6 @@ class FirebaseManager {
     }
     
     //Created by Gavin Shaw - September 16
-    
     //Method is created to fetch all users from the Firebase db
     func fetchUsers(completion: @escaping (Result<[FriendUser], Error>) -> Void) {
             db.collection("users").getDocuments { (querySnapshot, error) in

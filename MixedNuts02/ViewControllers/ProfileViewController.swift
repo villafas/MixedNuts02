@@ -28,6 +28,10 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Delete account logic
     
+    
+    
+    // make sure the user has to enter there password.
+    
     @IBAction func deleteIsPressed(_ sender: Any) {
         presentAlert(title: "Account Deletion", message: "Are you sure you want to delete your account? This action cannot be reversed.")
     }
@@ -60,7 +64,7 @@ class ProfileViewController: UIViewController {
     }
     
     //MARK: - Logout logic
-    
+    // create by Gavin Shaw 2024-10-01
     
     // New Logout function with confirmation alert
     @IBAction func logoutIsPress(_ sender: Any) {
