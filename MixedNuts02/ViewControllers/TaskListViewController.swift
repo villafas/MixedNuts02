@@ -128,8 +128,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         viewModel.onTaskCompletionUpdated = { [weak self] in
             DispatchQueue.main.async {
-                self?.deleteNotifications(taskId: self!.viewModel.tempID!, deletePending: true)
-                self?.viewModel.tempID = nil
                 self?.animateScaleIn(desiredView: self!.popupDoneView, doneOrCancel: true)
                 self?.selectedRow = nil
                 self?.refreshTasks()
@@ -138,6 +136,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         viewModel.onTaskDeleted = { [weak self] in
             DispatchQueue.main.async {
+                self?.deleteNotifications(taskId: self!.viewModel.tempID!, deletePending: true)
+                self?.viewModel.tempID = nil
                 self?.animateScaleOut(desiredView: self!.popupDeleteView)
                 self?.selectedRow = nil
                 self?.refreshTasks()
