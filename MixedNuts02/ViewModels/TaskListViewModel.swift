@@ -22,6 +22,7 @@ class TaskListViewModel {
     
     var onTasksUpdated: (() -> Void)?
     var onTaskCompletionUpdated: (() -> Void)?
+    var onTaskDeleted: (() -> Void)?
     var onError: ((String) -> Void)?
     
     
@@ -63,6 +64,18 @@ class TaskListViewModel {
             switch result {
             case .success:
                 self?.onTaskCompletionUpdated?()
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred") // Notify the view
+            }
+        }
+    }
+    
+    func deleteTask(taskID: String) {
+        FirebaseManager.shared.deleteTask(taskId: taskID) { [weak self] result in
+            switch result {
+            case .success:
+                self?.onTaskDeleted?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
                 self?.onError?(self?.errorMessage ?? "An error occurred") // Notify the view

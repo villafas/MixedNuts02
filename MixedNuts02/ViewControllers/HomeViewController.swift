@@ -82,6 +82,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.onTasksUpdated = { [weak self] in
             DispatchQueue.main.async {
                 self?.taskTable.reloadData();
+                //self?.reloadRows()
                 self?.updateTaskMessage();
             }
         }
@@ -124,6 +125,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     //MARK: - Refreshing
+    func reloadRows(){
+        var indexPaths: [IndexPath] = []
+        for row in 0..<viewModel.taskCollection.count {
+            let indexPath = IndexPath(row: row, section: 0)
+            indexPaths.append(indexPath)
+        }
+        
+        taskTable.beginUpdates()
+        taskTable.insertRows(at: indexPaths, with: .automatic)
+        taskTable.endUpdates()
+    }
     
     
     //MARK: - Schedule Calculation

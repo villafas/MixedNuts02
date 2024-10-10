@@ -128,7 +128,17 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         viewModel.onTaskCompletionUpdated = { [weak self] in
             DispatchQueue.main.async {
+                self?.deleteNotifications(taskId: self!.viewModel.tempID!, deletePending: true)
+                self?.viewModel.tempID = nil
                 self?.animateScaleIn(desiredView: self!.popupDoneView, doneOrCancel: true)
+                self?.selectedRow = nil
+                self?.refreshTasks()
+            }
+        }
+        
+        viewModel.onTaskDeleted = { [weak self] in
+            DispatchQueue.main.async {
+                self?.animateScaleOut(desiredView: self!.popupDeleteView)
                 self?.selectedRow = nil
                 self?.refreshTasks()
             }
@@ -175,6 +185,10 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func updateTaskToComplete(id: String){
         viewModel.updateTaskToComplete(taskID: id, isComplete: true)
+    }
+    
+    func deleteTask(id: String){
+        viewModel.deleteTask(taskID: id)
     }
     
     //MARK: - Date Formatting
@@ -417,7 +431,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: - Delete task
     @IBAction func showDeleteAction(_ sender: UIButton) {
         // show delete popup
-        if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView? {
+        if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as? DesignableExpandedTaskView? {
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
             viewModel.tempID = taskView!.taskObj!.id
         }
@@ -426,25 +440,12 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func doneDeleteAction(_ sender: UIButton) {
         // delete is confirmed, so delete document
-        animateScaleOut(desiredView: popupDeleteView)
-        /*
-         if sender.tag == 91 {
-         self.deleteNotifications(taskId: self.tempID!, deletePending: true)
-         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-         let docRef = userDbRef.collection("tasks").document(self.tempID!)
-         docRef.getDocument() { (querySnapshot, err) in
-         if let err = err {
-         print("Error getting document: \(err)")
-         } else {
-         querySnapshot!.reference.delete()
-         self.selectedRow = nil
-         self.refreshTasks()
-         }
-         }
-         } else {
-         tempID = nil
-         }
-         */
+        if sender.tag == 91 {
+            deleteTask(id: viewModel.tempID!)
+        } else { // if cancel button pressed
+            viewModel.tempID = nil
+        }
+         
     }
     
     //MARK: - Complete task

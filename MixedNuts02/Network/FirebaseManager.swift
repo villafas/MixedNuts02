@@ -294,6 +294,20 @@ class FirebaseManager {
         }
     }
     
+    func deleteTask(taskId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        let taskRef = tasksCollection.document(taskId)
+
+        taskRef.delete { error in
+            if let error = error {
+                completion(.failure(error)) // If there's an error, call the failure case
+            } else {
+                completion(.success(())) // Success case
+            }
+        }
+    }
+    
     // OLD
     func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)

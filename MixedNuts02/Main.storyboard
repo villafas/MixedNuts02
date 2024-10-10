@@ -37,19 +37,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="764"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-xx-Fjv">
-                                                <rect key="frame" x="79" y="83.666666666666686" width="240" height="173"/>
+                                                <rect key="frame" x="79" y="75" width="240" height="173"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="173" id="fgp-x2-sn1"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVE-hM-D3W">
-                                                <rect key="frame" x="20" y="295.66666666666669" width="353" height="35"/>
+                                                <rect key="frame" x="20" y="287" width="353" height="42"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d8W-nN-OWo" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="372.33333333333331" width="325" height="19.333333333333314"/>
+                                                <rect key="frame" x="34" y="370.66666666666669" width="325" height="22.666666666666686"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -73,7 +73,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJn-74-GgL" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="417.33333333333331" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="419" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666629" id="10b-A2-E5P"/>
                                                 </constraints>
@@ -100,7 +100,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvM-Wm-a9e">
-                                                <rect key="frame" x="221" y="474.33333333333337" width="138" height="30.333333333333314"/>
+                                                <rect key="frame" x="208" y="476" width="151" height="33.666666666666686"/>
                                                 <color key="tintColor" red="0.011764705882352941" green="0.62352941176470589" blue="0.74117647058823533" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot password?">
@@ -108,7 +108,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bxx-TP-G8l">
-                                                <rect key="frame" x="148" y="608" width="102" height="31"/>
+                                                <rect key="frame" x="148" y="613" width="102" height="31"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Button">
@@ -128,7 +128,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjM-HD-vd1" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="543.66666666666663" width="320" height="57"/>
+                                                <rect key="frame" x="39" y="548.66666666666663" width="320" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="ZGG-gt-LVb"/>
                                                 </constraints>
@@ -147,7 +147,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In to continue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Jr-hWy">
-                                                <rect key="frame" x="79" y="332" width="240" height="17.666666666666686"/>
+                                                <rect key="frame" x="79" y="327" width="240" height="21"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -226,13 +226,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="764"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2t-aA-sue">
-                                                <rect key="frame" x="20" y="67" width="353" height="35"/>
+                                                <rect key="frame" x="20" y="67" width="353" height="42"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="30"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tfl-tc-fco" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="143.66666666666666" width="325" height="19.333333333333343"/>
+                                                <rect key="frame" x="34" y="154" width="325" height="22.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 <userDefinedRuntimeAttributes>
@@ -255,7 +255,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zHd-LR-9Gf" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="248.99999999999997" width="325" height="56.666666666666657"/>
+                                                <rect key="frame" x="34" y="266" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666686" id="71q-1C-3rw"/>
                                                 </constraints>
@@ -281,7 +281,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmo-Bd-UXq" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="339" width="325" height="56.666666666666686"/>
+                                                <rect key="frame" x="34" y="356" width="325" height="56.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56.666666666666686" id="krP-TE-CzT"/>
                                                 </constraints>
@@ -307,13 +307,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input details to create a new account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y1J-qx-e4g">
-                                                <rect key="frame" x="34" y="103" width="325" height="17.666666666666671"/>
+                                                <rect key="frame" x="34" y="110" width="325" height="21"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJL-Ek-SGE" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="196.33333333333334" width="325" height="19.333333333333343"/>
+                                                <rect key="frame" x="34" y="210" width="325" height="22.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
@@ -336,7 +336,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fR-vg-R5W" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="505.66666666666663" width="325" height="57"/>
+                                                <rect key="frame" x="34" y="522.66666666666663" width="325" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="HAX-Ae-Y1X"/>
                                                 </constraints>
@@ -355,7 +355,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJI-R3-JJm" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                <rect key="frame" x="34" y="580.66666666666663" width="325" height="57"/>
+                                                <rect key="frame" x="34" y="597.66666666666663" width="325" height="57"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="57" id="LMh-xR-F6g"/>
                                                 </constraints>
@@ -378,7 +378,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIQ-7b-MiL">
-                                                <rect key="frame" x="34" y="451" width="32" height="31"/>
+                                                <rect key="frame" x="34" y="468" width="32" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="hpK-Sf-0ff"/>
                                                 </constraints>
@@ -390,7 +390,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncD-7r-cCp">
-                                                <rect key="frame" x="68" y="457.33333333333331" width="291" height="18"/>
+                                                <rect key="frame" x="68" y="474.33333333333337" width="291" height="18"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="I agree to the">
                                                         <attributes>
@@ -1350,8 +1350,8 @@
                                                         <constraints>
                                                             <constraint firstItem="YVP-PU-Hi5" firstAttribute="leading" secondItem="7DK-sV-fgD" secondAttribute="leading" id="1RF-Es-wzn"/>
                                                             <constraint firstAttribute="bottom" secondItem="YVP-PU-Hi5" secondAttribute="bottom" id="YMl-qy-HAk"/>
+                                                            <constraint firstAttribute="height" constant="50" id="Zsw-1e-S3V"/>
                                                             <constraint firstAttribute="trailing" secondItem="YVP-PU-Hi5" secondAttribute="trailing" id="fAR-2b-Xmm"/>
-                                                            <constraint firstAttribute="height" constant="50" id="gnJ-rO-2ci"/>
                                                             <constraint firstItem="YVP-PU-Hi5" firstAttribute="top" secondItem="7DK-sV-fgD" secondAttribute="top" id="thl-rq-veR"/>
                                                         </constraints>
                                                     </view>
@@ -1530,7 +1530,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="additionalScheduleFieldHeightConstraint" destination="gnJ-rO-2ci" id="j2n-gM-1sk"/>
+                        <outlet property="additionalScheduleFieldHeightConstraint" destination="Zsw-1e-S3V" id="Rkm-nG-EG2"/>
                         <outlet property="codeField" destination="obP-Us-0Ke" id="QRe-Vb-zAn"/>
                         <outlet property="instructorField" destination="8kP-qF-Qdn" id="EGV-35-h49"/>
                         <outlet property="instructorFieldHeightConstraint" destination="kGh-dV-n3r" id="yB6-ck-3yt"/>
@@ -2451,16 +2451,16 @@
                                     <rect key="frame" x="20" y="20" width="313" height="120"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bb6-Z6-8o1">
-                                            <rect key="frame" x="0.0" y="0.0" width="313" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="313" height="55.666666666666664"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete this task?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acu-EH-Cva">
-                                                    <rect key="frame" x="0.0" y="0.0" width="313" height="20.666666666666668"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="313" height="23"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWC-rv-2B0">
-                                                    <rect key="frame" x="0.0" y="30.666666666666686" width="313" height="20.333333333333329"/>
+                                                    <rect key="frame" x="0.0" y="33" width="313" height="22.666666666666671"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -2474,13 +2474,13 @@
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K85-oX-Xu2">
-                                            <rect key="frame" x="0.0" y="71" width="313" height="49"/>
+                                            <rect key="frame" x="0.0" y="75.666666666666686" width="313" height="44.333333333333343"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="irN-8m-YFr">
-                                                    <rect key="frame" x="15" y="0.0" width="283" height="49"/>
+                                                    <rect key="frame" x="15" y="0.0" width="283" height="44.333333333333336"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-AW-lQM" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="129" height="49"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="129" height="44.333333333333336"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="filled" title="Cancel">
                                                                 <fontDescription key="titleFontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
@@ -2497,7 +2497,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" tag="91" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j8L-cj-YS9" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                                                            <rect key="frame" x="154" y="0.0" width="129" height="49"/>
+                                                            <rect key="frame" x="154" y="0.0" width="129" height="44.333333333333336"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="filled" title="Delete">
                                                                 <fontDescription key="titleFontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
@@ -2585,13 +2585,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Remaining Tasks: 4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn4-YF-DWs">
-                            <rect key="frame" x="41" y="554" width="310" height="35"/>
+                            <rect key="frame" x="16" y="554" width="361" height="35"/>
                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="24"/>
                             <color key="textColor" red="0.25490196079999999" green="0.2901960784" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdS-oA-n92" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
-                            <rect key="frame" x="36" y="643" width="321" height="57"/>
+                            <rect key="frame" x="36" y="643" width="322" height="57"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="57" id="Zol-eF-1zl"/>
                             </constraints>
@@ -2618,7 +2618,7 @@
                         <constraint firstItem="zIY-4i-b5Z" firstAttribute="leading" secondItem="aiK-9e-llU" secondAttribute="leading" constant="41" id="BRw-oA-NZO"/>
                         <constraint firstItem="aNq-Qi-wgc" firstAttribute="leading" secondItem="aiK-9e-llU" secondAttribute="leading" constant="48" id="Hhl-eE-h0l"/>
                         <constraint firstItem="zIY-4i-b5Z" firstAttribute="centerX" secondItem="aNq-Qi-wgc" secondAttribute="centerX" id="QhF-BZ-nXp"/>
-                        <constraint firstItem="zn4-YF-DWs" firstAttribute="trailing" secondItem="O70-MX-MGG" secondAttribute="trailing" constant="-26" id="YQw-w7-jae"/>
+                        <constraint firstItem="zn4-YF-DWs" firstAttribute="trailing" secondItem="O70-MX-MGG" secondAttribute="trailing" id="YQw-w7-jae"/>
                         <constraint firstItem="aNq-Qi-wgc" firstAttribute="centerX" secondItem="Ppu-ID-pC7" secondAttribute="centerX" id="esI-fU-dZi"/>
                         <constraint firstItem="tdS-oA-n92" firstAttribute="leading" secondItem="aiK-9e-llU" secondAttribute="leading" constant="36" id="fTb-Kd-N6F"/>
                         <constraint firstItem="aiK-9e-llU" firstAttribute="bottom" secondItem="zn4-YF-DWs" secondAttribute="bottom" constant="229" id="nvj-td-3vp"/>
@@ -2631,7 +2631,7 @@
                         <constraint firstItem="zIY-4i-b5Z" firstAttribute="top" secondItem="aNq-Qi-wgc" secondAttribute="bottom" constant="8" id="urt-to-s0U"/>
                         <constraint firstItem="aiK-9e-llU" firstAttribute="bottom" secondItem="zIY-4i-b5Z" secondAttribute="bottom" constant="332" id="wFg-tQ-HLr"/>
                         <constraint firstItem="aiK-9e-llU" firstAttribute="bottom" secondItem="O70-MX-MGG" secondAttribute="bottom" constant="297" id="z4a-fc-53B"/>
-                        <constraint firstItem="zn4-YF-DWs" firstAttribute="leading" secondItem="O70-MX-MGG" secondAttribute="leading" constant="25" id="z4j-8k-tfd"/>
+                        <constraint firstItem="zn4-YF-DWs" firstAttribute="leading" secondItem="O70-MX-MGG" secondAttribute="leading" id="z4j-8k-tfd"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3719,97 +3719,97 @@
     </scenes>
     <designables>
         <designable name="2fR-vg-R5W">
-            <size key="intrinsicContentSize" width="88.666666666666671" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="87" height="36.666666666666664"/>
         </designable>
         <designable name="8kP-qF-Qdn">
-            <size key="intrinsicContentSize" width="157.66666666666666" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="167.66666666666666" height="24.333333333333332"/>
         </designable>
         <designable name="EpG-cW-OMg">
-            <size key="intrinsicContentSize" width="98.666666666666671" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="110" height="24.333333333333332"/>
         </designable>
         <designable name="GKd-Xe-zQO">
-            <size key="intrinsicContentSize" width="101" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="110.33333333333333" height="24.333333333333332"/>
         </designable>
         <designable name="Izd-yD-zDz">
-            <size key="intrinsicContentSize" width="83" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="91" height="24.333333333333332"/>
         </designable>
         <designable name="JaQ-sc-8zo">
-            <size key="intrinsicContentSize" width="101" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="110.33333333333333" height="24.333333333333332"/>
         </designable>
         <designable name="MJL-Ek-SGE">
-            <size key="intrinsicContentSize" width="96.333333333333329" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="108.66666666666667" height="22.666666666666668"/>
         </designable>
         <designable name="R6F-Td-2Be">
-            <size key="intrinsicContentSize" width="84.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="92" height="24.333333333333332"/>
         </designable>
         <designable name="SBG-hT-8qn">
-            <size key="intrinsicContentSize" width="109.66666666666667" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="119.33333333333333" height="36.666666666666664"/>
         </designable>
         <designable name="SrN-wy-VYd">
-            <size key="intrinsicContentSize" width="84.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="92" height="24.333333333333332"/>
         </designable>
         <designable name="T4q-kJ-PbD">
-            <size key="intrinsicContentSize" width="9" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="11" height="24.333333333333332"/>
         </designable>
         <designable name="TjM-HD-vd1">
-            <size key="intrinsicContentSize" width="82.666666666666671" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="82.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="UP8-uC-h70">
-            <size key="intrinsicContentSize" width="84.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="94" height="24.333333333333332"/>
         </designable>
         <designable name="VyR-gK-psW">
-            <size key="intrinsicContentSize" width="108.33333333333333" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="121.66666666666667" height="36.666666666666664"/>
         </designable>
         <designable name="Wmo-Bd-UXq">
-            <size key="intrinsicContentSize" width="124" height="18"/>
+            <size key="intrinsicContentSize" width="140" height="21"/>
         </designable>
         <designable name="Wrx-n4-PZ9">
-            <size key="intrinsicContentSize" width="59.666666666666664" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="64.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="X5l-bH-WPd">
-            <size key="intrinsicContentSize" width="79.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="89" height="24.333333333333332"/>
         </designable>
         <designable name="XaG-8X-YWg">
-            <size key="intrinsicContentSize" width="83" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="91" height="24.333333333333332"/>
         </designable>
         <designable name="d8W-nN-OWo">
-            <size key="intrinsicContentSize" width="96.333333333333329" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="108.66666666666667" height="22.666666666666668"/>
         </designable>
         <designable name="iJI-R3-JJm">
-            <size key="intrinsicContentSize" width="88" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="36.666666666666664"/>
         </designable>
         <designable name="j8L-cj-YS9">
-            <size key="intrinsicContentSize" width="69.666666666666671" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="75.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="lbB-Dk-OTK">
-            <size key="intrinsicContentSize" width="9" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="11" height="24.333333333333332"/>
         </designable>
         <designable name="o7L-Ae-Tnm">
-            <size key="intrinsicContentSize" width="74" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="81.666666666666671" height="36.666666666666664"/>
         </designable>
         <designable name="obP-Us-0Ke">
-            <size key="intrinsicContentSize" width="115.66666666666667" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="113.66666666666667" height="24.333333333333332"/>
         </designable>
         <designable name="pF0-6g-ehf">
-            <size key="intrinsicContentSize" width="224.33333333333334" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="254.66666666666666" height="24.333333333333332"/>
         </designable>
         <designable name="tdS-oA-n92">
-            <size key="intrinsicContentSize" width="69" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="68.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="tfl-tc-fco">
-            <size key="intrinsicContentSize" width="67.666666666666671" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="76" height="22.666666666666668"/>
         </designable>
         <designable name="vJn-74-GgL">
-            <size key="intrinsicContentSize" width="66.666666666666671" height="18"/>
+            <size key="intrinsicContentSize" width="74.333333333333329" height="21"/>
         </designable>
         <designable name="zEq-AW-lQM">
-            <size key="intrinsicContentSize" width="74" height="32.666666666666664"/>
+            <size key="intrinsicContentSize" width="81.333333333333329" height="36.666666666666664"/>
         </designable>
         <designable name="zHd-LR-9Gf">
-            <size key="intrinsicContentSize" width="66.666666666666671" height="18"/>
+            <size key="intrinsicContentSize" width="74.333333333333329" height="21"/>
         </designable>
         <designable name="zkU-Mx-vAg">
-            <size key="intrinsicContentSize" width="79.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="89" height="24.333333333333332"/>
         </designable>
     </designables>
     <resources>
