@@ -25,13 +25,13 @@ class AddCourseViewModel {
     func addCourse(title: String, code: String, schedule: [DaySchedule], term: String, prof: String?, courseURL: String?) {
         let newCourse = Course(id: "", title: title, code: code, schedule: schedule, term: term, prof: prof, courseURL: courseURL)
         
-        FirebaseManager.shared.addCourse(newCourse) { result in
+        FirebaseManager.shared.addCourse(newCourse) { [weak self] result in
             switch result {
             case .success:
-                self.onCourseAdded?()
+                self?.onCourseAdded?()
             case .failure(let error):
-                self.errorMessage = error.localizedDescription
-                self.onError?(self.errorMessage ?? "An error occurred")  // Notify the view
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view
             }
         }
     }

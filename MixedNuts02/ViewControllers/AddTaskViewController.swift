@@ -45,7 +45,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     var timePicker = UIDatePicker()
     let timeOptions = ["End of Day", "Start of class", "Custom"]
     
-    private let viewModel = AddTaskViewModel()
+    internal let viewModel = AddTaskViewModel()
     
     
     //MARK: - Lifecycle Methods
@@ -107,6 +107,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         datePicker.date = Date()
         timeField.text = ""
         timePicker.date = Date()
+        timeDropdown?.deselectAllCells()
+        timeDropdown?.selectedIndex = nil
+        updateClassTime()
         isMarkWeightFieldVisible = false
         isNotesFieldVisible = false
         updateAllFieldsVisibility()
@@ -457,7 +460,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     //MARK: - DatePicker to Field
     
     @objc func datePickerSelected(_ sender: UIDatePicker){
-        dateChanged(sender)
+        if dateTextField.text == "" {
+            dateChanged(sender)
+        }
     }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
@@ -567,4 +572,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         // Hide the keyboard
         view.endEditing(true)
     }
+    
+    
 }

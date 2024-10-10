@@ -36,6 +36,9 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
         
         scaleDatePicker(startTimePicker, within: startTimeTextField)
         scaleDatePicker(endTimePicker, within: endTimeTextField)
+        
+        startTimePicker.addTarget(self, action: #selector(timePickerSelected(_:)), for: .editingDidBegin)
+        endTimePicker.addTarget(self, action: #selector(timePickerSelected(_:)), for: .editingDidBegin)
     }
     
     func setFieldValues(){
@@ -69,6 +72,13 @@ class CourseScheduleView: UIView, UITextFieldDelegate {
     
     
     //MARK: - Picker to field
+    @objc func timePickerSelected(_ sender: UIDatePicker){
+        if sender == startTimePicker && startTimeTextField.text == "" {
+            timeChanged(sender)
+        } else if sender == endTimePicker && endTimeTextField.text == "" {
+            timeChanged(sender)
+        }
+    }
     
     @IBAction func timeChanged(_ sender: UIDatePicker) {
         // Format the date and set it to the text field

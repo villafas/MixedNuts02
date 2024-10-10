@@ -8,9 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Poppins-Medium.ttf">
-            <string>Poppins-Medium</string>
-        </array>
         <array key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
         </array>
@@ -19,24 +16,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CourseScheduleView" customModule="MixedNuts02" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="435" height="221"/>
+            <rect key="frame" x="0.0" y="0.0" width="435" height="209"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="z67-zK-5Xe">
-                    <rect key="frame" x="0.0" y="0.0" width="435" height="227"/>
+                    <rect key="frame" x="0.0" y="0.0" width="435" height="217"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="h4S-2M-hKV">
-                            <rect key="frame" x="0.0" y="0.0" width="435" height="103"/>
+                            <rect key="frame" x="0.0" y="0.0" width="435" height="98"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-qa-dnd">
-                                    <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="103"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ym1-qa-dnd">
+                                    <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="98"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xl5-rI-1Hz">
                                             <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stU-GL-U6d">
                                                     <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="40"/>
-                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -46,7 +43,7 @@
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-we-XUb">
-                                            <rect key="frame" x="0.0" y="45" width="207.66666666666666" height="58"/>
+                                            <rect key="frame" x="0.0" y="40" width="207.66666666666666" height="58"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select a day" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wzh-nq-osX" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="58"/>
@@ -88,20 +85,20 @@
                                         </view>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZI6-mU-Ad7">
-                                    <rect key="frame" x="227.66666666666663" y="0.0" width="207.33333333333337" height="103"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZI6-mU-Ad7">
+                                    <rect key="frame" x="227.66666666666663" y="0.0" width="207.33333333333337" height="98"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r65-mS-EBm">
                                             <rect key="frame" x="0.0" y="0.0" width="207.33333333333334" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classroom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyE-qN-CQ4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="88" height="40"/>
-                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="87" height="40"/>
+                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qnm-EK-THZ">
-                                                    <rect key="frame" x="88.000000000000028" y="0.0" width="79.333333333333343" height="40"/>
+                                                    <rect key="frame" x="87.000000000000028" y="0.0" width="80.333333333333343" height="40"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gT-r8-6PH">
@@ -118,7 +115,7 @@
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZq-g4-h3b">
-                                            <rect key="frame" x="0.0" y="45" width="207.33333333333334" height="58"/>
+                                            <rect key="frame" x="0.0" y="40" width="207.33333333333334" height="58"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ie. B303" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7QD-WS-Z3Y" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="207.33333333333334" height="58"/>
@@ -162,21 +159,21 @@
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="103" id="GuJ-Sk-36q"/>
+                                <constraint firstAttribute="height" constant="98" id="GuJ-Sk-36q"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7U3-EI-wwZ">
-                            <rect key="frame" x="0.0" y="111" width="435" height="103"/>
+                            <rect key="frame" x="0.0" y="106" width="435" height="98"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tRq-jb-rcS">
-                                    <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="103"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tRq-jb-rcS">
+                                    <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="98"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pc3-ci-mBz">
                                             <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJ5-Pa-Mso">
                                                     <rect key="frame" x="0.0" y="0.0" width="207.66666666666666" height="40"/>
-                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -186,7 +183,7 @@
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCW-Wx-pIR">
-                                            <rect key="frame" x="0.0" y="45" width="207.66666666666666" height="58"/>
+                                            <rect key="frame" x="0.0" y="40" width="207.66666666666666" height="58"/>
                                             <subviews>
                                                 <datePicker alpha="0.010999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="1Di-ZB-M71" customClass="DesignableDatePicker" customModule="MixedNuts02" customModuleProvider="target">
                                                     <rect key="frame" x="78.666666666666671" y="11" width="50.000000000000014" height="36"/>
@@ -256,15 +253,15 @@
                                         </view>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5tQ-k0-0dp">
-                                    <rect key="frame" x="227.66666666666663" y="0.0" width="207.33333333333337" height="103"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5tQ-k0-0dp">
+                                    <rect key="frame" x="227.66666666666663" y="0.0" width="207.33333333333337" height="98"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emw-8D-Eq6">
                                             <rect key="frame" x="0.0" y="0.0" width="207.33333333333334" height="40"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebP-JM-tT6">
                                                     <rect key="frame" x="0.0" y="0.0" width="207.33333333333334" height="40"/>
-                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -274,7 +271,7 @@
                                             </constraints>
                                         </stackView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqx-fu-S0z">
-                                            <rect key="frame" x="0.0" y="45" width="207.33333333333334" height="58"/>
+                                            <rect key="frame" x="0.0" y="40" width="207.33333333333334" height="58"/>
                                             <subviews>
                                                 <datePicker alpha="0.010999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="ez1-WQ-I3K" customClass="DesignableDatePicker" customModule="MixedNuts02" customModuleProvider="target">
                                                     <rect key="frame" x="78.666666666666657" y="11" width="50" height="36"/>
@@ -346,11 +343,11 @@
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="103" id="Rfn-Ra-MHH"/>
+                                <constraint firstAttribute="height" constant="98" id="Rfn-Ra-MHH"/>
                             </constraints>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLH-jI-zY4">
-                            <rect key="frame" x="0.0" y="222" width="435" height="5"/>
+                            <rect key="frame" x="0.0" y="212" width="435" height="5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="5" id="ntn-xS-g7g"/>
@@ -377,7 +374,7 @@
                 <outlet property="startTimePicker" destination="1Di-ZB-M71" id="2F2-rC-Oto"/>
                 <outlet property="startTimeTextField" destination="oW6-UL-fsy" id="1Ic-EF-6ds"/>
             </connections>
-            <point key="canvasLocation" x="81.679389312977094" y="32.74647887323944"/>
+            <point key="canvasLocation" x="81.679389312977094" y="28.52112676056338"/>
         </view>
     </objects>
     <designables>

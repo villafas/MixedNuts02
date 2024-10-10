@@ -75,10 +75,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        // Set proper Date Decorations
-        //refreshDates()
-        
         // Get Tasks
         refreshTasks()
     }
@@ -130,6 +126,14 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
+        viewModel.onTaskCompletionUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.animateScaleIn(desiredView: self!.popupDoneView, doneOrCancel: true)
+                self?.selectedRow = nil
+                self?.refreshTasks()
+            }
+        }
+        
         viewModel.onError = { [weak self] errorMessage in
             DispatchQueue.main.async {
                 // Show error message (e.g., using an alert)
@@ -164,23 +168,14 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    //MARK: - Data Reading
-    
-    func refreshDates(){
-        // refresh dates containing tasks to show necessary decorations
-        viewModel.dateList = [Date]()
-        viewModel.fetchDates()
-    }
-    
+    //MARK: - Data Reading & Writing
     func refreshTasks(){
         viewModel.fetchTasks()
     }
     
-    func refreshTasks(dateComp: DateComponents){
-        // logic for showing tasks when a date is selected
-        viewModel.fetchTasks(forDate: dateComp)
+    func updateTaskToComplete(id: String){
+        viewModel.updateTaskToComplete(taskID: id, isComplete: true)
     }
-    
     
     //MARK: - Date Formatting
     
@@ -300,11 +295,13 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             taskView.heightAnchor.constraint(equalToConstant: 400).isActive = true
             taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
             taskView.tag = 100
+            taskView.deleteButton.removeTarget(nil, action: nil, for: .allEvents)
             taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
-            //taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
+            taskView.taskButton.removeTarget(nil, action: nil, for: .allEvents)
+            taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
             //taskView.saveButton.addTarget(self, action: #selector(saveAction(_:)), for: .touchUpInside)
             //taskView.updateButtons(urlText: taskView.urlField.text!)
-            
+            taskView.editButton.removeTarget(nil, action: nil, for: .allEvents)
             taskView.editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
             
             cell.contentView.addSubview(taskView)
@@ -317,7 +314,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
         taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
         taskView.tag = 100
-        //taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
+        taskView.taskButton.removeTarget(nil, action: nil, for: .allEvents)
         taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
         cell.contentView.addSubview(taskView)
         return cell
@@ -386,7 +383,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEditSegue" {
             // Get the destination view controller
-            if let destinationVC = segue.destination as? EditTaskViewController, let selectedTask = taskTable.cellForRow(at: selectedRow!)?.viewWithTag(100) as? DesignableExpandedTaskView {
+            if let destinationVC = segue.destination as? EditTaskViewController, let selectedTask = taskTable.cellForRow(at: selectedRow!)?.contentView.viewWithTag(100) as? DesignableExpandedTaskView {
                 // Pass data to the destination view controller
                 destinationVC.taskObj = selectedTask.taskObj
             }
@@ -453,26 +450,15 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: - Complete task
     @IBAction func showDoneAction(_ sender: UIButton) {
         // show congrats popup
-        if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableEditTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
+        print("here")
+        if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
             self.deleteNotifications(taskId: taskView!.taskObj!.id, deletePending: true)
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
             card.subtitleLabel.text = "Remaining Tasks: \((totalItems(viewModel.taskCollection)) - 1)"
-            /*
-             let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-             let docRef = userDbRef.collection("tasks").document(taskView!.taskObj!.id)
-             docRef.getDocument() { (querySnapshot, err) in
-             if let err = err {
-             print("Error getting document: \(err)")
-             } else {
-             querySnapshot!.reference.updateData([
-             "isComplete" : true
-             ])
-             self.selectedRow = nil
-             self.refreshTasks()
-             }
-             }
-             */
-            animateScaleIn(desiredView: popupDoneView, doneOrCancel: true)
+            
+            print(taskView!.taskObj!.id)
+            
+            updateTaskToComplete(id: taskView!.taskObj!.id)
         }
     }
     

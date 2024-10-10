@@ -21,7 +21,7 @@ class TaskListViewModel {
     var taskCollection = [DailyTasks]() // holds format for table view structure
     
     var onTasksUpdated: (() -> Void)?
-    var onDatesUpdated: (() -> Void)? // REMOVE
+    var onTaskCompletionUpdated: (() -> Void)?
     var onError: ((String) -> Void)?
     
     
@@ -58,29 +58,14 @@ class TaskListViewModel {
         }
     }
     
-    // OLD
-    func fetchTasks(forDate dateComp: DateComponents) {
-        firebaseManager.fetchTasks(forDate: dateComp) { [weak self] result in
+    func updateTaskToComplete(taskID: String, isComplete: Bool) {
+        FirebaseManager.shared.updateTaskCompletion(taskID: taskID, isComplete: isComplete) { [weak self] result in
             switch result {
-            case .success(let fetchedTasks):
-                //self?.taskList = fetchedTasks
-                self?.onTasksUpdated?()  // Notify the view controller to update the UI
+            case .success:
+                self?.onTaskCompletionUpdated?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
-                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
-            }
-        }
-    }
-    
-    func fetchDates() {
-        firebaseManager.fetchTaskDates() { [weak self] result in
-            switch result {
-            case .success(let fetchedDates):
-                self?.dateList = fetchedDates
-                self?.onDatesUpdated?()  // Notify the view controller to update the UI
-            case .failure(let error):
-                self?.errorMessage = error.localizedDescription
-                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
+                self?.onError?(self?.errorMessage ?? "An error occurred") // Notify the view
             }
         }
     }

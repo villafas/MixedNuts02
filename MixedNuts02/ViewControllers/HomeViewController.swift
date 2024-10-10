@@ -122,6 +122,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.fetchWeeklyCourseCount()
     }
     
+    
+    //MARK: - Refreshing
+    
+    
     //MARK: - Schedule Calculation
     
     func getScheduleStatus(for schedule: DaySchedule) -> String {
@@ -136,13 +140,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return "Now"
         } else if now < startTime {
             let timeInterval = startTime.timeIntervalSince(now)
-            let hours = Int(timeInterval / 3600)
-            let minutes = Int(timeInterval.truncatingRemainder(dividingBy: 3600) / 60)
+            let hours = Int(timeInterval / 3600) + 1
+            let minutes = Int(timeInterval.truncatingRemainder(dividingBy: 3600) / 60) + 1
 
-            if hours > 0 {
+            if hours > 1 {
                 return "Starts in \(hours) hours"
-            } else if minutes > 0 {
+            } else if minutes > 1 {
                 return "Starts in \(minutes) minutes"
+            } else if minutes == 1 {
+                return "Starts in \(minutes) minute"
             }
         }
 

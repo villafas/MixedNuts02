@@ -262,31 +262,37 @@ class FirebaseManager {
                 completion(.success(()))
             }
         }
-        
-        
-        //func addTask{
-        /*if let title = titleField.text, let course = courseField.text, !title.isEmpty, !course.isEmpty {
-         let dueDate = combineDateWithTime(date: datePicker.date, time: timePicker.date)!
-         var task = Task(id: "", title: title, course: course, notes: notesView.text, dueDate: dueDate, markWeight: 0, isComplete: false)
-         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-         var ref: DocumentReference? = nil
-         ref = userDbRef.collection("tasks").addDocument(data: task.toAnyObject()) { err in
-         if let err = err {
-         print("Error adding document: \(err)")
-         } else {
-         print("Document added with ID: \(ref!.documentID)")
-         task.id = ref!.documentID
-         self.scheduleNotifications(taskObj: task)
-         }
-         }
-         titleField.text = ""
-         courseField.text = ""
-         notesView.text = ""
-         self.datePicker.date = Date()
-         self.timePicker.date = Date()
-         }*/
     }
     
+    func updateTask(_ task: Task, completion: @escaping (Result<Void, Error>) -> Void) {
+        let taskData = task.toAnyObject()  // Convert Task object to a dictionary
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        let taskRef = tasksCollection.document(task.id)
+
+        taskRef.updateData(taskData) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func updateTaskCompletion(taskID: String, isComplete: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        let taskRef = tasksCollection.document(taskID)
+
+        // Update only the isComplete field
+        taskRef.updateData(["isComplete": isComplete]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
     
     // OLD
     func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
