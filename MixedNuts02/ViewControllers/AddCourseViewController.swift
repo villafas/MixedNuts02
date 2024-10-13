@@ -11,6 +11,8 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: - Properties
     
+    @IBOutlet weak var navBarBottom: UIView!
+    
     @IBOutlet weak var titleField: DesignableUITextField!
     @IBOutlet weak var codeField: DesignableUITextField!
     @IBOutlet weak var termField: DesignableUITextField!
@@ -52,6 +54,8 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         // Bind ViewModel to ViewController
         bindViewModel()
+        
+        navBarBottom.dropShadow()
         
         viewModel.fetchTerms()
         scheduleList = [DaySchedule]()
@@ -225,23 +229,25 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: - Field Toggles
     
-    @IBAction func urlToggled(_ sender: Any) {
+    @IBAction func urlToggled(_ sender: UIButton) {
         // Toggle the field visibility
         isUrlFieldVisible.toggle()
         
         // Animate the height change
         UIView.animate(withDuration: 0.3) {
+            self.toggleButtonImage(sender, self.isUrlFieldVisible)
             self.updateUrlFieldVisibility()
             self.view.layoutIfNeeded() // Ensure layout updates immediately
         }
     }
     
-    @IBAction func instructorToggled(_ sender: Any) {
+    @IBAction func instructorToggled(_ sender: UIButton) {
         // Toggle the field visibility
         isInstructorFieldVisible.toggle()
         
         // Animate the height change
         UIView.animate(withDuration: 0.3) {
+            self.toggleButtonImage(sender, self.isInstructorFieldVisible)
             self.updateInstructorFieldVisibility()
             self.view.layoutIfNeeded() // Ensure layout updates immediately
         }
@@ -296,6 +302,20 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         updateInstructorFieldVisibility()
         updateAdditionalFieldVisibility()
         updateUrlFieldVisibility()
+    }
+    
+    func toggleButtonImage(_ button: UIButton, _ state: Bool){
+        if state == false {
+            let config = UIImage.SymbolConfiguration(scale: .large)
+            if let image = UIImage(systemName: "plus.circle", withConfiguration: config) {
+                button.setImage(image, for: .normal)
+            }
+        } else {
+            let config = UIImage.SymbolConfiguration(scale: .large)
+            if let image = UIImage(systemName: "minus.circle", withConfiguration: config) {
+                button.setImage(image, for: .normal)
+            }
+        }
     }
     
     //MARK: - Schedule handling

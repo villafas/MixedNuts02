@@ -235,18 +235,22 @@ class FirebaseManager {
     //MARK: - Add Methods
     
     // Function to add a task to Firestore using toAnyObject()
-    func addTask(_ task: Task, completion: @escaping (Result<Void, Error>) -> Void) {
+    func addTask(_ task: Task, completion: @escaping (Result<String, Error>) -> Void) {
         let taskData = task.toAnyObject()  // Convert Task object to a dictionary
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         
-        tasksCollection.addDocument(data: taskData) { error in
+        // Add a new document with an auto-generated ID and get the reference
+        let newDocumentRef = tasksCollection.addDocument(data: taskData) { error in
             if let error = error {
                 completion(.failure(error))
-            } else {
-                completion(.success(()))
+                return
             }
         }
+        
+        // Use the document reference to get the ID directly
+        let taskID = newDocumentRef.documentID  // Get the auto-generated ID
+        completion(.success(taskID))  // Return the ID
     }
     
     // Function to add a task to Firestore using toAnyObject()
@@ -269,7 +273,7 @@ class FirebaseManager {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         let taskRef = tasksCollection.document(task.id)
-
+        
         taskRef.updateData(taskData) { error in
             if let error = error {
                 completion(.failure(error))
@@ -283,7 +287,7 @@ class FirebaseManager {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         let taskRef = tasksCollection.document(taskID)
-
+        
         // Update only the isComplete field
         taskRef.updateData(["isComplete": isComplete]) { error in
             if let error = error {
@@ -298,7 +302,7 @@ class FirebaseManager {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         let taskRef = tasksCollection.document(taskId)
-
+        
         taskRef.delete { error in
             if let error = error {
                 completion(.failure(error)) // If there's an error, call the failure case

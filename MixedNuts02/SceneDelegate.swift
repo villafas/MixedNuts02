@@ -69,7 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // When notification is selected, change view controller to task list
         if let rc = window.rootViewController as? UITabBarController, let nc = rc.selectedViewController as? UINavigationController, let vc = nc.topViewController as? TaskListViewController {
             
-            vc.notifID = taskId
+            vc.tempID = taskId
         }
     }
 }

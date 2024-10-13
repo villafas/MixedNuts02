@@ -16,6 +16,8 @@ class AddTaskViewModel {
     var courseList: [Course]!
     var errorMessage: String?
     
+    var newID: String?
+    
     var onTaskAdded: (() -> Void)?
     var onTaskUpdated: (() -> Void)?
     var onCoursesUpdated: (() -> Void)?
@@ -27,7 +29,8 @@ class AddTaskViewModel {
         
         FirebaseManager.shared.addTask(newTask) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let taskID):
+                self?.newID = taskID
                 self?.onTaskAdded?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription

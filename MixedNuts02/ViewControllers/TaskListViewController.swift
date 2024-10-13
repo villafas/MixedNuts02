@@ -34,7 +34,9 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedDay: DateComponents?
     
     private let viewModel = TaskListViewModel()
-    var notifID: String?
+    var tempID: String?
+    
+    var performEdit: Bool = false
     
     
     //MARK: - Lifecycle Methods
@@ -123,11 +125,15 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             DispatchQueue.main.async {
                 self?.taskTable.reloadData();
                 self?.calendarView.reloadDecorations(forDateComponents: self!.dateToComponents(dates: self!.getDateRange()), animated: true)
+                if self?.tempID != nil {
+                    self?.selectTempTask()
+                }
             }
         }
         
         viewModel.onTaskCompletionUpdated = { [weak self] in
             DispatchQueue.main.async {
+                // add noti deletion
                 self?.animateScaleIn(desiredView: self!.popupDoneView, doneOrCancel: true)
                 self?.selectedRow = nil
                 self?.refreshTasks()
@@ -136,8 +142,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         viewModel.onTaskDeleted = { [weak self] in
             DispatchQueue.main.async {
-                self?.deleteNotifications(taskId: self!.viewModel.tempID!, deletePending: true)
-                self?.viewModel.tempID = nil
+                self?.deleteNotifications(taskId: self!.tempID!, deletePending: true)
+                self?.tempID = nil
                 self?.animateScaleOut(desiredView: self!.popupDeleteView)
                 self?.selectedRow = nil
                 self?.refreshTasks()
@@ -155,7 +161,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    @IBAction func navBarIsTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func calendarIsTapped(_ sender: UIButton) {
         // Toggle state
         navBarIsExpanded.toggle()
         
@@ -220,16 +226,16 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: - Notification task selection
     
-    func selectNotificationTask(){
+    func selectTempTask(){
         // iterate through the tasks in each section to find the task corresponding to the notification
         for section in 0..<viewModel.taskCollection.count{
             var count = 0
             for task in viewModel.taskCollection[section].tasks {
-                if task.id == self.notifID {
+                if task.id == self.tempID {
                     let index = IndexPath(row: count, section: section)
                     self.selectedRow = index
                     taskTable.selectRow(at: index, animated: true, scrollPosition: .middle)
-                    self.notifID = nil
+                    self.tempID = nil
                     return
                 }
                 count += 1
@@ -390,18 +396,30 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     // Button action that triggers the segue
     @objc func editButtonTapped() {
         // Trigger the segue programmatically
-        performSegue(withIdentifier: "showEditSegue", sender: self)
+        performEdit = true
+        performSegue(withIdentifier: "addTaskSegue", sender: self)
     }
     
     // Prepare data for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEditSegue" {
-            // Get the destination view controller
-            if let destinationVC = segue.destination as? EditTaskViewController, let selectedTask = taskTable.cellForRow(at: selectedRow!)?.contentView.viewWithTag(100) as? DesignableExpandedTaskView {
-                // Pass data to the destination view controller
-                destinationVC.taskObj = selectedTask.taskObj
+        if segue.identifier == "addTaskSegue" {
+            if let destinationVC = segue.destination as? AddTaskViewController {
+                // Get the destination view controller
+                if performEdit, let selectedTask = taskTable.cellForRow(at: selectedRow!)?.contentView.viewWithTag(100) as? DesignableExpandedTaskView {
+                    // Pass data to the destination view controller
+                    destinationVC.taskObj = selectedTask.taskObj
+                    destinationVC.isEditMode = true
+                    performEdit = false
+                }
+                
+                destinationVC.onDismiss = { [weak self] data in
+                    self?.tempID = data
+                    self?.refreshTasks()
+                }
             }
         }
+        
+        
     }
     
     @IBAction func saveAction(_ sender: UIButton) {
@@ -433,7 +451,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         // show delete popup
         if let card = popupDeleteView.viewWithTag(95) as! DesignablePopUpCard?, let taskView = sender.superview?.superview as? DesignableExpandedTaskView? {
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
-            viewModel.tempID = taskView!.taskObj!.id
+            tempID = taskView!.taskObj!.id
         }
         animateScaleIn(desiredView: popupDeleteView, doneOrCancel: false)
     }
@@ -441,17 +459,17 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func doneDeleteAction(_ sender: UIButton) {
         // delete is confirmed, so delete document
         if sender.tag == 91 {
-            deleteTask(id: viewModel.tempID!)
+            deleteTask(id: tempID!)
         } else { // if cancel button pressed
-            viewModel.tempID = nil
+            tempID = nil
+            animateScaleOut(desiredView: popupDeleteView)
         }
-         
+        
     }
     
     //MARK: - Complete task
     @IBAction func showDoneAction(_ sender: UIButton) {
         // show congrats popup
-        print("here")
         if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
             self.deleteNotifications(taskId: taskView!.taskObj!.id, deletePending: true)
             card.titleLabel.text = "\(taskView!.taskObj!.title)"

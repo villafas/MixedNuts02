@@ -7,26 +7,28 @@
 
 import UIKit
 
-class AddContainerViewController: UIViewController {
-
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var toggleButton: UIButton!
-    @IBOutlet weak var navBarTitle: UILabel!
+class CourseContainerViewController: UIViewController {
     
-    var addTaskVC: AddTaskViewController!
-    var addCourseVC: AddCourseViewController!
+    @IBOutlet weak var pageTitle: UILabel!
+    @IBOutlet weak var navBarBottom: UIView!
+    @IBOutlet weak var containerView: UIView!
+    
+    var timetableVC: TimetableViewController!
+    var courseListVC: CourseListViewController!
     var currentVC: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navBarBottom.dropShadow()
+        
         // Initialize the child view controllers
-        addTaskVC = storyboard?.instantiateViewController(withIdentifier: "AddTaskViewController") as? AddTaskViewController
-        addCourseVC = storyboard?.instantiateViewController(withIdentifier: "AddCourseViewController") as? AddCourseViewController
+        timetableVC = storyboard?.instantiateViewController(withIdentifier: "TimetableViewController") as? TimetableViewController
+        courseListVC = storyboard?.instantiateViewController(withIdentifier: "CourseListViewController") as? CourseListViewController
         
         // Set up the initial view (e.g., FirstViewController)
-        addChildVC(addTaskVC)
-        currentVC = addTaskVC
+        addChildVC(timetableVC)
+        currentVC = timetableVC
     }
     
     func addChildVC(_ childVC: UIViewController) {
@@ -48,27 +50,37 @@ class AddContainerViewController: UIViewController {
     }
     
     
-    @IBAction func toggleViewIsTapped(_ sender: Any) {
-        if currentVC == addTaskVC {
+    @IBAction func toggleViewIsTapped(_ sender: UIButton) {
+        if currentVC == timetableVC {
             // Remove the current view controller and switch to the second one
             removeChildVC(currentVC!)
-            addChildVC(addCourseVC)
-            currentVC = addCourseVC
+            addChildVC(courseListVC)
+            currentVC = courseListVC
             
             UIView.animate(withDuration: 0.5) { [self] in
-                navBarTitle.text = "Add Course"
+                setButtonImage(sender, "table.fill")
+                pageTitle.text = "Course List"
                 //view.layoutIfNeeded() // Ensure layout updates immediately
             }
         } else {
             // Remove the current view controller and switch back to the first one
             removeChildVC(currentVC!)
-            addChildVC(addTaskVC)
-            currentVC = addTaskVC
+            addChildVC(timetableVC)
+            currentVC = timetableVC
             
             UIView.animate(withDuration: 0.5) { [self] in
-                navBarTitle.text = "Add Task"
+                setButtonImage(sender, "list.bullet")
+                pageTitle.text = "TimeTable"
                 //view.layoutIfNeeded() // Ensure layout updates immediately
             }
+        }
+    }
+    
+    func setButtonImage(_ button: UIButton, _ imageName: String){
+        let config = UIImage.SymbolConfiguration(scale: .large)
+        if let image = UIImage(systemName: imageName, withConfiguration: config) {
+            button.tintColor = UIColor(red: 12.0 / 255, green: 37.0 / 255, blue: 66.0 / 255, alpha: 1.0)
+            button.setImage(image, for: .normal)
         }
     }
     

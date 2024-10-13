@@ -16,8 +16,6 @@ class TaskListViewModel {
     var dateList: [Date]!
     var errorMessage: String?
     
-    var tempID: String?
-    
     var taskCollection = [DailyTasks]() // holds format for table view structure
     
     var onTasksUpdated: (() -> Void)?

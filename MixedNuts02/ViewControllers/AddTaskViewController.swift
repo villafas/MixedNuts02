@@ -12,6 +12,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     //MARK: - Properties
     
+    @IBOutlet weak var pageTitle: UILabel!
+    @IBOutlet weak var navBarBottom: UIView!
+    @IBOutlet weak var saveButton: DesignableUIButton!
+    
     // Field Views
     @IBOutlet weak var titleField: DesignableUITextField!
     @IBOutlet weak var courseField: DesignableUITextField!
@@ -47,6 +51,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     internal let viewModel = AddTaskViewModel()
     
+    var isEditMode: Bool = false
+    var taskObj: Task?
+    var onDismiss: ((String?) -> Void)?  // Closure to notify MainViewController
     
     //MARK: - Lifecycle Methods
     
@@ -54,6 +61,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         super.viewDidLoad()
         // Bind ViewModel to ViewController
         bindViewModel()
+        
+        navBarBottom.dropShadow()
         
         datePicker.addTarget(self, action: #selector(datePickerSelected(_:)), for: .editingDidBegin)
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
@@ -74,6 +83,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     override func viewWillAppear(_ animated: Bool) {
         refreshCourses()
+        setEditingMode()
     }
     
     //MARK: - Add Task
@@ -84,7 +94,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
               let course = courseField.text, !course.isEmpty,
               let dueDateStr = dateTextField.text, !dueDateStr.isEmpty,
               let dueTimeStr = timeField.text, !dueTimeStr.isEmpty else {
-            print("All fields are required.")
+            showAlert(title: "Missing Fields", message: "Please ensure you have entered a Title, Course, and Due Date for your Task.")
             return
         }
         
@@ -94,8 +104,16 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         let markWeight = markWeightField.text?.isEmpty == true ? nil : Int(markWeightField.text!)
         let notes = notesView.text?.isEmpty == true ? nil : notesView.text
         
-        // Here you can save the course object to your database or use it as needed
-        viewModel.addTask(title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight)
+        
+        if isEditMode {
+            taskObj = Task(id: taskObj!.id, title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: taskObj!.isComplete)
+            
+            updateTask()
+        } else {
+            viewModel.addTask(title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight)
+        }
+        
+        dismissView()
     }
     
     // Function to clear the input fields after adding a course
@@ -122,6 +140,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         viewModel.onTaskAdded = { [weak self] in
             DispatchQueue.main.async {
                 self?.clearAllFields()
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         
@@ -132,6 +151,18 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
                 self?.courseDropdown?.options = self!.courseOptions
                 self?.courseDropdown?.tableView.reloadData()
                 self?.courseDropdown?.calculateTableHeight()
+                if self!.isEditMode {
+                    self?.selectCourseDropdownRow()
+                    self?.setTimeDropdown()
+                }
+            }
+        }
+        
+        // Handle UI Updates on changes to data
+        viewModel.onTaskUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.clearAllFields()
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         
@@ -145,20 +176,71 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         }
     }
     
-    //MARK: - Data Reading
+    //MARK: - Dismiss Closure
     
+    func dismissView() {
+        dismiss(animated: true) { [weak self] in
+            // Call the closure to notify MainViewController
+            self?.onDismiss?(self!.viewModel.newID)
+        }
+    }
+    
+    
+    //MARK: - Data Reading
     func refreshCourses(){
         viewModel.fetchCourses()
     }
     
+    func updateTask(){
+        viewModel.updateTask(task: taskObj!)
+    }
+    
+    //MARK: - Editing Mode Config
+    
+    func setEditingMode(){
+        if isEditMode{
+            pageTitle.text = "Edit Task"
+            setFieldsForTasks()
+            updateAllFieldsVisibility()
+        }
+    }
+    
+    func setFieldsForTasks(){
+        titleField.text = taskObj?.title
+        courseField.text = taskObj?.course
+        
+        if let dueDate = taskObj?.dueDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateTextField.text = dateFormatter.string(from: dueDate)
+            datePicker.date = dueDate
+            
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            let timeText = timeFormatter.string(from: dueDate)
+            timeField.text = timeText
+        }
+        
+        if let markWeight = taskObj?.markWeight, markWeight != 0 {
+            isMarkWeightFieldVisible = true
+            markWeightField.text = "\(markWeight)"
+        }
+        
+        if let notes = taskObj?.notes, !notes.isEmpty {
+            isNotesFieldVisible = true
+            notesView.text = notes
+        }
+    }
+    
     //MARK: - Notes toggle
     
-    @IBAction func notesToggled(_ sender: Any) {
+    @IBAction func notesToggled(_ sender: UIButton) {
         // Toggle the field visibility
         isNotesFieldVisible.toggle()
         
         // Animate the height change
         UIView.animate(withDuration: 0.3) {
+            self.toggleButtonImage(sender, self.isNotesFieldVisible)
             self.updateNotesFieldVisibility()
             self.view.layoutIfNeeded() // Ensure layout updates immediately
         }
@@ -178,12 +260,13 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     //MARK: - Mark Weight Toggle
     
-    @IBAction func markWeightToggled(_ sender: Any) {
+    @IBAction func markWeightToggled(_ sender: UIButton) {
         // Toggle the field visibility
         isMarkWeightFieldVisible.toggle()
         
         // Animate the height change
         UIView.animate(withDuration: 0.3) {
+            self.toggleButtonImage(sender, self.isMarkWeightFieldVisible)
             self.updateMarkWeightFieldVisibility()
             self.view.layoutIfNeeded() // Ensure layout updates immediately
         }
@@ -206,6 +289,20 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     func updateAllFieldsVisibility(){
         updateNotesFieldVisibility()
         updateMarkWeightFieldVisibility()
+    }
+    
+    func toggleButtonImage(_ button: UIButton, _ state: Bool){
+        if state == false {
+            let config = UIImage.SymbolConfiguration(scale: .large)
+            if let image = UIImage(systemName: "plus.circle", withConfiguration: config) {
+                button.setImage(image, for: .normal)
+            }
+        } else {
+            let config = UIImage.SymbolConfiguration(scale: .large)
+            if let image = UIImage(systemName: "minus.circle", withConfiguration: config) {
+                button.setImage(image, for: .normal)
+            }
+        }
     }
     
     //MARK: - Dropdown Animations
@@ -332,6 +429,39 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         }
         
         return false
+    }
+    
+    //MARK: - Dropdown selections
+    
+    func setTimeDropdown(){
+        if let dueDate = taskObj?.dueDate {
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            let timeText = timeFormatter.string(from: dueDate)
+            timeField.text = timeText
+            timePicker.date = dueDate
+            updateClassTime()
+            
+            if checkEndOfDayTime(compareTo: timeText){
+                selectTimeDropdownRow(row: 0)
+            } else if checkClassTime(compareTo: timeText){
+                selectTimeDropdownRow(row: 1)
+            } else {
+                selectTimeDropdownRow(row: 2)
+            }
+        }
+    }
+    
+    func selectTimeDropdownRow(row: Int){
+        let selectedIndex = IndexPath(row: row, section: 0)
+        timeDropdown?.selectedIndex = selectedIndex
+        timeDropdown?.tableView.selectRow(at: selectedIndex, animated: false, scrollPosition: .none)
+    }
+    
+    func selectCourseDropdownRow(){
+        if let index = courseDropdown?.options.firstIndex(of: courseField.text ?? "") {
+            courseDropdown?.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .none)
+        }
     }
     
     //MARK: - Text Field Delegate
@@ -541,6 +671,57 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         // Convert the components back to a Date object
         return calendar.date(from: components)
     }
+    
+    //MARK: - Time Comparisons
+    
+    func checkClassTime(compareTo: String) -> Bool{
+        if let classTime = timeDropdown?.classTime {
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = .short
+            let classTimeText = timeFormatter.string(from: classTime)
+            if compareTo == classTimeText {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    func checkEndOfDayTime(compareTo: String) -> Bool{
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        
+        // Create DateComponents for 11:59 PM
+        var components = DateComponents()
+        components.hour = 23 // 24-hour format for 11 PM
+        components.minute = 59
+        
+        // Use the current calendar to create a Date object
+        let calendar = Calendar.current
+        if let time = calendar.date(from: components) {
+            let endOfDayTimeText = timeFormatter.string(from: time)
+            if compareTo == endOfDayTimeText {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Add a default OK action
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        // Present the alert on the current view controller
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     //MARK: - Tap Dismiss
     
