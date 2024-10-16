@@ -738,7 +738,7 @@
 				CODE_SIGN_ENTITLEMENTS = MixedNuts02/MixedNuts02.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDQS4882Z8;
+				DEVELOPMENT_TEAM = C7S6A76P9S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixedNuts02/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TaskAssistant;
@@ -771,7 +771,7 @@
 				CODE_SIGN_ENTITLEMENTS = MixedNuts02/MixedNuts02.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDQS4882Z8;
+				DEVELOPMENT_TEAM = C7S6A76P9S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MixedNuts02/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TaskAssistant;
