@@ -61,6 +61,7 @@ class TaskListViewModel {
         FirebaseManager.shared.updateTaskCompletion(taskID: taskID, isComplete: isComplete) { [weak self] result in
             switch result {
             case .success:
+                NotificationHelper.deleteNotifications(taskId: taskID, deletePending: true)
                 self?.onTaskCompletionUpdated?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
@@ -73,6 +74,7 @@ class TaskListViewModel {
         FirebaseManager.shared.deleteTask(taskId: taskID) { [weak self] result in
             switch result {
             case .success:
+                NotificationHelper.deleteNotifications(taskId: taskID, deletePending: true)
                 self?.onTaskDeleted?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription

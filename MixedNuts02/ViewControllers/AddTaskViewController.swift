@@ -25,6 +25,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     @IBOutlet weak var markWeightField: DesignableUITextField!
     @IBOutlet weak var notesView: DesignableUITextView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var threeDayToggle: UISwitch!
+    @IBOutlet weak var oneDayToggle: UISwitch!
+    @IBOutlet weak var twelveHourToggle: UISwitch!
+    @IBOutlet weak var oneHourToggle: UISwitch!
     
     let overlayView = UIView()
     
@@ -104,6 +108,21 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         let markWeight = markWeightField.text?.isEmpty == true ? nil : Int(markWeightField.text!)
         let notes = notesView.text?.isEmpty == true ? nil : notesView.text
         
+        viewModel.notifIntervals = []
+        
+        // Reminders
+        if threeDayToggle.isOn {
+            viewModel.notifIntervals?.append(TimeInterval(-3*24*60*60))
+        }
+        if oneDayToggle.isOn {
+            viewModel.notifIntervals?.append(TimeInterval(-1*24*60*60))
+        }
+        if twelveHourToggle.isOn {
+            viewModel.notifIntervals?.append(TimeInterval(-12*60*60))
+        }
+        if oneHourToggle.isOn {
+            viewModel.notifIntervals?.append(TimeInterval(-1*60*60))
+        }
         
         if isEditMode {
             taskObj = Task(id: taskObj!.id, title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: taskObj!.isComplete)
@@ -229,6 +248,28 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         if let notes = taskObj?.notes, !notes.isEmpty {
             isNotesFieldVisible = true
             notesView.text = notes
+        }
+        
+        if let taskId = taskObj?.id {
+            let idStrings: [String] = ["\(taskId)_3D", "\(taskId)_1D", "\(taskId)_12H", "\(taskId)_1H"]
+            NotificationHelper.findNotifications(withIDs: idStrings) { foundIDs in
+                DispatchQueue.main.async{
+                    if !foundIDs.isEmpty {
+                        if foundIDs.contains(idStrings[0]){
+                            self.threeDayToggle.setOn(true, animated: true)
+                        }
+                        if foundIDs.contains(idStrings[1]){
+                            self.oneDayToggle.setOn(true, animated: true)
+                        }
+                        if foundIDs.contains(idStrings[2]){
+                            self.twelveHourToggle.setOn(true, animated: true)
+                        }
+                        if foundIDs.contains(idStrings[3]){
+                            self.oneHourToggle.setOn(true, animated: true)
+                        }
+                    }
+                }
+            }
         }
     }
     

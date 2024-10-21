@@ -133,7 +133,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         viewModel.onTaskCompletionUpdated = { [weak self] in
             DispatchQueue.main.async {
-                // add noti deletion
+                self?.tempID = nil
                 self?.animateScaleIn(desiredView: self!.popupDoneView, doneOrCancel: true)
                 self?.selectedRow = nil
                 self?.refreshTasks()
@@ -142,7 +142,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         viewModel.onTaskDeleted = { [weak self] in
             DispatchQueue.main.async {
-                self?.deleteNotifications(taskId: self!.tempID!, deletePending: true)
                 self?.tempID = nil
                 self?.animateScaleOut(desiredView: self!.popupDeleteView)
                 self?.selectedRow = nil
@@ -309,7 +308,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         
         // if selected, show expanded task
         if (indexPath == self.selectedRow){
-            self.deleteNotifications(taskId: task.id, deletePending: false)
             let taskView = DesignableExpandedTaskView.instanceFromNib(setTask: task)
             taskView.translatesAutoresizingMaskIntoConstraints = false
             taskView.heightAnchor.constraint(equalToConstant: 400).isActive = true
@@ -471,11 +469,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func showDoneAction(_ sender: UIButton) {
         // show congrats popup
         if let card = popupDoneView as! DesignableDoneCard?, let taskView = sender.superview?.superview as? DesignableTaskView? ?? sender.superview?.superview as? DesignableExpandedTaskView?{
-            self.deleteNotifications(taskId: taskView!.taskObj!.id, deletePending: true)
             card.titleLabel.text = "\(taskView!.taskObj!.title)"
             card.subtitleLabel.text = "Remaining Tasks: \((totalItems(viewModel.taskCollection)) - 1)"
-            
-            print(taskView!.taskObj!.id)
             
             updateTaskToComplete(id: taskView!.taskObj!.id)
         }

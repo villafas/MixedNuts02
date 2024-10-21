@@ -2329,11 +2329,15 @@
                         <outlet property="navBarBottom" destination="ogZ-gY-GVF" id="23e-E3-2Nc"/>
                         <outlet property="notesFieldHeightConstraint" destination="glD-uT-vvB" id="5Af-Hf-pc7"/>
                         <outlet property="notesView" destination="aIv-oM-fAf" id="AZC-RS-RMq"/>
+                        <outlet property="oneDayToggle" destination="XoR-c5-o2z" id="1KH-bS-03R"/>
+                        <outlet property="oneHourToggle" destination="5He-OG-nNQ" id="mQO-aq-VlJ"/>
                         <outlet property="pageTitle" destination="6gr-KZ-037" id="cfD-Ya-GYT"/>
                         <outlet property="saveButton" destination="VyR-gK-psW" id="h2N-pU-MMv"/>
                         <outlet property="scrollView" destination="k3V-7Z-EGc" id="7eB-4M-Y9I"/>
+                        <outlet property="threeDayToggle" destination="5ct-eW-mIs" id="hzK-Ka-0WJ"/>
                         <outlet property="timeField" destination="R6F-Td-2Be" id="FbK-B0-r8S"/>
                         <outlet property="titleField" destination="zkU-Mx-vAg" id="Ugj-34-1rS"/>
+                        <outlet property="twelveHourToggle" destination="YjJ-JQ-c8p" id="4zU-7P-ONO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DTC-jc-lAM" sceneMemberID="firstResponder"/>

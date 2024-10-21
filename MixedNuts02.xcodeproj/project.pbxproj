@@ -15,6 +15,7 @@
 		274EF2EF2CBB2C6F00862C25 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2EE2CBB2C6F00862C25 /* TimetableViewController.swift */; };
 		274EF2F32CBB2CAD00862C25 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2F22CBB2CAD00862C25 /* CourseTableViewController.swift */; };
 		274F98FB2CBB3A5600BF1721 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F98FA2CBB3A5600BF1721 /* CourseListViewController.swift */; };
+		274F991F2CC6DC9800BF1721 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F991E2CC6DC9800BF1721 /* NotificationHelper.swift */; };
 		27577B852BD2132600E80FE8 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B842BD2132600E80FE8 /* AppUser.swift */; };
 		27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B862BD21B9000E80FE8 /* BadgesViewController.swift */; };
 		27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */; };
@@ -123,6 +124,7 @@
 		274EF2EE2CBB2C6F00862C25 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
 		274EF2F22CBB2CAD00862C25 /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
 		274F98FA2CBB3A5600BF1721 /* CourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
+		274F991E2CC6DC9800BF1721 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		27525FD92BBA411500578A30 /* MixedNuts02.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixedNuts02.entitlements; sourceTree = "<group>"; };
 		27577B842BD2132600E80FE8 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		27577B862BD21B9000E80FE8 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */,
 				2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */,
 				27661EB62C911B2A00B863FA /* UIView+Extensions.swift */,
+				274F991E2CC6DC9800BF1721 /* NotificationHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
 				2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
+				274F991F2CC6DC9800BF1721 /* NotificationHelper.swift in Sources */,
 				2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */,
 				274EF2E92CB4B46500862C25 /* DesignableCourseBox.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,

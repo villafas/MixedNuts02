@@ -17,6 +17,7 @@ class AddTaskViewModel {
     var errorMessage: String?
     
     var newID: String?
+    var notifIntervals: [TimeInterval]?
     
     var onTaskAdded: (() -> Void)?
     var onTaskUpdated: (() -> Void)?
@@ -25,12 +26,14 @@ class AddTaskViewModel {
     
     //MARK: - Methods
     func addTask(title: String, course: String, notes: String?, dueDate: Date, markWeight: Int?) {
-        let newTask = Task(id: "", title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: false)
+        var newTask = Task(id: "", title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: false)
         
         FirebaseManager.shared.addTask(newTask) { [weak self] result in
             switch result {
             case .success(let taskID):
                 self?.newID = taskID
+                newTask.id = taskID
+                NotificationHelper.scheduleNotifications(taskObj: newTask, intervals: self?.notifIntervals ?? [])
                 self?.onTaskAdded?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
@@ -56,6 +59,8 @@ class AddTaskViewModel {
         FirebaseManager.shared.updateTask(task) { [weak self] result in
             switch result {
             case .success:
+                NotificationHelper.deleteNotifications(taskId: task.id, deletePending: true)
+                NotificationHelper.scheduleNotifications(taskObj: task, intervals: self?.notifIntervals ?? [])
                 self?.onTaskUpdated?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
