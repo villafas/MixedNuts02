@@ -46,8 +46,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         // Set bounds for popups
-        popupDeleteView.bounds = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.view.bounds.height)
-        popupDoneView.bounds = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.view.bounds.height)
+        popupDeleteView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        popupDoneView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         
         // Bind ViewModel to ViewController
         bindViewModel()

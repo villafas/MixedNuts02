@@ -82,7 +82,6 @@ class CourseListViewController: UIViewController, UITableViewDelegate, UITableVi
         viewModel.deleteCourse(courseID: id)
     }
     
-    
     //MARK: - Course editing
     
     // Button action that triggers the segue
