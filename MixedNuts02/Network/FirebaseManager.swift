@@ -194,7 +194,7 @@ class FirebaseManager {
                 
                 var taskCount: [Int] = []
                 var completeCount: Int = 0
-                var incompleteCount: Int = 1
+                var incompleteCount: Int = 0
                 for document in querySnapshot!.documents {
                     let task = Task(snapshot: document)
                     if task.isComplete == true {
@@ -232,7 +232,7 @@ class FirebaseManager {
             }
     }
     
-    //MARK: - Add Methods
+    //MARK: - CRUD Methods
     
     // Function to add a task to Firestore using toAnyObject()
     func addTask(_ task: Task, completion: @escaping (Result<String, Error>) -> Void) {
@@ -254,18 +254,22 @@ class FirebaseManager {
     }
     
     // Function to add a task to Firestore using toAnyObject()
-    func addCourse(_ course: Course, completion: @escaping (Result<Void, Error>) -> Void) {
+    func addCourse(_ course: Course, completion: @escaping (Result<String, Error>) -> Void) {
         let courseData = course.toAnyObject()  // Convert Task object to a dictionary
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let coursesCollection = userDbRef.collection("courses")
         
-        coursesCollection.addDocument(data: courseData) { error in
+        // Add a new document with an auto-generated ID and get the reference
+        let newDocumentRef = coursesCollection.addDocument(data: courseData) { error in
             if let error = error {
                 completion(.failure(error))
-            } else {
-                completion(.success(()))
+                return
             }
         }
+        
+        // Use the document reference to get the ID directly
+        let courseID = newDocumentRef.documentID  // Get the auto-generated ID
+        completion(.success(courseID))  // Return the ID
     }
     
     func updateTask(_ task: Task, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -298,12 +302,41 @@ class FirebaseManager {
         }
     }
     
+    func updateCourse(_ course: Course, completion: @escaping (Result<Void, Error>) -> Void) {
+        let courseData = course.toAnyObject()  // Convert Course object to a dictionary
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let coursesCollection = userDbRef.collection("courses")
+        let courseRef = coursesCollection.document(course.id)
+        
+        courseRef.updateData(courseData) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
     func deleteTask(taskId: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         let taskRef = tasksCollection.document(taskId)
         
         taskRef.delete { error in
+            if let error = error {
+                completion(.failure(error)) // If there's an error, call the failure case
+            } else {
+                completion(.success(())) // Success case
+            }
+        }
+    }
+    
+    func deleteCourse(courseId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let coursesCollection = userDbRef.collection("courses")
+        let courseRef = coursesCollection.document(courseId)
+        
+        courseRef.delete { error in
             if let error = error {
                 completion(.failure(error)) // If there's an error, call the failure case
             } else {

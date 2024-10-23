@@ -17,3 +17,7 @@ extension UIView {
         layer.masksToBounds = false
     }
 }
+
+protocol ChildViewDelegate: AnyObject {
+    func showAlert(title: String, message: String)
+}

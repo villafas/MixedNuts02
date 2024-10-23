@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UITextFieldDelegate {
+class DesignableExpandedTaskView: DesignableTaskView {
     //MARK: - Expanded task view customization
     
     @IBOutlet weak var deleteButton: UIButton!
@@ -35,50 +35,5 @@ class DesignableExpandedTaskView: DesignableTaskView, UITextViewDelegate, UIText
         task.markWeightField.text = "\(task.taskObj?.markWeight ?? 0)"
         task.notesView.text = task.taskObj?.notes
         return task
-    }
-    
-    //MARK: - URL Navigation
-    @IBAction func goToUrl(_ sender: Any) {
-        if let url = URL(string: ("")) {
-               UIApplication.shared.open(url)
-            }
-    }
-    
-    @IBAction func updateAction(_ sender: UITextField){
-        //updateButtons()
-    }
-    
-    //MARK: - Button toggling
-    /*
-    func updateButtons(urlText: String){
-        if urlText == "" && notesView.text == taskObj?.notes{
-            saveButton.setDisabled()
-        } else {
-            saveButton.setEnabled()
-        }
-        
-        if "" == "" || "" != urlText{
-            urlButton.setDisabled()
-        } else {
-            urlButton.setEnabled()
-        }
-    }
-    */
-    
-    func textViewDidChange(_ textView: UITextView) {
-        //updateButtons(urlText: urlField.text!)
-    }
-    
-    //MARK: - Text field delegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        // text hasn't changed yet, you have to compute the text AFTER the edit yourself
-        let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
-
-        // do whatever you need with this updated string
-        //updateButtons(urlText: updatedString!)
-        
-        // always return true so that changes propagate
-        return true
     }
 }

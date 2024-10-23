@@ -17,6 +17,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var calendarViewBox: UIView!
     @IBOutlet weak var navBarHeader: UIView!
     @IBOutlet weak var navBarContent: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var taskTable: SelfSizedTableView!
     var selectedRow: IndexPath?
     @IBOutlet weak var navBarBottom: UIView!
@@ -45,11 +46,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         // Set bounds for popups
-        popupDeleteView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-        popupDoneView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-        
-        // Enable hiding keyboard on tap
-        self.hideKeyboardWhenTappedAround()
+        popupDeleteView.bounds = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.view.bounds.height)
+        popupDoneView.bounds = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.view.bounds.height)
         
         // Bind ViewModel to ViewController
         bindViewModel()
@@ -317,8 +315,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             taskView.deleteButton.addTarget(self, action: #selector(showDeleteAction(_:)), for: .touchUpInside)
             taskView.taskButton.removeTarget(nil, action: nil, for: .allEvents)
             taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
-            //taskView.saveButton.addTarget(self, action: #selector(saveAction(_:)), for: .touchUpInside)
-            //taskView.updateButtons(urlText: taskView.urlField.text!)
             taskView.editButton.removeTarget(nil, action: nil, for: .allEvents)
             taskView.editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
             
@@ -416,31 +412,6 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }
-        
-        
-    }
-    
-    @IBAction func saveAction(_ sender: UIButton) {
-        // update fields
-        /*
-         if let taskView = sender.superview?.superview?.superview as! DesignableExpandedTaskView? {
-         let userDbRef = self.db.collection("users").document(AppUser.shared.uid!)
-         let docRef = userDbRef.collection("tasks").document(taskView.taskObj!.id)
-         docRef.getDocument() { (querySnapshot, err) in
-         if let err = err {
-         print("Error getting document: \(err)")
-         } else {
-         querySnapshot!.reference.updateData([
-         "taskURL" : taskView.urlField.text!
-         ])
-         querySnapshot!.reference.updateData([
-         "notes" : taskView.notesView.text!
-         ])
-         self.refreshTasks()
-         }
-         }
-         }
-         */
     }
     
     

@@ -84,4 +84,15 @@ class CourseContainerViewController: UIViewController {
         }
     }
     
+    // Prepare data for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addCourseSegue" {
+            if currentVC == courseListVC, let destinationVC = segue.destination as? AddCourseViewController {
+                destinationVC.onDismiss = { [weak self] data in
+                    self?.courseListVC.tempID = data
+                    self?.courseListVC.refreshCourses()
+                }
+            }
+        }
+    }
 }

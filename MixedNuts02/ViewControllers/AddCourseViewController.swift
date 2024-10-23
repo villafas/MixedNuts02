@@ -11,6 +11,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: - Properties
     
+    @IBOutlet weak var pageTitle: UILabel!
     @IBOutlet weak var navBarBottom: UIView!
     
     @IBOutlet weak var titleField: DesignableUITextField!
@@ -18,7 +19,9 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var termField: DesignableUITextField!
     @IBOutlet weak var scheduleTable: SelfSizedTableView!
     @IBOutlet weak var urlField: DesignableUITextField!
+    @IBOutlet weak var urlButton: UIButton!
     @IBOutlet weak var instructorField: DesignableUITextField!
+    @IBOutlet weak var instructorButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scheduleButton: UIButton!
     var tapGesture: UITapGestureRecognizer?
@@ -48,6 +51,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var scheduleList: [DaySchedule]!
     
+    var isEditMode: Bool = false
+    var courseObj: Course?
+    var onDismiss: ((String?) -> Void)?  // Closure to notify MainViewController
+    
     //MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
@@ -73,10 +80,13 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         hideElementWhenTappedAround()
         
         // Do any additional setup after loading the view.
+        
+        scrollView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         refreshTerms()
+        setEditingMode()
     }
     
     //MARK: - Add Course
@@ -97,7 +107,16 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         let courseURL = urlField.text?.isEmpty == true ? nil : urlField.text
         
         // Here you can save the course object to your database or use it as needed
-        viewModel.addCourse(title: title, code: code, schedule: scheduleList, term: term, prof: professor, courseURL: courseURL)
+        
+        if isEditMode {
+            courseObj = Course(id: courseObj!.id, title: title, code: code, schedule: scheduleList, term: term, prof: professor, courseURL: courseURL)
+            
+            updateCourse()
+        } else {
+            viewModel.addCourse(title: title, code: code, schedule: scheduleList, term: term, prof: professor, courseURL: courseURL)
+        }
+        
+        dismissView()
     }
     
     func validateDaySchedules(schedules: [DaySchedule]) -> Bool {
@@ -141,13 +160,22 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         
-        // DELETE
         viewModel.onTermsUpdated = { [weak self] in
             DispatchQueue.main.async {
                 self?.termOptions = self!.viewModel.termList.map { $0.caption }
                 self?.termDropdown?.options = self!.termOptions
                 self?.termDropdown?.tableView.reloadData()
                 self?.termDropdown?.calculateTableHeight()
+                if self!.isEditMode {
+                    self?.selectTermDropdownRow()
+                }
+            }
+        }
+        
+        viewModel.onCourseUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.clearAllFields()
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         
@@ -161,10 +189,52 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //MARK: - Dismiss Closure
+    
+    func dismissView() {
+        dismiss(animated: true) { [weak self] in
+            // Call the closure to notify MainViewController
+            self?.onDismiss?(self!.viewModel.newID)
+        }
+    }
+    
     //MARK: - Data Reading
     
     func refreshTerms(){
         viewModel.fetchTerms()
+    }
+    
+    func updateCourse(){
+        viewModel.updateCourse(course: courseObj!)
+    }
+    
+    //MARK: - Editing Mode Config
+    
+    func setEditingMode(){
+        if isEditMode{
+            pageTitle.text = "Edit Course"
+            setFieldsForCourse()
+            updateAllFieldsVisibility()
+            initialButtonConfig()
+        }
+    }
+    
+    func setFieldsForCourse(){
+        titleField.text = courseObj?.title
+        codeField.text = courseObj?.code
+        termField.text = courseObj?.term
+        
+        if let professor = courseObj?.prof, !professor.isEmpty {
+            isInstructorFieldVisible = true
+            instructorField.text = "\(professor)"
+        }
+        
+        scheduleList = courseObj?.schedule
+        
+        if let url = courseObj?.courseURL, !url.isEmpty {
+            isUrlFieldVisible = true
+            urlField.text = "\(url)"
+        }
     }
     
     //MARK: - Overlay Config
@@ -224,6 +294,14 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             isTermDropdownVisible = false
             overlayView.isHidden = true
             view.layoutIfNeeded()
+        }
+    }
+    
+    //MARK: - Dropdown selections
+    
+    func selectTermDropdownRow(){
+        if let index = termDropdown?.options.firstIndex(of: termField.text ?? "") {
+            termDropdown?.tableView.selectRow(at: IndexPath(row: index, section: 0), animated: false, scrollPosition: .none)
         }
     }
     
@@ -315,6 +393,15 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
             if let image = UIImage(systemName: "minus.circle", withConfiguration: config) {
                 button.setImage(image, for: .normal)
             }
+        }
+    }
+    
+    func initialButtonConfig(){
+        toggleButtonImage(instructorButton, isInstructorFieldVisible)
+        toggleButtonImage(urlButton, isUrlFieldVisible)
+        if scheduleList!.count >= 1 {
+            additionalToggled()
+            scheduleTable.reloadData()
         }
     }
     

@@ -9,6 +9,8 @@ import UIKit
 
 class TimetableViewController: UIViewController {
 
+    var parentView: CourseContainerViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

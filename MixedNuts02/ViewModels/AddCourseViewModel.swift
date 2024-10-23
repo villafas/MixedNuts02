@@ -16,18 +16,23 @@ class AddCourseViewModel {
     var termList: [Term]!
     var errorMessage: String?
     
+    var newID: String?
+    
     var onCourseAdded: (() -> Void)?
+    var onCourseUpdated: (() -> Void)?
     var onTermsUpdated: (() -> Void)?
     var onError: ((String) -> Void)?
     
     
     //MARK: - Methods
     func addCourse(title: String, code: String, schedule: [DaySchedule], term: String, prof: String?, courseURL: String?) {
-        let newCourse = Course(id: "", title: title, code: code, schedule: schedule, term: term, prof: prof, courseURL: courseURL)
+        var newCourse = Course(id: "", title: title, code: code, schedule: schedule, term: term, prof: prof, courseURL: courseURL)
         
         FirebaseManager.shared.addCourse(newCourse) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let courseID):
+                self?.newID = courseID
+                newCourse.id = courseID
                 self?.onCourseAdded?()
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
@@ -45,6 +50,18 @@ class AddCourseViewModel {
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
                 self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
+            }
+        }
+    }
+    
+    func updateCourse(course: Course) {
+        FirebaseManager.shared.updateCourse(course) { [weak self] result in
+            switch result {
+            case .success:
+                self?.onCourseUpdated?()
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred") // Notify the view
             }
         }
     }

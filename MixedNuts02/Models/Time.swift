@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Time: Equatable {
+struct Time: Equatable, Comparable {
     var hour: Int
     var minute: Int
     
@@ -81,5 +81,14 @@ struct Time: Equatable {
         let hour = components.hour ?? 0
         let minute = components.minute ?? 0
         return Time(hour: hour, minute: minute)
+    }
+    
+    //MARK: - Comparable conformance
+    // Implement the < operator for Comparable conformance
+    static func < (lhs: Time, rhs: Time) -> Bool {
+        if lhs.hour == rhs.hour {
+            return lhs.minute < rhs.minute
+        }
+        return lhs.hour < rhs.hour
     }
 }

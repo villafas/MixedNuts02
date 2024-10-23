@@ -13,12 +13,17 @@
 		274EF2E92CB4B46500862C25 /* DesignableCourseBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2E82CB4B46500862C25 /* DesignableCourseBox.swift */; };
 		274EF2EB2CB4BF5E00862C25 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2EA2CB4BF5E00862C25 /* HomeViewModel.swift */; };
 		274EF2EF2CBB2C6F00862C25 /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2EE2CBB2C6F00862C25 /* TimetableViewController.swift */; };
-		274EF2F32CBB2CAD00862C25 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2F22CBB2CAD00862C25 /* CourseTableViewController.swift */; };
 		274F98FB2CBB3A5600BF1721 /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F98FA2CBB3A5600BF1721 /* CourseListViewController.swift */; };
 		274F991F2CC6DC9800BF1721 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274F991E2CC6DC9800BF1721 /* NotificationHelper.swift */; };
 		27577B852BD2132600E80FE8 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B842BD2132600E80FE8 /* AppUser.swift */; };
 		27577B872BD21B9000E80FE8 /* BadgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B862BD21B9000E80FE8 /* BadgesViewController.swift */; };
 		27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */; };
+		2757AFE62CC8230E00337C17 /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757AFE52CC8230E00337C17 /* CourseListViewModel.swift */; };
+		2757AFE82CC8242400337C17 /* DailyCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757AFE72CC8242400337C17 /* DailyCourses.swift */; };
+		2757AFEE2CC82AC500337C17 /* DesignableCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757AFED2CC82AC500337C17 /* DesignableCourseView.swift */; };
+		2757AFF02CC834C600337C17 /* DesignableExpandedCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757AFEF2CC834C600337C17 /* DesignableExpandedCourseView.swift */; };
+		2757AFF22CC83EE600337C17 /* CourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2757AFF12CC83EE600337C17 /* CourseView.xib */; };
+		2757AFF42CC83F3100337C17 /* ExpandedCourseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2757AFF32CC83F3100337C17 /* ExpandedCourseView.xib */; };
 		2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */; };
 		275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */; };
 		275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */; };
@@ -122,13 +127,18 @@
 		274EF2E82CB4B46500862C25 /* DesignableCourseBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableCourseBox.swift; sourceTree = "<group>"; };
 		274EF2EA2CB4BF5E00862C25 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		274EF2EE2CBB2C6F00862C25 /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
-		274EF2F22CBB2CAD00862C25 /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
 		274F98FA2CBB3A5600BF1721 /* CourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		274F991E2CC6DC9800BF1721 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		27525FD92BBA411500578A30 /* MixedNuts02.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MixedNuts02.entitlements; sourceTree = "<group>"; };
 		27577B842BD2132600E80FE8 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		27577B862BD21B9000E80FE8 /* BadgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewController.swift; sourceTree = "<group>"; };
 		27577B882BD2211000E80FE8 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		2757AFE52CC8230E00337C17 /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
+		2757AFE72CC8242400337C17 /* DailyCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCourses.swift; sourceTree = "<group>"; };
+		2757AFED2CC82AC500337C17 /* DesignableCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableCourseView.swift; sourceTree = "<group>"; };
+		2757AFEF2CC834C600337C17 /* DesignableExpandedCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableExpandedCourseView.swift; sourceTree = "<group>"; };
+		2757AFF12CC83EE600337C17 /* CourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseView.xib; sourceTree = "<group>"; };
+		2757AFF32CC83F3100337C17 /* ExpandedCourseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandedCourseView.xib; sourceTree = "<group>"; };
 		2759DE0D2BD1DA990005B052 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -247,6 +257,7 @@
 				27577B842BD2132600E80FE8 /* AppUser.swift */,
 				27723B9B2C9362E9007EBDE2 /* Course.swift */,
 				27661EB42C9114DE00B863FA /* DailyTasks.swift */,
+				2757AFE72CC8242400337C17 /* DailyCourses.swift */,
 				277173E92C9B50E000459C7F /* DaySchedule.swift */,
 				CE0A74982BA8F28100361881 /* Task.swift */,
 				277173E52C9B147300459C7F /* Term.swift */,
@@ -278,6 +289,7 @@
 		277FDC6A2C88914100B5CA65 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2757AFE52CC8230E00337C17 /* CourseListViewModel.swift */,
 				274EF2EA2CB4BF5E00862C25 /* HomeViewModel.swift */,
 				277FDC6D2C88939500B5CA65 /* TaskListViewModel.swift */,
 				2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */,
@@ -387,7 +399,6 @@
 				27577B862BD21B9000E80FE8 /* BadgesViewController.swift */,
 				278874F62C990B4500FB7F13 /* CourseContainerViewController.swift */,
 				274F98FA2CBB3A5600BF1721 /* CourseListViewController.swift */,
-				274EF2F22CBB2CAD00862C25 /* CourseTableViewController.swift */,
 				276E6CBD2CB42F96008A6C9D /* HomeViewController.swift */,
 				276B2F482C8D2EE80053A860 /* TaskListViewController.swift */,
 				CE0A74792BA8DDFE00361881 /* LogInViewController.swift */,
@@ -413,6 +424,8 @@
 				CE7C9B962BB3BEB2000BAD94 /* DesignableUITextView.swift */,
 				CE0A74832BA8DE0F00361881 /* DesignableViewBox.swift */,
 				274EF2E82CB4B46500862C25 /* DesignableCourseBox.swift */,
+				2757AFED2CC82AC500337C17 /* DesignableCourseView.swift */,
+				2757AFEF2CC834C600337C17 /* DesignableExpandedCourseView.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -431,6 +444,8 @@
 				275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */,
 				27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */,
 				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
+				2757AFF12CC83EE600337C17 /* CourseView.xib */,
+				2757AFF32CC83F3100337C17 /* ExpandedCourseView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -548,6 +563,7 @@
 				CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */,
 				CE0A746D2BA8DDF300361881 /* Poppins-Regular.ttf in Resources */,
 				CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */,
+				2757AFF42CC83F3100337C17 /* ExpandedCourseView.xib in Resources */,
 				CE0A746B2BA8DDF300361881 /* Poppins-BlackItalic.ttf in Resources */,
 				CE0A74722BA8DDF300361881 /* Poppins-SemiBold.ttf in Resources */,
 				275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */,
@@ -555,6 +571,7 @@
 				CE0A74652BA8DDF300361881 /* Poppins-BoldItalic.ttf in Resources */,
 				CE0A74672BA8DDF300361881 /* Poppins-Medium.ttf in Resources */,
 				CE0A74742BA8DDF300361881 /* Poppins-MediumItalic.ttf in Resources */,
+				2757AFF22CC83EE600337C17 /* CourseView.xib in Resources */,
 				CE0A746A2BA8DDF300361881 /* Poppins-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,11 +631,13 @@
 				CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */,
 				276B2F492C8D2EE80053A860 /* TaskListViewController.swift in Sources */,
 				274F98FB2CBB3A5600BF1721 /* CourseListViewController.swift in Sources */,
+				2757AFF02CC834C600337C17 /* DesignableExpandedCourseView.swift in Sources */,
 				274EF2EB2CB4BF5E00862C25 /* HomeViewModel.swift in Sources */,
 				2768952E2BB745170084E4DF /* DesignableExpandedTaskView.swift in Sources */,
 				581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */,
 				277173E62C9B147300459C7F /* Term.swift in Sources */,
 				27661EB72C911B2A00B863FA /* UIView+Extensions.swift in Sources */,
+				2757AFEE2CC82AC500337C17 /* DesignableCourseView.swift in Sources */,
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
 				27577B852BD2132600E80FE8 /* AppUser.swift in Sources */,
 				2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */,
@@ -629,6 +648,7 @@
 				275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */,
 				CE7316882BADDF6000D95353 /* AddTaskViewController.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
+				2757AFE62CC8230E00337C17 /* CourseListViewModel.swift in Sources */,
 				276E6CBE2CB42F96008A6C9D /* HomeViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
 				277173E82C9B50C300459C7F /* Time.swift in Sources */,
@@ -642,6 +662,7 @@
 				27661EB52C9114DE00B863FA /* DailyTasks.swift in Sources */,
 				2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
+				2757AFE82CC8242400337C17 /* DailyCourses.swift in Sources */,
 				274F991F2CC6DC9800BF1721 /* NotificationHelper.swift in Sources */,
 				2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */,
 				274EF2E92CB4B46500862C25 /* DesignableCourseBox.swift in Sources */,
@@ -655,7 +676,6 @@
 				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
 				2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
-				274EF2F32CBB2CAD00862C25 /* CourseTableViewController.swift in Sources */,
 				2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

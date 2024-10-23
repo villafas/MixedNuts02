@@ -63,9 +63,6 @@ class DesignableTaskView: UIView {
             task.taskIsNotDone()
         }
         return task
-    }
-
-    
-    
+    }    
     
 }

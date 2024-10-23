@@ -14,7 +14,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     @IBOutlet weak var pageTitle: UILabel!
     @IBOutlet weak var navBarBottom: UIView!
-    @IBOutlet weak var saveButton: DesignableUIButton!
     
     // Field Views
     @IBOutlet weak var titleField: DesignableUITextField!
@@ -23,12 +22,15 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timeField: DesignableUITextField!
     @IBOutlet weak var markWeightField: DesignableUITextField!
+    @IBOutlet weak var markWeightButton: UIButton!
     @IBOutlet weak var notesView: DesignableUITextView!
+    @IBOutlet weak var notesButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var threeDayToggle: UISwitch!
     @IBOutlet weak var oneDayToggle: UISwitch!
     @IBOutlet weak var twelveHourToggle: UISwitch!
     @IBOutlet weak var oneHourToggle: UISwitch!
+    
     
     let overlayView = UIView()
     
@@ -221,6 +223,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             pageTitle.text = "Edit Task"
             setFieldsForTasks()
             updateAllFieldsVisibility()
+            initialButtonConfig()
         }
     }
     
@@ -344,6 +347,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
                 button.setImage(image, for: .normal)
             }
         }
+    }
+    
+    func initialButtonConfig(){
+        toggleButtonImage(notesButton, isNotesFieldVisible)
+        toggleButtonImage(markWeightButton, isMarkWeightFieldVisible)
     }
     
     //MARK: - Dropdown Animations
