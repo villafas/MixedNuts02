@@ -55,6 +55,7 @@
 		581ADE652B9A152F00CA0B6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE642B9A152F00CA0B6D /* AppDelegate.swift */; };
 		581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581ADE662B9A152F00CA0B6D /* SceneDelegate.swift */; };
 		581ADE712B9A153100CA0B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 581ADE6F2B9A153100CA0B6D /* LaunchScreen.storyboard */; };
+		7508F9492CC97812004FF542 /* PendingFriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7508F9482CC97812004FF542 /* PendingFriendRequest.swift */; };
 		7DDA9D1D320D5C19D0BAC245 /* Pods_MixedNuts02.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */; };
 		CE0A74622BA8DDF300361881 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */; };
 		CE0A74632BA8DDF300361881 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74502BA8DDF300361881 /* Poppins-ThinItalic.ttf */; };
@@ -125,6 +126,7 @@
 		581ADE702B9A153100CA0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		581ADE722B9A153100CA0B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68E4298F6DC0E0D6FF5CAA80 /* Pods_MixedNuts02.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MixedNuts02.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7508F9482CC97812004FF542 /* PendingFriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingFriendRequest.swift; sourceTree = "<group>"; };
 		AEF28D08E6BDEFC419DEB791 /* Pods-MixedNuts02.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MixedNuts02.debug.xcconfig"; path = "Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02.debug.xcconfig"; sourceTree = "<group>"; };
 		C3836E4E359F606E18808ECC /* Pods-MixedNuts02.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MixedNuts02.release.xcconfig"; path = "Target Support Files/Pods-MixedNuts02/Pods-MixedNuts02.release.xcconfig"; sourceTree = "<group>"; };
 		CE0A744F2BA8DDF300361881 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */,
 				2766C7072C893B7B007C0B5A /* UIViewController+Extensions.swift */,
+				275B0BB22C8766F20047B9AE /* Fonts */,
 				2766C7092C893DA6007C0B5A /* CollectionReference+Extensions.swift */,
 				27661EB62C911B2A00B863FA /* UIView+Extensions.swift */,
 			);
@@ -286,7 +289,6 @@
 				CE0A74902BA8DE2C00361881 /* Assets.xcassets */,
 				CE0A747E2BA8DE0F00361881 /* Designables */,
 				275B0BB32C8768880047B9AE /* Extensions */,
-				275B0BB22C8766F20047B9AE /* Fonts */,
 				275B0BAF2C8762B40047B9AE /* Models */,
 				277FDC6B2C88916C00B5CA65 /* Network */,
 				CE0A74752BA8DDFE00361881 /* ViewControllers */,
@@ -351,6 +353,7 @@
 				27577B862BD21B9000E80FE8 /* BadgesViewController.swift */,
 				27723B992C91EAB9007EBDE2 /* TimetableViewController.swift */,
 				DCA89E712C9899B6007E4E4F /* UsersTableViewController.swift */,
+				7508F9482CC97812004FF542 /* PendingFriendRequest.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */,
 				27723B9A2C91EAB9007EBDE2 /* TimetableViewController.swift in Sources */,
 				CE7316882BADDF6000D95353 /* AddViewController.swift in Sources */,
+				7508F9492CC97812004FF542 /* PendingFriendRequest.swift in Sources */,
 				CE0A747A2BA8DDFE00361881 /* SignUpViewController.swift in Sources */,
 				CE0A748A2BA8DE0F00361881 /* DesignableTaskView.swift in Sources */,
 				CE0A74872BA8DE0F00361881 /* DesignableUITextField.swift in Sources */,

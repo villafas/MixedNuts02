@@ -50,6 +50,8 @@ class FirebaseManager {
             }
     }
     
+    
+    //MARK: - Fetch Users
     //Created by Gavin Shaw - September 16
     //Method is created to fetch all users from the Firebase db
     func fetchUsers(completion: @escaping (Result<[FriendUser], Error>) -> Void) {
@@ -69,22 +71,119 @@ class FirebaseManager {
         }
     
     
-    //Update Exisiting User
-//    func updateUser(_ user: AppUser, completion: @escaping (Error?) -> Void) {
-//        // Unwrap user.uid safely
-//        guard let userId = user.uid else {
-//            completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User ID is nil"]))
-//            return
-//        }
-//        
-//        let userRef = db.collection("users").document(userId)
-//        userRef.updateData(user.toAnyObject()) { error in
-//            completion(error)
-//        }
+    
+    //MARK: - friend request
+    func sendFriendRequest(from user1ID: String, to user2ID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let friendshipData: [String: Any] = [
+            "user1ID": user1ID,
+            "user2ID": user2ID,
+            "status": "pending"
+        ]
+        
+        db.collection("friendships").addDocument(data: friendshipData) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    //MARK: - accept friend request
+    // Function to accept a friend request
+        func acceptFriendRequest(for friendshipID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+            let docRef = db.collection("friendships").document(friendshipID)
+            
+            docRef.updateData(["status": "accepted"]) { error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            }
+        }
+    
+    
+    //MARK: - fetch user's friends
+    func fetchFriends(for userID: String, completion: @escaping (Result<[String], Error>) -> Void) {
+        var friendIDs: [String] = []
+        
+        // Query friendships where the user is either user1ID or user2ID
+        let group = DispatchGroup()
+        
+        // Fetch friends where user is user1ID
+        group.enter()
+        db.collection("friendships")
+            .whereField("status", isEqualTo: "accepted")
+            .whereField("user1ID", isEqualTo: userID)
+            .getDocuments { (snapshot, error) in
+                if let documents = snapshot?.documents {
+                    for document in documents {
+                        let data = document.data()
+                        if let friendID = data["user2ID"] as? String {
+                            friendIDs.append(friendID)
+                        }
+                    }
+                }
+                group.leave()
+            }
+        
+        // Fetch friends where user is user2ID
+        group.enter()
+        db.collection("friendships")
+            .whereField("status", isEqualTo: "accepted")
+            .whereField("user2ID", isEqualTo: userID)
+            .getDocuments { (snapshot, error) in
+                if let documents = snapshot?.documents {
+                    for document in documents {
+                        let data = document.data()
+                        if let friendID = data["user1ID"] as? String {
+                            friendIDs.append(friendID)
+                        }
+                    }
+                }
+                group.leave()
+            }
+        
+        // Wait for both queries to finish
+        group.notify(queue: .main) {
+            completion(.success(friendIDs))
+        }
+    }
+    
+//    //MARK: - Fetch Pending Requests
+//    func fetchPendingRequests(for userID: String, completion: @escaping (Result<[FriendUser], Error>) -> Void) {
+//        db.collection("friendships")
+//            .whereField("user2ID", isEqualTo: userID)
+//            .whereField("status", isEqualTo: "pending")
+//            .getDocuments { (snapshot, error) in
+//                if let error = error {
+//                    completion(.failure(error))
+//                    return
+//                }
+//                
+//                var pendingUsers: [FriendUser] = []
+//                for document in snapshot!.documents {
+//                    let data = document.data()
+//                    let senderID = data["user1ID"] as? String ?? ""
+//                    
+//                    // Fetch user details for the sender
+//                    FirebaseManager.shared.fetchUser(with: senderID) { result in
+//                        switch result {
+//                        case .success(let user):
+//                            pendingUsers.append(user)
+//                            completion(.success(pendingUsers))
+//                        case .failure(let error):
+//                            print("Error fetching user: \(error.localizedDescription)")
+//                        }
+//                    }
+//                }
+//            }
 //    }
 
     
-    // OLD
+//MARK: - Fetch (old code)
+    
     func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
