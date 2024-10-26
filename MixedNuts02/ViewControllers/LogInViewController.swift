@@ -8,18 +8,21 @@
 import UIKit
 import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: BaseScrollViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //MARK: - Load Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+
+        self.baseScrollView = scrollView
+        
+        hideKeyboardWhenTappedAround()
    }
-    
     
 //    MARK: - Sign in without login auth
 //    @IBAction func signInTapped (_ sender: UIButton){
@@ -35,14 +38,15 @@ class LogInViewController: UIViewController {
     //MARK: - Sign in user
     // Sign In Action
     @IBAction func signInTapped(_ sender: UIButton) {
-        guard let email = emailTextField.text, !email.isEmpty,
+        guard let email = emailTextField.text,
+                !email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
             presentAlert(title: "Missing Information", message: "Please fill out all fields.")
             return
         }
         
         // Perform Sign in
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+        Auth.auth().signIn(withEmail: email.trimmingCharacters(in: .whitespacesAndNewlines), password: password) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
             if let error = error {
                 strongSelf.presentAlert(title: "Sign In Failed", message: error.localizedDescription)
@@ -54,7 +58,6 @@ class LogInViewController: UIViewController {
                 
                 // Set user information globally
                 AppUser.shared.setUser(uid: user.uid, displayName: user.displayName, email: user.email)
-                strongSelf.navigateToHomeScreen()
             }
         }
     }
@@ -75,16 +78,4 @@ class LogInViewController: UIViewController {
     }
 }
 
-//MARK: - Navigation
-extension UIViewController{
-    func navigateToHomeScreen() {
-        if let mainTabBarController = storyboard?.instantiateViewController(identifier: "MainTabBarController") {
-//            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//               let sceneDelegate = windowScene.delegate as? SceneDelegate {
-//                sceneDelegate.window?.rootViewController = mainTabBarController
-//                sceneDelegate.window?.makeKeyAndVisible()
-//            }
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-        }
-    }
-}
+

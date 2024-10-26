@@ -23,4 +23,26 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func navigateToHomeScreen() {
+        if let mainTabBarController = storyboard?.instantiateViewController(identifier: "MainTabBarController") {
+            //            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            //               let sceneDelegate = windowScene.delegate as? SceneDelegate {
+            //                sceneDelegate.window?.rootViewController = mainTabBarController
+            //                sceneDelegate.window?.makeKeyAndVisible()
+            //            }
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        }
+    }
+    
+    //MARK: - Alert
+    func showViewControllerAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Add a default OK action
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        // Present the alert on the current view controller
+        self.present(alert, animated: true, completion: nil)
+    }
 }

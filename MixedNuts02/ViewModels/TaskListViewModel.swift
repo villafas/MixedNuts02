@@ -17,7 +17,7 @@ class TaskListViewModel {
     var errorMessage: String?
     
     var taskCollection = [DailyTasks]() // holds format for table view structure
-    
+
     var onTasksUpdated: (() -> Void)?
     var onTaskCompletionUpdated: (() -> Void)?
     var onTaskDeleted: (() -> Void)?
@@ -82,4 +82,6 @@ class TaskListViewModel {
             }
         }
     }
+    
+
 }

@@ -232,6 +232,48 @@ class FirebaseManager {
             }
     }
     
+    func fetchUserDetails(_ userId: String, completion: @escaping (Result<[String], Error>) -> Void) {
+        let userRef = db.collection("users").document(userId)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                completion(.failure(NSError(domain: "User not found", code: 404, userInfo: nil)))
+                return
+            }
+            
+            var details: [String] = []
+            
+            // Extracting the fields
+            details.append(document.get("firstName") as? String ?? "No first name")
+            details.append(document.get("lastName") as? String ?? "No last name")
+            
+            // Returning the results as a tuple
+            completion(.success(details))
+        }
+    }
+    
+    func isUsernameTaken(_ username: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let usersCollection = Firestore.firestore().collection("users")
+        
+        usersCollection
+            .whereField("username", isEqualTo: username)
+            .limit(to: 1)  // We only care if one match exists
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                let isTaken = !querySnapshot!.documents.isEmpty  // Check if a matching document exists
+                completion(.success(isTaken))
+            }
+    }
+    
     //MARK: - CRUD Methods
     
     // Function to add a task to Firestore using toAnyObject()

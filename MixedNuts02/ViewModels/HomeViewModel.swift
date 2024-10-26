@@ -20,6 +20,7 @@ class HomeViewModel {
     var nextCourse: Course?
     var nextCourseSchedule: DaySchedule?
     
+    var onUserLogged: (() -> Void)?
     var onTasksUpdated: (() -> Void)?
     var onCountsUpdated: (() -> Void)?
     var onCourseUpdated: (() -> Void)?
@@ -68,4 +69,20 @@ class HomeViewModel {
             }
         }
     }
+    
+    func fetchUserDetails() {
+        firebaseManager.fetchUserDetails(AppUser.shared.uid ?? "") { [weak self] result in
+            switch result {
+            case .success(let fetchedDetails):
+                AppUser.shared.firstName = fetchedDetails[0]
+                AppUser.shared.lastName = fetchedDetails[1]
+                self?.onUserLogged?()  // Notify the view controller to update the UI
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
+            }
+        }
+    }
+    
+    
 }

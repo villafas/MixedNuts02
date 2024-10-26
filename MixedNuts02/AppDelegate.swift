@@ -31,8 +31,10 @@ import UserNotifications
       Auth.auth().addStateDidChangeListener { auth, user in
           if let user = user {
               print("\(user.email!) is logged in.")
+              print(user)
               let storyboard = UIStoryboard(name: "Main", bundle: nil)
               let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController") as? UITabBarController
+              
               // Set user information globally
               AppUser.shared.setUser(uid: user.uid, displayName: user.displayName, email: user.email)
               // This is to get the SceneDelegate object from your view controller

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddCourseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate {
+class AddCourseViewController: BaseScrollViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate {
     
     //MARK: - Properties
     
@@ -79,9 +79,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         
         hideElementWhenTappedAround()
         
-        // Do any additional setup after loading the view.
-        
         scrollView.delegate = self
+        
+        // Do any additional setup after loading the view.
+        self.baseScrollView = scrollView
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate, UITextViewDelegate {
+class AddTaskViewController: BaseScrollViewController, UITextFieldDelegate, UIScrollViewDelegate, UITextViewDelegate {
     
     //MARK: - Properties
     
@@ -74,6 +74,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         markWeightField.delegate = self
         titleField.delegate = self
+        notesView.delegate = self
         
         configureOverlayView()
         configureCourseDropdown()
@@ -85,6 +86,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         // Do any additional setup after loading the view.
         
         scrollView.delegate = self
+        
+        self.baseScrollView = scrollView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -571,6 +574,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
     
     //MARK: - Text View Delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
+        toggleScrollIgnore()
         overlayView.isHidden = false
     }
     
@@ -589,7 +593,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
             hideTimeDropdown()
         }
         
-        
         if !overlayView.isHidden {
             overlayView.isHidden = true
             
@@ -601,14 +604,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate, UIScrollView
         DispatchQueue.main.asyncAfter(deadline: .now() + ignoreTime) {
             self.ignoreHideOnScroll = false
         }
-    }
-    
-    func scrollToTextField(_ textField: UITextField, in scrollView: UIScrollView) {
-        // Get the frame of the text field relative to the scroll view
-        let textFieldFrame = textField.convert(textField.bounds, to: scrollView)
-        
-        // Scroll to the text field's frame
-        scrollView.scrollRectToVisible(textFieldFrame, animated: true)
     }
     
     //MARK: - Animation Prototype

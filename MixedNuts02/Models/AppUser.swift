@@ -17,6 +17,8 @@ class AppUser {
     var uid: String?
     var displayName: String?
     var email: String?
+    var firstName: String?
+    var lastName: String?
     
     
     //MARK: -  Constructors
@@ -28,15 +30,19 @@ class AppUser {
     
     //MARK: - Methods
     
-    func setUser(uid: String?, displayName: String?, email: String?) {
+    func setUser(uid: String?, displayName: String?, email: String?, firstName: String? = nil, lastName: String? = nil) {
         self.uid = uid
         self.displayName = displayName
         self.email = email
+        self.firstName = firstName
+        self.lastName = lastName
     }
     
     func clearUser() {
         self.uid = nil
         self.displayName = nil
         self.email = nil
+        self.firstName = nil
+        self.lastName = nil
     }
 }

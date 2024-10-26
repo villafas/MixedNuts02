@@ -24,7 +24,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         navBarBottom.dropShadow()
-        setUserName()
         courseBox.upcomingCourseNotSet()
         
         // Bind ViewModel to ViewController
@@ -37,6 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getUserDetails()
         refreshCounts()
         refreshCourse()
         refreshTasks()
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func setUserName(){
         // Show user's name in welcome message
-        self.nameTitle.text = "Hi, \(AppUser.shared.displayName ?? "User")"
+        self.nameTitle.text = "Hi, \(AppUser.shared.firstName ?? "User")"
     }
     
     func updateCounts() {
@@ -99,6 +99,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
+        viewModel.onUserLogged = { [weak self] in
+            DispatchQueue.main.async {
+                self?.setUserName()
+            }
+        }
+        
         viewModel.onError = { [weak self] errorMessage in
             DispatchQueue.main.async {
                 // Show error message (e.g., using an alert)
@@ -123,6 +129,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.fetchWeeklyCourseCount()
     }
     
+    func getUserDetails(){
+        viewModel.fetchUserDetails()
+    }
     
     //MARK: - Refreshing
     func reloadRows(){
