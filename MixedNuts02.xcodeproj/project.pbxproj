@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2715B2902C9F2DAA005D5682 /* CourseScheduleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2715B28F2C9F2DAA005D5682 /* CourseScheduleView.xib */; };
 		2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2715B2942CA0883B005D5682 /* CourseScheduleView.swift */; };
+		27185D212CCD9C5500B05591 /* SocialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27185D202CCD9C5500B05591 /* SocialViewModel.swift */; };
 		274DCC4C2BD2F00800B91AD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */; };
 		274EF2E92CB4B46500862C25 /* DesignableCourseBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2E82CB4B46500862C25 /* DesignableCourseBox.swift */; };
 		274EF2EB2CB4BF5E00862C25 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274EF2EA2CB4BF5E00862C25 /* HomeViewModel.swift */; };
@@ -37,9 +38,14 @@
 		2769DE0C2CCD5CD8007D2823 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE0B2CCD5CD8007D2823 /* SignUpViewModel.swift */; };
 		2769DE0E2CCD691D007D2823 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE0D2CCD691D007D2823 /* SettingsViewController.swift */; };
 		2769DE102CCD7326007D2823 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE0F2CCD7326007D2823 /* SocialViewController.swift */; };
+		2769DE122CCD7F01007D2823 /* FriendUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE112CCD7F01007D2823 /* FriendUser.swift */; };
+		2769DE142CCD8351007D2823 /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE132CCD8351007D2823 /* Friendship.swift */; };
+		2769DE162CCD8832007D2823 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2769DE152CCD8832007D2823 /* FriendView.xib */; };
+		2769DE182CCD893C007D2823 /* DesignableFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE172CCD893C007D2823 /* DesignableFriendView.swift */; };
+		2769DE1A2CCD8A8E007D2823 /* FriendRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2769DE192CCD8A8E007D2823 /* FriendRequestView.xib */; };
+		2769DE1C2CCD98A2007D2823 /* DesignableFriendRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2769DE1B2CCD98A2007D2823 /* DesignableFriendRequestView.swift */; };
 		276B2F492C8D2EE80053A860 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276B2F482C8D2EE80053A860 /* TaskListViewController.swift */; };
 		276E6CBE2CB42F96008A6C9D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E6CBD2CB42F96008A6C9D /* HomeViewController.swift */; };
-		2770AC202CCA8F6F000F24DA /* FriendRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2770AC1F2CCA8F6F000F24DA /* FriendRequestView.xib */; };
 		277173E62C9B147300459C7F /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E52C9B147300459C7F /* Term.swift */; };
 		277173E82C9B50C300459C7F /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E72C9B50C300459C7F /* Time.swift */; };
 		277173EA2C9B50E000459C7F /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E92C9B50E000459C7F /* DaySchedule.swift */; };
@@ -127,6 +133,7 @@
 /* Begin PBXFileReference section */
 		2715B28F2C9F2DAA005D5682 /* CourseScheduleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CourseScheduleView.xib; sourceTree = "<group>"; };
 		2715B2942CA0883B005D5682 /* CourseScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseScheduleView.swift; sourceTree = "<group>"; };
+		27185D202CCD9C5500B05591 /* SocialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewModel.swift; sourceTree = "<group>"; };
 		274DCC4B2BD2F00800B91AD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		274EF2E82CB4B46500862C25 /* DesignableCourseBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableCourseBox.swift; sourceTree = "<group>"; };
 		274EF2EA2CB4BF5E00862C25 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -156,9 +163,14 @@
 		2769DE0B2CCD5CD8007D2823 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		2769DE0D2CCD691D007D2823 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2769DE0F2CCD7326007D2823 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		2769DE112CCD7F01007D2823 /* FriendUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendUser.swift; sourceTree = "<group>"; };
+		2769DE132CCD8351007D2823 /* Friendship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
+		2769DE152CCD8832007D2823 /* FriendView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendView.xib; sourceTree = "<group>"; };
+		2769DE172CCD893C007D2823 /* DesignableFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableFriendView.swift; sourceTree = "<group>"; };
+		2769DE192CCD8A8E007D2823 /* FriendRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestView.xib; sourceTree = "<group>"; };
+		2769DE1B2CCD98A2007D2823 /* DesignableFriendRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableFriendRequestView.swift; sourceTree = "<group>"; };
 		276B2F482C8D2EE80053A860 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
 		276E6CBD2CB42F96008A6C9D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2770AC1F2CCA8F6F000F24DA /* FriendRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestView.xib; sourceTree = "<group>"; };
 		277173E52C9B147300459C7F /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
 		277173E72C9B50C300459C7F /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		277173E92C9B50E000459C7F /* DaySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
@@ -270,6 +282,8 @@
 				CE0A74982BA8F28100361881 /* Task.swift */,
 				277173E52C9B147300459C7F /* Term.swift */,
 				277173E72C9B50C300459C7F /* Time.swift */,
+				2769DE112CCD7F01007D2823 /* FriendUser.swift */,
+				2769DE132CCD8351007D2823 /* Friendship.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,6 +317,7 @@
 				2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */,
 				2779FB002CAB7008003E10C1 /* AddTaskViewModel.swift */,
 				2769DE0B2CCD5CD8007D2823 /* SignUpViewModel.swift */,
+				27185D202CCD9C5500B05591 /* SocialViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -437,6 +452,8 @@
 				274EF2E82CB4B46500862C25 /* DesignableCourseBox.swift */,
 				2757AFED2CC82AC500337C17 /* DesignableCourseView.swift */,
 				2757AFEF2CC834C600337C17 /* DesignableExpandedCourseView.swift */,
+				2769DE172CCD893C007D2823 /* DesignableFriendView.swift */,
+				2769DE1B2CCD98A2007D2823 /* DesignableFriendRequestView.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -457,7 +474,8 @@
 				CE0A748C2BA8DE1600361881 /* TaskView.xib */,
 				2757AFF12CC83EE600337C17 /* CourseView.xib */,
 				2757AFF32CC83F3100337C17 /* ExpandedCourseView.xib */,
-				2770AC1F2CCA8F6F000F24DA /* FriendRequestView.xib */,
+				2769DE152CCD8832007D2823 /* FriendView.xib */,
+				2769DE192CCD8A8E007D2823 /* FriendRequestView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -556,13 +574,14 @@
 			files = (
 				2715B2902C9F2DAA005D5682 /* CourseScheduleView.xib in Resources */,
 				CE0A746E2BA8DDF300361881 /* Poppins-LightItalic.ttf in Resources */,
-				2770AC202CCA8F6F000F24DA /* FriendRequestView.xib in Resources */,
+				2769DE1A2CCD8A8E007D2823 /* FriendRequestView.xib in Resources */,
 				CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */,
 				27CB34212CA21E0D002B65A0 /* DropdownTableView.xib in Resources */,
 				CE0A746F2BA8DDF300361881 /* Poppins-Bold.ttf in Resources */,
 				27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */,
 				CE0A746C2BA8DDF300361881 /* OFL.txt in Resources */,
 				CE0A74692BA8DDF300361881 /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				2769DE162CCD8832007D2823 /* FriendView.xib in Resources */,
 				CE0A74682BA8DDF300361881 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */,
 				CE0A74702BA8DDF300361881 /* Poppins-Black.ttf in Resources */,
@@ -642,6 +661,7 @@
 				278874F92C990CC300FB7F13 /* AddCourseViewController.swift in Sources */,
 				CE0A74892BA8DE0F00361881 /* DesignableViewBox.swift in Sources */,
 				CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */,
+				2769DE182CCD893C007D2823 /* DesignableFriendView.swift in Sources */,
 				276B2F492C8D2EE80053A860 /* TaskListViewController.swift in Sources */,
 				274F98FB2CBB3A5600BF1721 /* CourseListViewController.swift in Sources */,
 				2757AFF02CC834C600337C17 /* DesignableExpandedCourseView.swift in Sources */,
@@ -652,6 +672,7 @@
 				27661EB72C911B2A00B863FA /* UIView+Extensions.swift in Sources */,
 				2757AFEE2CC82AC500337C17 /* DesignableCourseView.swift in Sources */,
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
+				2769DE1C2CCD98A2007D2823 /* DesignableFriendRequestView.swift in Sources */,
 				27577B852BD2132600E80FE8 /* AppUser.swift in Sources */,
 				2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,
@@ -677,10 +698,13 @@
 				2715B2952CA0883B005D5682 /* CourseScheduleView.swift in Sources */,
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				2757AFE82CC8242400337C17 /* DailyCourses.swift in Sources */,
+				2769DE122CCD7F01007D2823 /* FriendUser.swift in Sources */,
 				274F991F2CC6DC9800BF1721 /* NotificationHelper.swift in Sources */,
+				2769DE142CCD8351007D2823 /* Friendship.swift in Sources */,
 				2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */,
 				274EF2E92CB4B46500862C25 /* DesignableCourseBox.swift in Sources */,
 				2769DE0C2CCD5CD8007D2823 /* SignUpViewModel.swift in Sources */,
+				27185D212CCD9C5500B05591 /* SocialViewModel.swift in Sources */,
 				27577B892BD2211000E80FE8 /* BadgeCollectionViewCell.swift in Sources */,
 				275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */,
 				277FDC6E2C88939500B5CA65 /* TaskListViewModel.swift in Sources */,

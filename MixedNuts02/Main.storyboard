@@ -4174,7 +4174,7 @@
                                                                     <constraint firstAttribute="width" constant="58" id="uf2-mi-6H9"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system">
+                                                                <buttonConfiguration key="configuration" style="filled" image="paperplane.fill" catalog="system" cornerStyle="capsule">
                                                                     <color key="baseBackgroundColor" red="0.27594524619999999" green="0.61325854059999996" blue="0.72743785380000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </buttonConfiguration>
                                                                 <userDefinedRuntimeAttributes>
@@ -4182,6 +4182,9 @@
                                                                         <real key="value" value="20"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="sendRequestTapped:" destination="Mmy-IK-hNN" eventType="touchUpInside" id="GF4-g5-eXc"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
@@ -4207,10 +4210,15 @@
                                                             <constraint firstAttribute="height" constant="40" id="2id-zv-4RC"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jqa-WK-Oaq" customClass="SelfSizedTableView" customModule="MixedNuts02" customModuleProvider="target">
+                                                    <tableView clipsSubviews="YES" tag="69" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jqa-WK-Oaq" customClass="SelfSizedTableView" customModule="MixedNuts02" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="45" width="363" height="300"/>
                                                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="-20" maxY="0.0"/>
-                                                        <color key="sectionIndexBackgroundColor" red="0.3058823645" green="0.67450982329999998" blue="0.77647060160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="sectionIndexBackgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </tableView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgx-Df-pBk">
                                                         <rect key="frame" x="0.0" y="350" width="363" height="81"/>
@@ -4285,10 +4293,15 @@
                                                             <constraint firstAttribute="height" constant="40" id="86I-Og-e33"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="g2B-rk-Y20" customClass="SelfSizedTableView" customModule="MixedNuts02" customModuleProvider="target">
+                                                    <tableView clipsSubviews="YES" tag="70" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="300" directionalLockEnabled="YES" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="g2B-rk-Y20" customClass="SelfSizedTableView" customModule="MixedNuts02" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="45" width="363" height="300"/>
                                                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="-20" maxY="0.0"/>
-                                                        <color key="sectionIndexBackgroundColor" red="0.3058823645" green="0.67450982329999998" blue="0.77647060160000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="sectionIndexBackgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <integer key="value" value="20"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </tableView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="es6-sB-DCw">
                                                         <rect key="frame" x="0.0" y="350" width="363" height="81"/>
@@ -4459,7 +4472,13 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="friendsTable" destination="g2B-rk-Y20" id="LUs-Yw-gXT"/>
                         <outlet property="navBarBottom" destination="sc3-4o-TKL" id="RCl-kG-Fmf"/>
+                        <outlet property="noFriendsBox" destination="es6-sB-DCw" id="Qdb-uY-0em"/>
+                        <outlet property="noRequestsBox" destination="tgx-Df-pBk" id="epn-jB-ZOc"/>
+                        <outlet property="requestsTable" destination="jqa-WK-Oaq" id="VXX-Kz-PZe"/>
+                        <outlet property="scrollView" destination="8Wa-Et-f8w" id="gF0-5y-JH4"/>
+                        <outlet property="searchField" destination="F6j-9I-P2d" id="U36-G2-cth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kRC-fy-z3G" sceneMemberID="firstResponder"/>
@@ -4541,7 +4560,7 @@
             <size key="intrinsicContentSize" width="254.66666666666666" height="24.333333333333332"/>
         </designable>
         <designable name="soj-ri-dph">
-            <size key="intrinsicContentSize" width="50.666666666666664" height="34.333333333333336"/>
+            <size key="intrinsicContentSize" width="34.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="tYx-gP-XrZ">
             <size key="intrinsicContentSize" width="140" height="21"/>
@@ -4599,19 +4618,19 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -22,10 +22,10 @@ class SettingsViewController: UIViewController {
     //MARK: - Delete account logic
     
     @IBAction func deleteIsPressed(_ sender: Any) {
-        presentAlert(title: "Account Deletion", message: "Are you sure you want to delete your account? This action cannot be reversed.")
+        presentDeleteAlert(title: "Account Deletion", message: "Are you sure you want to delete your account? This action cannot be reversed.")
     }
     
-    private func presentAlert(title: String, message: String) {
+    private func presentDeleteAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { _ in
             // Call your function when confirm is pressed
@@ -54,17 +54,28 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Logout logic
     
+    private func presentLogoutAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Confirm", style: .destructive) { _ in
+            do {
+                try Auth.auth().signOut()
+                AppUser.shared.clearUser()
+                // Optionally: Navigate back to the login screen or another appropriate screen
+                self.navigateToLoginScreen()
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+                // Optionally: Show an error message to the user
+            }
+        }
+        
+        alert.addAction(confirmAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true)
+    }
+    
     // Action that will trigger logging out
     @IBAction func logoutIsPressed(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            AppUser.shared.clearUser()
-            // Optionally: Navigate back to the login screen or another appropriate screen
-            self.navigateToLoginScreen()
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-            // Optionally: Show an error message to the user
-        }
+        presentLogoutAlert(title: "Log Out", message: "Are you sure you want to log out?")
     }
     
     //MARK: - Navigation

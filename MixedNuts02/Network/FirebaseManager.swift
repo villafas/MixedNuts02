@@ -274,6 +274,89 @@ class FirebaseManager {
             }
     }
     
+    func fetchFriends(completion: @escaping (Result<[Friendship], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let friendCollection = userDbRef.collection("friends")
+        
+        friendCollection
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                var friends: [Friendship] = []
+                for document in querySnapshot!.documents {
+                    let friend = Friendship(snapshot: document)
+                    friends.append(friend)
+                }
+                
+                completion(.success(friends))
+            }
+    }
+    
+    func fetchFriendDetails(_ friend: Friendship, completion: @escaping (Result<FriendUser, Error>) -> Void) {
+        let userRef = db.collection("users").document(friend.uid)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                completion(.failure(NSError(domain: "User not found", code: 404, userInfo: nil)))
+                return
+            }
+            
+            let username = document.get("username") as? String ?? "No username"
+            let firstName = document.get("firstName") as? String ?? "Unknown"
+            let lastName = document.get("lastName") as? String ?? "User"
+            
+            var friendDetails = FriendUser(uid: friend.uid, username: username, firstName: firstName, lastName: lastName, isPending: friend.isPending)
+            
+            // Returning the results as a tuple
+            completion(.success(friendDetails))
+        }
+    }
+    
+    func checkFriendExists(_ uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let friendCollection = userDbRef.collection("friends")
+        
+        friendCollection
+                .document(uid)  // Reference the specific document by its ID
+                .getDocument { (document, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+
+                    let isFriend = document?.exists ?? false  // Check if the document exists
+                    completion(.success(isFriend))
+                }
+    }
+    
+    func checkUserExists(_ username: String, completion: @escaping (Result<String?, Error>) -> Void) {
+        let usersCollection = Firestore.firestore().collection("users")
+        
+        usersCollection
+            .whereField("username", isEqualTo: username)
+            .limit(to: 1)  // We only care if one match exists
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                if querySnapshot!.documents.count > 0 {
+                    completion(.success(querySnapshot!.documents[0].documentID))
+                } else {
+                    completion(.success(nil))
+                }
+            }
+    }
+    
     //MARK: - CRUD Methods
     
     // Function to add a task to Firestore using toAnyObject()
@@ -388,6 +471,7 @@ class FirebaseManager {
     }
     
     // OLD
+    /*
     func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
@@ -432,7 +516,150 @@ class FirebaseManager {
                 completion(.success(dates))
             }
     }
+     */
     
+
+    func sendRequest(_ requests: [Friendship], completion: @escaping (Result<Void, Error>) -> Void) {
+        let requestToData = requests[0].toAnyObject()
+        let requestFromData = requests[1].toAnyObject()
+        
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let friendDbRef = db.collection("users").document(requests[0].uid)
+        let myFriendsCollection = userDbRef.collection("friends")
+        let otherFriendsCollection = friendDbRef.collection("friends")
+        
+        // Add a new document with an auto-generated ID and get the reference
+        let newDocumentRef = myFriendsCollection.addDocument(data: requestToData) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+        }
+        
+        let otherDocumentRef = otherFriendsCollection.addDocument(data: requestFromData) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+        }
+        
+        // Use the document reference to get the ID directly
+        //let requestID = newDocumentRef.documentID  // Get the auto-generated ID
+        completion(.success(()))  // Return the ID
+    }
+    
+    func acceptFriendRequests(_ friendId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let friendDbRef = db.collection("users").document(friendId)
+
+        let myFriendsCollection = userDbRef.collection("friends")
+        let otherFriendsCollection = friendDbRef.collection("friends")
+
+        let batch = db.batch()  // Use a batch for atomic operations
+
+        // Helper function to update a document's "isPending" field
+        func updatePendingStatus(from collection: CollectionReference, with id: String, completion: @escaping (Result<Void, Error>) -> Void
+        ) {
+            collection
+                .whereField("uid", isEqualTo: id)
+                .limit(to: 1)  // Fetch one document
+                .getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+
+                    guard let document = querySnapshot?.documents.first else {
+                        completion(.success(()))  // No document to update
+                        return
+                    }
+
+                    batch.updateData(["isPending": false], forDocument: document.reference)  // Add update to batch
+                    completion(.success(()))
+                }
+        }
+
+        // First update in the user's friends collection
+        updatePendingStatus(from: myFriendsCollection, with: friendId) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success:
+                // Second update in the friend's friends collection
+                updatePendingStatus(from: otherFriendsCollection, with: AppUser.shared.uid!) { otherResult in
+                    switch otherResult {
+                    case .failure(let error):
+                        completion(.failure(error))
+                    case .success:
+                        // Commit the batch after both updates are queued
+                        batch.commit { error in
+                            if let error = error {
+                                completion(.failure(error))
+                            } else {
+                                completion(.success(()))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func deleteFriendRequests(_ friendId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let friendDbRef = db.collection("users").document(friendId)
+
+        let myFriendsCollection = userDbRef.collection("friends")
+        let otherFriendsCollection = friendDbRef.collection("friends")
+
+        let batch = db.batch()  // Batch for atomic deletion
+
+        // Helper to query and add the first matching document to the batch
+        func addToBatch(from collection: CollectionReference, with id: String, completion: @escaping (Result<Void, Error>) -> Void) {
+            collection
+                .whereField("uid", isEqualTo: id)
+                .limit(to: 1)  // Only need the first match
+                .getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+
+                    guard let document = querySnapshot?.documents.first else {
+                        completion(.success(()))  // No match, nothing to delete
+                        return
+                    }
+
+                    batch.deleteDocument(document.reference)  // Add to batch
+                    completion(.success(()))
+                }
+        }
+
+        // Fetch and delete from both collections
+        addToBatch(from: myFriendsCollection, with: friendId) { myResult in
+            switch myResult {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success:
+                addToBatch(from: otherFriendsCollection, with: AppUser.shared.uid!) { otherResult in
+                    switch otherResult {
+                    case .failure(let error):
+                        completion(.failure(error))
+                    case .success:
+                        // Commit the batch after adding all documents
+                        batch.commit { error in
+                            if let error = error {
+                                completion(.failure(error))
+                            } else {
+                                completion(.success(()))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     //MARK: - Helper functions
     
