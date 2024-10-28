@@ -63,6 +63,7 @@
 		278874F92C990CC300FB7F13 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278874F82C990CC300FB7F13 /* AddCourseViewController.swift */; };
 		279A69C22CCEE24A00B21330 /* DesignableSharedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A69C12CCEE24A00B21330 /* DesignableSharedTaskView.swift */; };
 		279A69C42CCEE3AD00B21330 /* DesignableExpandedSharedTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A69C32CCEE3AD00B21330 /* DesignableExpandedSharedTaskView.swift */; };
+		279A69C62CCFDFB500B21330 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279A69C52CCFDFB500B21330 /* Cells.swift */; };
 		27CB34212CA21E0D002B65A0 /* DropdownTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB34202CA21E0D002B65A0 /* DropdownTableView.xib */; };
 		27CB34232CA21E23002B65A0 /* DropdownTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CB34222CA21E23002B65A0 /* DropdownTableView.swift */; };
 		27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */; };
@@ -196,6 +197,7 @@
 		278874F82C990CC300FB7F13 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		279A69C12CCEE24A00B21330 /* DesignableSharedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableSharedTaskView.swift; sourceTree = "<group>"; };
 		279A69C32CCEE3AD00B21330 /* DesignableExpandedSharedTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableExpandedSharedTaskView.swift; sourceTree = "<group>"; };
+		279A69C52CCFDFB500B21330 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		27CB34202CA21E0D002B65A0 /* DropdownTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableView.xib; sourceTree = "<group>"; };
 		27CB34222CA21E23002B65A0 /* DropdownTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableView.swift; sourceTree = "<group>"; };
 		27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCountView.xib; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				277173E72C9B50C300459C7F /* Time.swift */,
 				2769DE112CCD7F01007D2823 /* FriendUser.swift */,
 				2769DE132CCD8351007D2823 /* Friendship.swift */,
+				279A69C52CCFDFB500B21330 /* Cells.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				CEB02F072BB254C500C3A1C7 /* DesignableDoneCard.swift in Sources */,
 				2769DE1C2CCD98A2007D2823 /* DesignableFriendRequestView.swift in Sources */,
 				27577B852BD2132600E80FE8 /* AppUser.swift in Sources */,
+				279A69C62CCFDFB500B21330 /* Cells.swift in Sources */,
 				2759DE0E2BD1DA990005B052 /* ProfileViewController.swift in Sources */,
 				2765AA262CCEBD6A0076753E /* ShareTaskViewModel.swift in Sources */,
 				CE0A74882BA8DE0F00361881 /* DesignableUIButton.swift in Sources */,

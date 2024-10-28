@@ -16,6 +16,8 @@ class CourseListViewModel {
     var errorMessage: String?
     
     var courseCollection = [DailyCourses]() // holds format for table view structure
+    var courseDictionary: [String: Course] = [:] // Populate this dictionary with course data
+    
     
     var onCoursesUpdated: (() -> Void)?
     var onCourseDeleted: (() -> Void)?
@@ -61,6 +63,45 @@ class CourseListViewModel {
         }
     }
     
+    func fetchCoursesForTimetable() {
+        firebaseManager.fetchCourses() { [weak self] result in
+            switch result {
+            case .success(let fetchedCourses):
+                self?.courseCollection = [DailyCourses]()
+                // Arrange courses in proper sections
+                for course in fetchedCourses {
+                    self?.courseDictionary[course.id] = course
+                    for schedule in course.schedule {
+                        if self?.courseCollection.count == 0 {
+                            self?.courseCollection.append(DailyCourses(weekday: schedule.day!, courses: [course]))
+                        } else {
+                            var added = false
+                            for i in 0..<(self?.courseCollection.count)! {
+                                if self?.courseCollection[i].weekday == schedule.day {
+                                    self?.courseCollection[i].courses.append(course)
+                                    added = true
+                                    break
+                                }
+                            }
+                            if added == false {
+                                self?.courseCollection.append(DailyCourses(weekday: schedule.day!, courses: [course]))
+                            }
+                        }
+                    }
+                }
+                
+                if let courses = self?.courseCollection {
+                    self?.courseCollection = self?.sortDailyCourses(courses) ?? []
+                }
+                
+                self?.onCoursesUpdated?()  // Notify the view controller to update the UI
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
+            }
+        }
+    }
+
     func deleteCourse(courseID: String) {
         FirebaseManager.shared.deleteCourse(courseId: courseID) { [weak self] result in
             switch result {
