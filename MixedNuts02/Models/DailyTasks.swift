@@ -16,3 +16,13 @@ struct DailyTasks {
         self.tasks = tasks
     }
 }
+
+struct SharedTask {
+    var user: FriendUser
+    var task: Task
+    
+    init(user: FriendUser, task: Task) {
+        self.user = user
+        self.task = task
+    }
+}

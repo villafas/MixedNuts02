@@ -17,7 +17,13 @@ class TaskListViewModel {
     var errorMessage: String?
     
     var taskCollection = [DailyTasks]() // holds format for table view structure
+    var pendingCollection = [SharedTask]()
+    
+    var newId: String?
 
+    var onTaskAccepted: (() -> Void)?
+    var onTaskRejected: (() -> Void)?
+    var onPendingUpdated: (() -> Void)?
     var onTasksUpdated: (() -> Void)?
     var onTaskCompletionUpdated: (() -> Void)?
     var onTaskDeleted: (() -> Void)?
@@ -25,6 +31,19 @@ class TaskListViewModel {
     
     
     //MARK: - Methods
+    func fetchPendingTasks() {
+        firebaseManager.fetchPendingTasks() { [weak self] result in
+            switch result {
+            case .success(let fetchedTasks):
+                self?.pendingCollection = fetchedTasks
+                self?.onPendingUpdated?()  // Notify the view controller to update the UI
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
+            }
+        }
+    }
+    
     func fetchTasks() {
         firebaseManager.fetchTasks() { [weak self] result in
             switch result {
@@ -79,6 +98,31 @@ class TaskListViewModel {
             case .failure(let error):
                 self?.errorMessage = error.localizedDescription
                 self?.onError?(self?.errorMessage ?? "An error occurred") // Notify the view
+            }
+        }
+    }
+    
+    func rejectTask(taskID: String) {
+        FirebaseManager.shared.rejectTask(taskId: taskID) { [weak self] result in
+            switch result {
+            case .success:
+                self?.onTaskAccepted?()
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred") // Notify the view
+            }
+        }
+    }
+    
+    func acceptTask(_ task: Task) {
+        firebaseManager.acceptTask(task) { [weak self] result in
+            switch result {
+            case .success(let newId):
+                self?.newId = newId
+                self?.onTaskAccepted?()  // Notify the view controller to update the UI
+            case .failure(let error):
+                self?.errorMessage = error.localizedDescription
+                self?.onError?(self?.errorMessage ?? "An error occurred")  // Notify the view controller to show an error message
             }
         }
     }

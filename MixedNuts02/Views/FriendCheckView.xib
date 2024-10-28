@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="CYb-Xu-94z" customClass="DesignableFriendCheckView" customModule="MixedNuts02" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="81"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0l-9v-XPy">
+                    <rect key="frame" x="10" y="0.0" width="333" height="0.66666666666666663"/>
+                    <color key="backgroundColor" systemColor="separatorColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="quY-Vh-c7V"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pud-pn-mGe">
+                    <rect key="frame" x="11" y="0.0" width="328" height="81"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sHS-5U-N6C">
+                            <rect key="frame" x="0.0" y="0.0" width="55" height="81"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehm-yT-S5u">
+                                    <rect key="frame" x="0.0" y="0.0" width="55" height="0.0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileTemp" translatesAutoresizingMaskIntoConstraints="NO" id="eN5-9N-Xei">
+                                    <rect key="frame" x="0.0" y="10" width="55" height="61"/>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3z-Qz-hLu">
+                                    <rect key="frame" x="0.0" y="81" width="55" height="0.0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="kyF-1w-om5"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="WuL-Zx-Ago">
+                            <rect key="frame" x="65" y="18.000000000000004" width="232" height="45.333333333333343"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gB6-ya-9FV">
+                                    <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="45.333333333333336"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afb-jE-36w">
+                                            <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="22.666666666666668"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU6-cp-Xif">
+                                            <rect key="frame" x="0.0" y="22.666666666666664" width="82.666666666666671" height="22.666666666666664"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                            <color key="textColor" red="0.25490196079999999" green="0.2901960784" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ns3-3v-bTH">
+                            <rect key="frame" x="307" y="32" width="21" height="17"/>
+                            <color key="tintColor" red="0.047058823530000002" green="0.1450980392" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="21" id="p2M-DR-fB3"/>
+                            </constraints>
+                            <imageReference key="image" image="checkBoxUnchecked" symbolScale="large"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="81" id="m6D-Xa-TkM"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6C9-EL-eJn">
+                    <rect key="frame" x="10" y="80.666666666666671" width="333" height="0.3333333333333286"/>
+                    <color key="backgroundColor" systemColor="separatorColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="DpH-ac-mdJ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="wd6-lG-cnl"/>
+            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="6C9-EL-eJn" firstAttribute="leading" secondItem="CYb-Xu-94z" secondAttribute="leading" constant="10" id="HiI-Pl-T5M"/>
+                <constraint firstItem="pud-pn-mGe" firstAttribute="bottom" secondItem="6C9-EL-eJn" secondAttribute="bottom" id="RkT-Ce-TNQ"/>
+                <constraint firstItem="pud-pn-mGe" firstAttribute="centerY" secondItem="CYb-Xu-94z" secondAttribute="centerY" id="X1L-yL-GuA"/>
+                <constraint firstItem="y0l-9v-XPy" firstAttribute="leading" secondItem="wd6-lG-cnl" secondAttribute="leading" constant="10" id="X7t-fS-4fQ"/>
+                <constraint firstAttribute="trailing" secondItem="6C9-EL-eJn" secondAttribute="trailing" constant="10" id="eN0-ON-l0S"/>
+                <constraint firstItem="pud-pn-mGe" firstAttribute="leading" secondItem="wd6-lG-cnl" secondAttribute="leading" constant="11" id="fGb-DA-C0h"/>
+                <constraint firstItem="y0l-9v-XPy" firstAttribute="top" secondItem="CYb-Xu-94z" secondAttribute="top" id="fgh-sN-1HH"/>
+                <constraint firstItem="pud-pn-mGe" firstAttribute="top" secondItem="CYb-Xu-94z" secondAttribute="top" id="jq4-qa-Mot"/>
+                <constraint firstItem="wd6-lG-cnl" firstAttribute="trailing" secondItem="y0l-9v-XPy" secondAttribute="trailing" constant="10" id="nud-mh-Avc"/>
+                <constraint firstItem="wd6-lG-cnl" firstAttribute="trailing" secondItem="pud-pn-mGe" secondAttribute="trailing" constant="14" id="wyc-c3-Tf5"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bottomDivider" destination="6C9-EL-eJn" id="RxL-Bf-PS3"/>
+                <outlet property="checkBox" destination="ns3-3v-bTH" id="MRd-lC-aMg"/>
+                <outlet property="fullName" destination="afb-jE-36w" id="dYx-fB-TGH"/>
+                <outlet property="topDivider" destination="y0l-9v-XPy" id="0mK-X4-tda"/>
+                <outlet property="username" destination="vU6-cp-Xif" id="ohP-be-hHK"/>
+            </connections>
+            <point key="canvasLocation" x="122.90076335877862" y="229.22535211267606"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ProfileTemp" width="5126" height="5142"/>
+        <image name="checkBoxUnchecked" width="17" height="17"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

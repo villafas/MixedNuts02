@@ -44,12 +44,23 @@ struct Task{
         isComplete = snapshot.data()["isComplete"] as! Bool
     }
     
-    
     //MARK: - Conversion Methods
     
     // Func converting model for easier writing to database
     func toAnyObject() -> [String : Any] {
         return [
+            "title": title,
+            "course": course,
+            "notes": notes ?? "",
+            "dueDate": dueDate,
+            "markWeight": markWeight ?? 0,
+            "isComplete": isComplete
+        ]
+    }
+    
+    func toAnyObjectWithId() -> [String : Any] {
+        return [
+            "uid": id,
             "title": title,
             "course": course,
             "notes": notes ?? "",

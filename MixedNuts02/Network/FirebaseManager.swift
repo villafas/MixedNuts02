@@ -87,6 +87,44 @@ class FirebaseManager {
                 completion(.success(tasks))
             }
     }
+
+    func fetchPendingTasks(completion: @escaping (Result<[SharedTask], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("sharedTasks")
+        
+        tasksCollection.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            var tasks: [SharedTask] = []
+            let dispatchGroup = DispatchGroup()  // Create a dispatch group
+            
+            for document in querySnapshot!.documents {
+                let uid = document.get("uid") as! String
+                let task = Task(snapshot: document)
+                
+                dispatchGroup.enter()  // Enter the group before starting async work
+                
+                self.fetchFriendDetails(usingId: uid) { result in
+                    switch result {
+                    case .success(let friendDetails):
+                        tasks.append(SharedTask(user: friendDetails, task: task))
+                    case .failure(let error):
+                        completion(.failure(error))
+                        return  // Exit early if an error occurs
+                    }
+                    dispatchGroup.leave()  // Leave the group after the async task completes
+                }
+            }
+            
+            // Notify when all async tasks are done
+            dispatchGroup.notify(queue: .main) {
+                completion(.success(tasks))
+            }
+        }
+    }
     
     func fetchCourses(completion: @escaping (Result<[Course], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
@@ -314,6 +352,31 @@ class FirebaseManager {
             let lastName = document.get("lastName") as? String ?? "User"
             
             var friendDetails = FriendUser(uid: friend.uid, username: username, firstName: firstName, lastName: lastName, isPending: friend.isPending)
+            
+            // Returning the results as a tuple
+            completion(.success(friendDetails))
+        }
+    }
+        
+    func fetchFriendDetails(usingId friendId: String, completion: @escaping (Result<FriendUser, Error>) -> Void) {
+        let userRef = db.collection("users").document(friendId)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                completion(.failure(NSError(domain: "User not found", code: 404, userInfo: nil)))
+                return
+            }
+            
+            let username = document.get("username") as? String ?? "No username"
+            let firstName = document.get("firstName") as? String ?? "Unknown"
+            let lastName = document.get("lastName") as? String ?? "User"
+            
+            var friendDetails = FriendUser(uid: friendId, username: username, firstName: firstName, lastName: lastName, isPending: false)
             
             // Returning the results as a tuple
             completion(.success(friendDetails))
@@ -657,6 +720,76 @@ class FirebaseManager {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    // Function to add a task to Firestore using toAnyObject()
+    func shareTask(_ task: Task, _ toId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let taskData = task.toAnyObjectWithId()  // Convert Task object to a dictionary
+        let userDbRef = db.collection("users").document(toId)
+        let tasksCollection = userDbRef.collection("sharedTasks")
+        
+        // Add a new document with an auto-generated ID and get the reference
+        let newDocumentRef = tasksCollection.addDocument(data: taskData) { error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+        }
+        
+        // Use the document reference to get the ID directly
+        // let taskID = newDocumentRef.documentID  // Get the auto-generated ID
+        completion(.success(()))  // Return the ID
+    }
+    
+    func acceptTask(_ task: Task, completion: @escaping (Result<String, Error>) -> Void) {
+        var newTaskId = ""
+        let dispatchGroup = DispatchGroup()  // Create a dispatch group
+        var errorOccurred: Error? = nil  // Track any error that occurs
+        
+        dispatchGroup.enter()
+        addTask(task) { result in
+            switch result {
+            case .success(let taskId):
+                newTaskId = taskId
+            case .failure(let error):
+                errorOccurred = error  // Capture the error
+            }
+            dispatchGroup.leave()  // Always leave the group
+        }
+        
+        dispatchGroup.enter()
+        rejectTask(taskId: task.id) { result in
+            switch result {
+            case .success:
+                break
+            case .failure(let error):
+                errorOccurred = error  // Capture the error
+            }
+            dispatchGroup.leave()  // Always leave the group
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if let error = errorOccurred {
+                completion(.failure(error))  // Return the first error if any occurred
+            } else {
+                completion(.success(newTaskId))  // All tasks completed successfully
+            }
+        }
+    }
+    
+    
+    func rejectTask(taskId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("sharedTasks")
+        let taskRef = tasksCollection.document(taskId)
+        
+        taskRef.delete { error in
+            if let error = error {
+                completion(.failure(error)) // If there's an error, call the failure case
+            } else {
+                completion(.success(())) // Success case
             }
         }
     }

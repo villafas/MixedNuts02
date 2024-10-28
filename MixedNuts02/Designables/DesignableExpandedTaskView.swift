@@ -15,6 +15,7 @@ class DesignableExpandedTaskView: DesignableTaskView {
     @IBOutlet weak var markWeightField: DesignableUITextField!
     @IBOutlet weak var notesView: DesignableUITextView!
     @IBOutlet weak var editButton: DesignableUIButton!
+    @IBOutlet weak var shareButton: UIButton!
     
     //MARK: - Expanded task view instantiation
     override class func instanceFromNib(setTask: Task) -> DesignableExpandedTaskView{

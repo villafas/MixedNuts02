@@ -75,7 +75,7 @@ class SocialViewController: BaseScrollViewController, UITableViewDelegate, UITab
         
         viewModel.onExistingFriend = { [weak self] in
             DispatchQueue.main.async {
-                self?.showViewControllerAlert(title: "Existing Friend", message: "You already have a freindship with this user.")
+                self?.showViewControllerAlert(title: "Existing Friend", message: "You already have a friendship with this user.")
             }
         }
         

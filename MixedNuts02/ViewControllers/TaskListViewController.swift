@@ -18,8 +18,11 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var navBarHeader: UIView!
     @IBOutlet weak var navBarContent: UIView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var pendingTable: SelfSizedTableView!
     @IBOutlet weak var taskTable: SelfSizedTableView!
+    @IBOutlet weak var tableDivider: UIView!
     var selectedRow: IndexPath?
+    var selectedPendingRow: IndexPath?
     @IBOutlet weak var navBarBottom: UIView!
     
     var navBarIsExpanded: Bool = false // tracks detail panel toggle state
@@ -71,12 +74,17 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         taskTable.register(UITableViewCell.self, forCellReuseIdentifier: "task")
         taskTable.delegate = self
         taskTable.dataSource = self
+        
+        pendingTable.register(UITableViewCell.self, forCellReuseIdentifier: "sharedTask")
+        pendingTable.delegate = self
+        pendingTable.dataSource = self
         //taskTable.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 0, right: 0);
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // Get Tasks
         refreshTasks()
+        refreshShared()
     }
     
     
@@ -129,6 +137,13 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
+        viewModel.onPendingUpdated = { [weak self] in
+            DispatchQueue.main.async {
+                self?.updatePendingVisibility();
+                self?.pendingTable.reloadData();
+            }
+        }
+        
         viewModel.onTaskCompletionUpdated = { [weak self] in
             DispatchQueue.main.async {
                 self?.tempID = nil
@@ -144,6 +159,23 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                 self?.animateScaleOut(desiredView: self!.popupDeleteView)
                 self?.selectedRow = nil
                 self?.refreshTasks()
+            }
+        }
+        
+        viewModel.onTaskAccepted = { [weak self] in
+            DispatchQueue.main.async {
+                self?.selectedPendingRow = nil
+                self?.refreshShared()
+                self?.refreshTasks()
+                self?.tempID = self?.viewModel.newId
+                self?.viewModel.newId = nil
+            }
+        }
+        
+        viewModel.onTaskRejected = { [weak self] in
+            DispatchQueue.main.async {
+                self?.selectedPendingRow = nil
+                self?.refreshShared()
             }
         }
         
@@ -186,12 +218,36 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         viewModel.fetchTasks()
     }
     
+    func refreshShared(){
+        viewModel.fetchPendingTasks()
+    }
+    
     func updateTaskToComplete(id: String){
         viewModel.updateTaskToComplete(taskID: id, isComplete: true)
     }
     
     func deleteTask(id: String){
         viewModel.deleteTask(taskID: id)
+    }
+    
+    func rejectTask(id: String){
+        viewModel.rejectTask(taskID: id)
+    }
+    
+    func acceptTask(task: Task){
+        viewModel.acceptTask(task)
+    }
+    
+    //MARK: - UI Functions
+    
+    func updatePendingVisibility() {
+        if viewModel.pendingCollection.count > 0 {
+            pendingTable.isHidden = false
+            tableDivider.isHidden = false
+        } else {
+            pendingTable.isHidden = true
+            tableDivider.isHidden = true
+        }
     }
     
     //MARK: - Date Formatting
@@ -243,10 +299,20 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: - Table view delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView.tag == 37 {
+            return 1
+        }
+        
         return viewModel.taskCollection.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView.tag == 37 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTitle")! as! SectionTitleView
+            cell.title!.text = "Pending"
+            return cell
+        }
+        
         // section title
         let cell = tableView.dequeueReusableCell(withIdentifier: "sectionTitle")! as! SectionTitleView
         let taskDate = viewModel.taskCollection[section].day.startOfDay
@@ -267,11 +333,24 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tableView.tag == 37 {
+            return viewModel.pendingCollection.count
+        }
+        
         let section = viewModel.taskCollection[section]
         return section.tasks.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView.tag == 37 {
+            // if task is selected, expand its size
+            if indexPath == self.selectedPendingRow{
+                return 453.0
+            }
+            
+            return 96.0
+        }
+        
         let numberOfRows = tableView.numberOfRows(inSection: indexPath.section)
         let numberOfSections = tableView.numberOfSections
         
@@ -295,6 +374,43 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView.tag == 37 {
+            // Cell configuration
+            let cell = tableView.dequeueReusableCell(withIdentifier: "sharedTask", for: indexPath)
+            cell.selectionStyle = .none
+            if let viewWithTag = cell.contentView.viewWithTag(100) {
+                viewWithTag.removeFromSuperview()
+            }
+            let task = viewModel.pendingCollection[indexPath.row].task
+            let friend = viewModel.pendingCollection[indexPath.row].user
+            
+            // if selected, show expanded task
+            if (indexPath == self.selectedPendingRow){
+                let taskView = DesignableExpandedSharedTaskView.instanceFromNib(setTask: task, setFriend: friend)
+                taskView.translatesAutoresizingMaskIntoConstraints = false
+                taskView.heightAnchor.constraint(equalToConstant: 438).isActive = true
+                taskView.widthAnchor.constraint(equalToConstant: pendingTable.frame.width).isActive = true
+                taskView.tag = 100
+                taskView.declineButton.removeTarget(nil, action: nil, for: .allEvents)
+                taskView.declineButton.addTarget(self, action: #selector(rejectButtonTapped(_:)), for: .touchUpInside)
+                taskView.acceptButton.removeTarget(nil, action: nil, for: .allEvents)
+                taskView.acceptButton.addTarget(self, action: #selector(acceptButtonTapped(_:)), for: .touchUpInside)
+                
+                cell.contentView.addSubview(taskView)
+                return cell
+            }
+            
+            // otherwise, show regular task view
+            let taskView = DesignableSharedTaskView.instanceFromNib(setTask: task, setFriend: friend)
+            taskView.translatesAutoresizingMaskIntoConstraints = false
+            taskView.heightAnchor.constraint(equalToConstant: 81).isActive = true
+            taskView.widthAnchor.constraint(equalToConstant: taskTable.frame.width).isActive = true
+            taskView.tag = 100
+            cell.contentView.addSubview(taskView)
+            return cell
+        }
+        
+        
         // Cell configuration
         let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath)
         cell.selectionStyle = .none
@@ -317,6 +433,8 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
             taskView.taskButton.addTarget(self, action: #selector(showDoneAction(_:)), for: .touchUpInside)
             taskView.editButton.removeTarget(nil, action: nil, for: .allEvents)
             taskView.editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+            taskView.shareButton.removeTarget(nil, action: nil, for: .allEvents)
+            taskView.shareButton.addTarget(self, action: #selector(shareButtonPressed(_:)), for: .touchUpInside)
             
             cell.contentView.addSubview(taskView)
             return cell
@@ -336,19 +454,34 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Row selection
-        if indexPath == self.selectedRow {
-            self.taskTable.deselectRow(at: indexPath, animated: true)
-            self.selectedRow = nil
+        if tableView.tag == 37 {
+            if indexPath == self.selectedPendingRow {
+                self.pendingTable.deselectRow(at: indexPath, animated: true)
+                self.selectedPendingRow = nil
+            } else {
+                self.selectedPendingRow = indexPath
+            }
+            self.pendingTable.reloadData()
+            self.pendingTable.scrollToRow(at: indexPath, at: .top, animated: true)
         } else {
-            self.selectedRow = indexPath
+            if indexPath == self.selectedRow {
+                self.taskTable.deselectRow(at: indexPath, animated: true)
+                self.selectedRow = nil
+            } else {
+                self.selectedRow = indexPath
+            }
+            self.taskTable.reloadData()
+            self.taskTable.scrollToRow(at: indexPath, at: .none, animated: true)
         }
-        self.taskTable.reloadData()
-        self.taskTable.scrollToRow(at: indexPath, at: .none, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        // row deselection
-        self.selectedRow = nil
+        if tableView.tag == 37 {
+            self.selectedPendingRow = nil
+        } else {
+            // row deselection
+            self.selectedRow = nil
+        }
     }
     
     func totalItems(_ sections: [DailyTasks]) -> Int {
@@ -411,6 +544,47 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
                     self?.refreshTasks()
                 }
             }
+        } else if segue.identifier == "shareTaskSegue" {
+            if let destinationVC = segue.destination as? ShareTaskViewController {
+                if let selectedTask = taskTable.cellForRow(at: selectedRow!)?.contentView.viewWithTag(100) as? DesignableExpandedTaskView {
+                    destinationVC.taskObj = selectedTask.taskObj
+                }
+                
+                // Set the modal presentation style to sheet
+                destinationVC.modalPresentationStyle = .pageSheet
+                
+                // Adjust size using UISheetPresentationController (iOS 15+)
+                if let sheet = destinationVC.presentationController as? UISheetPresentationController {
+                    sheet.detents = [.medium()]  // Start with medium height
+                    sheet.prefersGrabberVisible = false  // Optional grabber at the top
+                }
+                
+                // Optional: If you want precise sizing
+                destinationVC.preferredContentSize = CGSize(
+                    width: UIScreen.main.bounds.width,
+                    height: UIScreen.main.bounds.height * (2/3)
+                )
+            }
+        }
+    }
+    
+    //MARK: - Share Navigation
+    @IBAction func shareButtonPressed(_ sender: UIButton){
+        performSegue(withIdentifier: "shareTaskSegue", sender: self)
+    }
+    
+    //MARK: - Shared Task Updates
+    @IBAction func rejectButtonTapped(_ sender: UIButton) {
+        // show delete popup
+        if let taskView = sender.superview?.superview?.superview as? DesignableExpandedSharedTaskView?, let id = taskView!.taskObj?.id {
+            rejectTask(id: id)
+        }
+    }
+    
+    @IBAction func acceptButtonTapped(_ sender: UIButton) {
+        // show delete popup
+        if let taskView = sender.superview?.superview?.superview as? DesignableExpandedSharedTaskView?, let task = taskView!.taskObj {
+            acceptTask(task: task)
         }
     }
     
