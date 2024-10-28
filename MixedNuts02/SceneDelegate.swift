@@ -62,14 +62,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                          completion: nil)
     }
     
-    func setNotificationSelection(_ taskId: String) {
+    func setNotificationSelection(_ taskId: String, refresh: Bool = false) {
         guard let window = self.window else {
             return
         }
         // When notification is selected, change view controller to task list
-        if let rc = window.rootViewController as? UITabBarController, let nc = rc.selectedViewController as? UINavigationController, let vc = nc.topViewController as? TaskListViewController {
-            
+        if let rc = window.rootViewController as? UITabBarController, let nc = rc.viewControllers?[1] as? UINavigationController, let vc = nc.topViewController as? TaskListViewController {
+  
             vc.tempID = taskId
+            
+            if refresh {
+                vc.refreshTasks()
+            } else {
+                rc.selectedIndex = 1
+            }
         }
     }
 }

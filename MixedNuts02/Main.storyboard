@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Zis-T6-i0n">
-                                        <rect key="frame" x="20" y="0.0" width="353" height="596"/>
+                                        <rect key="frame" x="20" y="0.0" width="353" height="536"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="phi-dG-z44">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="173"/>
@@ -61,13 +61,13 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iIn-qQ-Tgc">
-                                                <rect key="frame" x="0.0" y="286.66666666666669" width="353" height="146.33333333333331"/>
+                                                <rect key="frame" x="0.0" y="286.66666666666669" width="353" height="86.333333333333314"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="a2M-Ng-lfG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="112.33333333333333"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="52.333333333333336"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KUw-ko-NNF" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="49.333333333333336"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="19.333333333333332"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits" textContentType="email"/>
@@ -91,7 +91,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8vn-of-S6G" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="64.333333333333314" width="353" height="48"/>
+                                                                <rect key="frame" x="0.0" y="34.333333333333314" width="353" height="18"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -117,7 +117,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Icz-aJ-6ed">
-                                                        <rect key="frame" x="0.0" y="112.33333333333331" width="353" height="34"/>
+                                                        <rect key="frame" x="0.0" y="52.333333333333314" width="353" height="34"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aG3-Eg-mj4">
                                                                 <rect key="frame" x="0.0" y="0.0" width="202" height="34"/>
@@ -138,7 +138,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gjs-x2-hBS">
-                                                <rect key="frame" x="0.0" y="463" width="353" height="98"/>
+                                                <rect key="frame" x="0.0" y="403" width="353" height="98"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odh-yB-Dmb" customClass="DesignableUIButton" customModule="MixedNuts02" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="57"/>
@@ -182,7 +182,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtZ-RM-92C">
-                                                <rect key="frame" x="0.0" y="591" width="353" height="5"/>
+                                                <rect key="frame" x="0.0" y="531" width="353" height="5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="rF7-jN-aM8"/>
                                                 </constraints>
@@ -3599,7 +3599,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ev1-x7-6ln">
-                                        <rect key="frame" x="20" y="0.0" width="353" height="689"/>
+                                        <rect key="frame" x="20" y="0.0" width="353" height="509"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-9i-IoN">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="53.666666666666664"/>
@@ -3619,10 +3619,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Plg-Q7-7PT">
-                                                <rect key="frame" x="0.0" y="83.666666666666657" width="353" height="368.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="83.666666666666643" width="353" height="188.33333333333337"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6qK-Jk-FK9" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="49.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="353" height="19.333333333333332"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3645,7 +3645,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wMy-qP-4CE" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="64.333333333333343" width="353" height="49.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="34.333333333333343" width="353" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3668,7 +3668,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vyg-Wy-vEZ" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="128.66666666666666" width="353" height="49.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="68.666666666666686" width="353" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" textContentType="given-name"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3691,7 +3691,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JFe-kB-duh" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="193.00000000000003" width="353" height="49.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="103.00000000000003" width="353" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" textContentType="family-name"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3714,7 +3714,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uXM-uo-67e" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="257.33333333333337" width="353" height="48"/>
+                                                        <rect key="frame" x="0.0" y="137.33333333333334" width="353" height="18"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3737,7 +3737,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tYx-gP-XrZ" customClass="DesignableUITextField" customModule="MixedNuts02" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="320.33333333333337" width="353" height="48"/>
+                                                        <rect key="frame" x="0.0" y="170.33333333333334" width="353" height="18"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3762,7 +3762,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="bpv-fm-Trp">
-                                                <rect key="frame" x="0.0" y="482" width="353" height="172"/>
+                                                <rect key="frame" x="0.0" y="302" width="353" height="172"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4Y-7p-k5I">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="22"/>
@@ -3855,7 +3855,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6G-H5-7ui">
-                                                <rect key="frame" x="0.0" y="684" width="353" height="5"/>
+                                                <rect key="frame" x="0.0" y="504" width="353" height="5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="gyi-vo-72y"/>
                                                 </constraints>
@@ -4818,19 +4818,19 @@
             <size key="intrinsicContentSize" width="88" height="32.666666666666664"/>
         </designable>
         <designable name="6qK-Jk-FK9">
-            <size key="intrinsicContentSize" width="184.33333333333334" height="49.333333333333336"/>
+            <size key="intrinsicContentSize" width="96.333333333333329" height="19.333333333333332"/>
         </designable>
         <designable name="8kP-qF-Qdn">
-            <size key="intrinsicContentSize" width="187.66666666666666" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="157.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="8vn-of-S6G">
-            <size key="intrinsicContentSize" width="155" height="48"/>
+            <size key="intrinsicContentSize" width="66.666666666666671" height="18"/>
         </designable>
         <designable name="EpG-cW-OMg">
-            <size key="intrinsicContentSize" width="129" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="98.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="F6j-9I-P2d">
-            <size key="intrinsicContentSize" width="156" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="126" height="20.333333333333332"/>
         </designable>
         <designable name="IBH-OH-NoV">
             <size key="intrinsicContentSize" width="74" height="32.666666666666664"/>
@@ -4839,13 +4839,13 @@
             <size key="intrinsicContentSize" width="69.666666666666671" height="32.666666666666664"/>
         </designable>
         <designable name="JFe-kB-duh">
-            <size key="intrinsicContentSize" width="161" height="49.333333333333336"/>
+            <size key="intrinsicContentSize" width="72.666666666666671" height="19.333333333333332"/>
         </designable>
         <designable name="JaQ-sc-8zo">
-            <size key="intrinsicContentSize" width="131" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="101" height="20.333333333333332"/>
         </designable>
         <designable name="KUw-ko-NNF">
-            <size key="intrinsicContentSize" width="184.33333333333334" height="49.333333333333336"/>
+            <size key="intrinsicContentSize" width="96.333333333333329" height="19.333333333333332"/>
         </designable>
         <designable name="Odh-yB-Dmb">
             <size key="intrinsicContentSize" width="82.666666666666671" height="32.666666666666664"/>
@@ -4854,25 +4854,25 @@
             <size key="intrinsicContentSize" width="107.33333333333333" height="34.333333333333336"/>
         </designable>
         <designable name="R6F-Td-2Be">
-            <size key="intrinsicContentSize" width="114.33333333333333" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="84.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="SBG-hT-8qn">
             <size key="intrinsicContentSize" width="59.666666666666664" height="32.666666666666664"/>
         </designable>
         <designable name="T4q-kJ-PbD">
-            <size key="intrinsicContentSize" width="39" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="9" height="20.333333333333332"/>
         </designable>
         <designable name="UP8-uC-h70">
-            <size key="intrinsicContentSize" width="114.33333333333333" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="84.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="VyR-gK-psW">
             <size key="intrinsicContentSize" width="59.666666666666664" height="32.666666666666664"/>
         </designable>
         <designable name="Vyg-Wy-vEZ">
-            <size key="intrinsicContentSize" width="161.33333333333334" height="49.333333333333336"/>
+            <size key="intrinsicContentSize" width="73.333333333333329" height="19.333333333333332"/>
         </designable>
         <designable name="XaG-8X-YWg">
-            <size key="intrinsicContentSize" width="113" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="83" height="20.333333333333332"/>
         </designable>
         <designable name="bGK-Z3-RMm">
             <size key="intrinsicContentSize" width="88.666666666666671" height="32.666666666666664"/>
@@ -4884,25 +4884,25 @@
             <size key="intrinsicContentSize" width="69.666666666666671" height="32.666666666666664"/>
         </designable>
         <designable name="obP-Us-0Ke">
-            <size key="intrinsicContentSize" width="146" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="115.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="pF0-6g-ehf">
-            <size key="intrinsicContentSize" width="254.33333333333334" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="224.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="soj-ri-dph">
             <size key="intrinsicContentSize" width="34.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="tYx-gP-XrZ">
-            <size key="intrinsicContentSize" width="212" height="48"/>
+            <size key="intrinsicContentSize" width="124" height="18"/>
         </designable>
         <designable name="tdS-oA-n92">
             <size key="intrinsicContentSize" width="69" height="32.666666666666664"/>
         </designable>
         <designable name="uXM-uo-67e">
-            <size key="intrinsicContentSize" width="155" height="48"/>
+            <size key="intrinsicContentSize" width="66.666666666666671" height="18"/>
         </designable>
         <designable name="wMy-qP-4CE">
-            <size key="intrinsicContentSize" width="157" height="49.333333333333336"/>
+            <size key="intrinsicContentSize" width="69" height="19.333333333333332"/>
         </designable>
         <designable name="yEb-1A-zYm">
             <size key="intrinsicContentSize" width="133.66666666666666" height="32.666666666666664"/>
@@ -4911,7 +4911,7 @@
             <size key="intrinsicContentSize" width="74" height="32.666666666666664"/>
         </designable>
         <designable name="zkU-Mx-vAg">
-            <size key="intrinsicContentSize" width="109.33333333333333" height="50.333333333333336"/>
+            <size key="intrinsicContentSize" width="79.333333333333329" height="20.333333333333332"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

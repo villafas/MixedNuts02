@@ -11,7 +11,7 @@ import FirebaseAuth
 import UserNotifications
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
       // Database config
       // Initialize FirebaseManager which configures Firebase
@@ -27,19 +27,29 @@ import UserNotifications
         completionHandler: { _, _ in }
       )
       
-      // Check if a user is logged in
+      //Check if user is logged in
       Auth.auth().addStateDidChangeListener { auth, user in
           if let user = user {
               print("\(user.email!) is logged in.")
-              print(user)
+              
               let storyboard = UIStoryboard(name: "Main", bundle: nil)
               let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController") as? UITabBarController
               
               // Set user information globally
               AppUser.shared.setUser(uid: user.uid, displayName: user.displayName, email: user.email)
-              // This is to get the SceneDelegate object from your view controller
-              // then call the change root view controller function to change to main tab bar
+              
+              // Change root view controller
               (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController!)
+              
+              // Check if there is a pending notification
+              if let pendingNotification = UserDefaults.standard.string(forKey: "PendingNotification") {
+                  // Clear the saved notification
+                  UserDefaults.standard.removeObject(forKey: "PendingNotification")
+                  
+                  (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setNotificationSelection(pendingNotification)
+                  
+                  // Navigate to TaskList
+              }
           } else {
               print("There is no active user.")
           }
@@ -67,16 +77,27 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
             return [[.list, .banner, .sound]]
       }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        // Logic for when a notification is selected
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController") as? UITabBarController
-        mainTabBarController?.selectedIndex = 1
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController!)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let notificationInfo = response.notification.request.content.categoryIdentifier
         
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setNotificationSelection(response.notification.request.content.categoryIdentifier)
+        let appState = UIApplication.shared.applicationState
+        print(appState.rawValue)
+        if appState == .active || appState == .inactive {
+            print("here")
+            // App is in the foreground – navigate directly
+            guard let tabBarController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController as? UITabBarController else {
+                print("error")
+                    return
+                }
+
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.setNotificationSelection(notificationInfo, refresh: tabBarController.selectedIndex == 1 ? true : false)
+            
+        } else {
+            // App is in the background or terminated – save notification info
+            UserDefaults.standard.set(notificationInfo, forKey: "PendingNotification")
+        }
         
         completionHandler()
     }
