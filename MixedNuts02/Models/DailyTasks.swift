@@ -9,9 +9,9 @@ import Foundation
 
 struct DailyTasks {
     var day: Date
-    var tasks: [Task]
+    var tasks: [TaskToDo]
     
-    init(day: Date , tasks: [Task]){
+    init(day: Date , tasks: [TaskToDo]){
         self.day = day
         self.tasks = tasks
     }
@@ -19,9 +19,9 @@ struct DailyTasks {
 
 struct SharedTask {
     var user: FriendUser
-    var task: Task
+    var task: TaskToDo
     
-    init(user: FriendUser, task: Task) {
+    init(user: FriendUser, task: TaskToDo) {
         self.user = user
         self.task = task
     }

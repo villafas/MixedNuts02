@@ -58,7 +58,7 @@ class AddTaskViewController: BaseScrollViewController, UITextFieldDelegate, UISc
     internal let viewModel = AddTaskViewModel()
     
     var isEditMode: Bool = false
-    var taskObj: Task?
+    var taskObj: TaskToDo?
     var onDismiss: ((String?) -> Void)?  // Closure to notify MainViewController
     
     //MARK: - Lifecycle Methods
@@ -130,7 +130,7 @@ class AddTaskViewController: BaseScrollViewController, UITextFieldDelegate, UISc
         }
         
         if isEditMode {
-            taskObj = Task(id: taskObj!.id, title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: taskObj!.isComplete)
+            taskObj = TaskToDo(id: taskObj!.id, title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: taskObj!.isComplete)
             
             updateTask()
         } else {

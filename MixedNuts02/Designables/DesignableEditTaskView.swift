@@ -13,7 +13,7 @@ class DesignableEditTaskView: DesignableTaskView {
     @IBOutlet weak var deleteButton: UIButton!
     
     //MARK: - Edit task view instantiation
-    override class func instanceFromNib(setTask: Task) -> DesignableEditTaskView{
+    override class func instanceFromNib(setTask: TaskToDo) -> DesignableEditTaskView{
         let task = UINib(nibName: "EditTaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableEditTaskView
         task.taskObj = setTask
         task.taskTitle.text = "\(setTask.title) • \(setTask.course)"

@@ -16,7 +16,7 @@ class DesignableSharedTaskView: UIView {
     @IBOutlet weak var userImage: UIImageView!
     var viewHeight = 81.0
     
-    var taskObj: Task?
+    var taskObj: TaskToDo?
     var friendObj: FriendUser?
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
@@ -37,7 +37,7 @@ class DesignableSharedTaskView: UIView {
     }
     
     //MARK: - View instantiation
-    class func instanceFromNib(setTask: Task, setFriend: FriendUser) -> DesignableSharedTaskView{
+    class func instanceFromNib(setTask: TaskToDo, setFriend: FriendUser) -> DesignableSharedTaskView{
         let task = UINib(nibName: "SharedTaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableSharedTaskView
         task.taskObj = setTask
         task.friendObj = setFriend

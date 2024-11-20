@@ -30,6 +30,9 @@
 		275B0BB12C8762EF0047B9AE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */; };
 		275B0BB52C878F2B0047B9AE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */; };
 		275ED4182BB70EF700E9E35F /* ExpandedTaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */; };
+		27624F522CD13A6700FDCEDF /* OpenAIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27624F512CD13A6700FDCEDF /* OpenAIManager.swift */; };
+		27624F542CD13B3E00FDCEDF /* AssistantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27624F532CD13B3E00FDCEDF /* AssistantViewModel.swift */; };
+		27624F562CD1536000FDCEDF /* AssistantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27624F552CD1536000FDCEDF /* AssistantViewController.swift */; };
 		2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765A86B2C8E1CF900A456A1 /* DesignableTaskCountView.swift */; };
 		2765AA242CCEBCA10076753E /* ShareTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765AA232CCEBCA10076753E /* ShareTaskViewController.swift */; };
 		2765AA262CCEBD6A0076753E /* ShareTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2765AA252CCEBD6A0076753E /* ShareTaskViewModel.swift */; };
@@ -56,6 +59,7 @@
 		277173E82C9B50C300459C7F /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E72C9B50C300459C7F /* Time.swift */; };
 		277173EA2C9B50E000459C7F /* DaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277173E92C9B50E000459C7F /* DaySchedule.swift */; };
 		27723B9C2C9362E9007EBDE2 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27723B9B2C9362E9007EBDE2 /* Course.swift */; };
+		277818762CD2B509001A6AA3 /* DesignableQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277818752CD2B509001A6AA3 /* DesignableQuestionView.swift */; };
 		2779FAFF2CAB6008003E10C1 /* AddCourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */; };
 		2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2779FB002CAB7008003E10C1 /* AddTaskViewModel.swift */; };
 		277FDC6E2C88939500B5CA65 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277FDC6D2C88939500B5CA65 /* TaskListViewModel.swift */; };
@@ -67,6 +71,7 @@
 		27CB34212CA21E0D002B65A0 /* DropdownTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CB34202CA21E0D002B65A0 /* DropdownTableView.xib */; };
 		27CB34232CA21E23002B65A0 /* DropdownTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CB34222CA21E23002B65A0 /* DropdownTableView.swift */; };
 		27D1CAF52C8E178F00D45B0A /* TaskCountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27D1CAF42C8E178F00D45B0A /* TaskCountView.xib */; };
+		27FBA1D12CD18CAD0070D95B /* SwiftOpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 27FBA1D02CD18CAD0070D95B /* SwiftOpenAI */; };
 		5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330C2BA0A463001E17B4 /* FirebaseAnalytics */; };
 		5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 5813330E2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion */; };
 		581333112BA0A463001E17B4 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 581333102BA0A463001E17B4 /* FirebaseAnalyticsSwift */; };
@@ -128,7 +133,7 @@
 		CE0A748D2BA8DE1600361881 /* TaskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748C2BA8DE1600361881 /* TaskView.xib */; };
 		CE0A748F2BA8DE1F00361881 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A748E2BA8DE1F00361881 /* Main.storyboard */; };
 		CE0A74912BA8DE2C00361881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A74902BA8DE2C00361881 /* Assets.xcassets */; };
-		CE0A74992BA8F28100361881 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* Task.swift */; };
+		CE0A74992BA8F28100361881 /* TaskToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A74982BA8F28100361881 /* TaskToDo.swift */; };
 		CE0EC6E22BB202BD0066EEB6 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */; };
 		CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE45AF902BB1ED4400832038 /* SectionTitleView.swift */; };
 		CE7316862BAD02A400D95353 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */; };
@@ -164,6 +169,9 @@
 		275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		275B0BB42C878F2B0047B9AE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		275ED4172BB70EF700E9E35F /* ExpandedTaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandedTaskView.xib; sourceTree = "<group>"; };
+		27624F512CD13A6700FDCEDF /* OpenAIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIManager.swift; sourceTree = "<group>"; };
+		27624F532CD13B3E00FDCEDF /* AssistantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantViewModel.swift; sourceTree = "<group>"; };
+		27624F552CD1536000FDCEDF /* AssistantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantViewController.swift; sourceTree = "<group>"; };
 		2765A86B2C8E1CF900A456A1 /* DesignableTaskCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableTaskCountView.swift; sourceTree = "<group>"; };
 		2765AA232CCEBCA10076753E /* ShareTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTaskViewController.swift; sourceTree = "<group>"; };
 		2765AA252CCEBD6A0076753E /* ShareTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareTaskViewModel.swift; sourceTree = "<group>"; };
@@ -190,6 +198,7 @@
 		277173E72C9B50C300459C7F /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		277173E92C9B50E000459C7F /* DaySchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySchedule.swift; sourceTree = "<group>"; };
 		27723B9B2C9362E9007EBDE2 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		277818752CD2B509001A6AA3 /* DesignableQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableQuestionView.swift; sourceTree = "<group>"; };
 		2779FAFE2CAB6008003E10C1 /* AddCourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewModel.swift; sourceTree = "<group>"; };
 		2779FB002CAB7008003E10C1 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		277FDC6D2C88939500B5CA65 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
@@ -239,7 +248,7 @@
 		CE0A748C2BA8DE1600361881 /* TaskView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskView.xib; sourceTree = "<group>"; };
 		CE0A748E2BA8DE1F00361881 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CE0A74902BA8DE2C00361881 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CE0A74982BA8F28100361881 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		CE0A74982BA8F28100361881 /* TaskToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskToDo.swift; sourceTree = "<group>"; };
 		CE0EC6E12BB202BD0066EEB6 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		CE45AF902BB1ED4400832038 /* SectionTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleView.swift; sourceTree = "<group>"; };
 		CE7316852BAD02A400D95353 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
@@ -260,6 +269,7 @@
 				581333252BA0A463001E17B4 /* FirebaseFirestore in Frameworks */,
 				581333112BA0A463001E17B4 /* FirebaseAnalyticsSwift in Frameworks */,
 				5813330D2BA0A463001E17B4 /* FirebaseAnalytics in Frameworks */,
+				27FBA1D12CD18CAD0070D95B /* SwiftOpenAI in Frameworks */,
 				5813330F2BA0A463001E17B4 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				581333352BA0A463001E17B4 /* FirebaseMLModelDownloader in Frameworks */,
 				581333292BA0A463001E17B4 /* FirebaseFirestoreSwift in Frameworks */,
@@ -297,7 +307,7 @@
 				27661EB42C9114DE00B863FA /* DailyTasks.swift */,
 				2757AFE72CC8242400337C17 /* DailyCourses.swift */,
 				277173E92C9B50E000459C7F /* DaySchedule.swift */,
-				CE0A74982BA8F28100361881 /* Task.swift */,
+				CE0A74982BA8F28100361881 /* TaskToDo.swift */,
 				277173E52C9B147300459C7F /* Term.swift */,
 				277173E72C9B50C300459C7F /* Time.swift */,
 				2769DE112CCD7F01007D2823 /* FriendUser.swift */,
@@ -338,6 +348,7 @@
 				2769DE0B2CCD5CD8007D2823 /* SignUpViewModel.swift */,
 				27185D202CCD9C5500B05591 /* SocialViewModel.swift */,
 				2765AA252CCEBD6A0076753E /* ShareTaskViewModel.swift */,
+				27624F532CD13B3E00FDCEDF /* AssistantViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -345,6 +356,7 @@
 		277FDC6B2C88916C00B5CA65 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				27624F512CD13A6700FDCEDF /* OpenAIManager.swift */,
 				275B0BB02C8762EF0047B9AE /* FirebaseManager.swift */,
 			);
 			path = Network;
@@ -452,6 +464,7 @@
 				276B2F482C8D2EE80053A860 /* TaskListViewController.swift */,
 				274EF2EE2CBB2C6F00862C25 /* TimetableViewController.swift */,
 				2765AA232CCEBCA10076753E /* ShareTaskViewController.swift */,
+				27624F552CD1536000FDCEDF /* AssistantViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -478,6 +491,7 @@
 				27185D242CCDDF5E00B05591 /* DesignableFriendCheckView.swift */,
 				279A69C12CCEE24A00B21330 /* DesignableSharedTaskView.swift */,
 				279A69C32CCEE3AD00B21330 /* DesignableExpandedSharedTaskView.swift */,
+				277818752CD2B509001A6AA3 /* DesignableQuestionView.swift */,
 			);
 			path = Designables;
 			sourceTree = "<group>";
@@ -553,6 +567,7 @@
 				5813333C2BA0A463001E17B4 /* FirebaseRemoteConfigSwift */,
 				5813333E2BA0A463001E17B4 /* FirebaseStorage */,
 				581333402BA0A463001E17B4 /* FirebaseStorageCombine-Community */,
+				27FBA1D02CD18CAD0070D95B /* SwiftOpenAI */,
 			);
 			productName = MixedNuts02;
 			productReference = 581ADE612B9A152F00CA0B6D /* MixedNuts02.app */;
@@ -584,6 +599,7 @@
 			mainGroup = 581ADE582B9A152F00CA0B6D;
 			packageReferences = (
 				5813330B2BA0A463001E17B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				27FBA1CF2CD18CAD0070D95B /* XCRemoteSwiftPackageReference "SwiftOpenAI" */,
 			);
 			productRefGroup = 581ADE622B9A152F00CA0B6D /* Products */;
 			projectDirPath = "";
@@ -693,6 +709,7 @@
 				CE45AF912BB1ED4400832038 /* SectionTitleView.swift in Sources */,
 				2769DE182CCD893C007D2823 /* DesignableFriendView.swift in Sources */,
 				276B2F492C8D2EE80053A860 /* TaskListViewController.swift in Sources */,
+				27624F562CD1536000FDCEDF /* AssistantViewController.swift in Sources */,
 				274F98FB2CBB3A5600BF1721 /* CourseListViewController.swift in Sources */,
 				2757AFF02CC834C600337C17 /* DesignableExpandedCourseView.swift in Sources */,
 				274EF2EB2CB4BF5E00862C25 /* HomeViewModel.swift in Sources */,
@@ -735,6 +752,7 @@
 				581ADE672B9A152F00CA0B6D /* SceneDelegate.swift in Sources */,
 				2757AFE82CC8242400337C17 /* DailyCourses.swift in Sources */,
 				2769DE122CCD7F01007D2823 /* FriendUser.swift in Sources */,
+				27624F522CD13A6700FDCEDF /* OpenAIManager.swift in Sources */,
 				274F991F2CC6DC9800BF1721 /* NotificationHelper.swift in Sources */,
 				2769DE142CCD8351007D2823 /* Friendship.swift in Sources */,
 				2779FB012CAB7008003E10C1 /* AddTaskViewModel.swift in Sources */,
@@ -749,8 +767,10 @@
 				274EF2EF2CBB2C6F00862C25 /* TimetableViewController.swift in Sources */,
 				2769DE102CCD7326007D2823 /* SocialViewController.swift in Sources */,
 				277173EA2C9B50E000459C7F /* DaySchedule.swift in Sources */,
-				CE0A74992BA8F28100361881 /* Task.swift in Sources */,
+				CE0A74992BA8F28100361881 /* TaskToDo.swift in Sources */,
 				2765A86C2C8E1CF900A456A1 /* DesignableTaskCountView.swift in Sources */,
+				277818762CD2B509001A6AA3 /* DesignableQuestionView.swift in Sources */,
+				27624F542CD13B3E00FDCEDF /* AssistantViewModel.swift in Sources */,
 				CE0A74852BA8DE0F00361881 /* DesignableDatePicker.swift in Sources */,
 				2766C7082C893B7B007C0B5A /* UIViewController+Extensions.swift in Sources */,
 			);
@@ -977,6 +997,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		27FBA1CF2CD18CAD0070D95B /* XCRemoteSwiftPackageReference "SwiftOpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jamesrochabrun/SwiftOpenAI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		5813330B2BA0A463001E17B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -988,6 +1016,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		27FBA1D02CD18CAD0070D95B /* SwiftOpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FBA1CF2CD18CAD0070D95B /* XCRemoteSwiftPackageReference "SwiftOpenAI" */;
+			productName = SwiftOpenAI;
+		};
 		5813330C2BA0A463001E17B4 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5813330B2BA0A463001E17B4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

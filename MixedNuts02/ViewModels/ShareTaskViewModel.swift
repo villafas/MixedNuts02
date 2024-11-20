@@ -24,7 +24,7 @@ class ShareTaskViewModel {
     
     //MARK: - Methods
     
-    func shareTask(_ chosenFriends: [IndexPath], _ taskObj: Task) {
+    func shareTask(_ chosenFriends: [IndexPath], _ taskObj: TaskToDo) {
         for friend in chosenFriends {
             let friendObj = friendsCollection[friend.row]
             var newTask = taskObj

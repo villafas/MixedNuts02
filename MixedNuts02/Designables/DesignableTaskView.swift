@@ -16,7 +16,7 @@ class DesignableTaskView: UIView {
     @IBOutlet weak var taskButton: UIButton!
     var viewHeight = 81.0
     
-    var taskObj: Task?
+    var taskObj: TaskToDo?
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
             didSet {
@@ -50,7 +50,7 @@ class DesignableTaskView: UIView {
     }
     
     //MARK: - View instantiation
-    class func instanceFromNib(setTask: Task) -> DesignableTaskView{
+    class func instanceFromNib(setTask: TaskToDo) -> DesignableTaskView{
         let task = UINib(nibName: "TaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableTaskView
         task.taskObj = setTask
         task.taskTitle.text = "\(setTask.title)"

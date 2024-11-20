@@ -234,7 +234,7 @@ class TaskListViewController: UIViewController, UITableViewDelegate, UITableView
         viewModel.rejectTask(taskID: id)
     }
     
-    func acceptTask(task: Task){
+    func acceptTask(task: TaskToDo){
         viewModel.acceptTask(task)
     }
     

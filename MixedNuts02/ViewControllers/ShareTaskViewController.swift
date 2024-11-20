@@ -16,7 +16,7 @@ class ShareTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var selectedItems: [IndexPath] = []
     
-    var taskObj: Task?
+    var taskObj: TaskToDo?
     
     private let viewModel = ShareTaskViewModel()
     

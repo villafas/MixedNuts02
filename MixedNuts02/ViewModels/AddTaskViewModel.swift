@@ -26,7 +26,7 @@ class AddTaskViewModel {
     
     //MARK: - Methods
     func addTask(title: String, course: String, notes: String?, dueDate: Date, markWeight: Int?) {
-        var newTask = Task(id: "", title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: false)
+        var newTask = TaskToDo(id: "", title: title, course: course, notes: notes, dueDate: dueDate, markWeight: markWeight, isComplete: false)
         
         FirebaseManager.shared.addTask(newTask) { [weak self] result in
             switch result {
@@ -55,7 +55,7 @@ class AddTaskViewModel {
         }
     }
     
-    func updateTask(task: Task) {
+    func updateTask(task: TaskToDo) {
         FirebaseManager.shared.updateTask(task) { [weak self] result in
             switch result {
             case .success:

@@ -11,7 +11,7 @@ import UserNotifications
 struct NotificationHelper {
     //MARK: - Notification Logic
     
-    static func scheduleNotifications(taskObj: Task, intervals: [TimeInterval]) {
+    static func scheduleNotifications(taskObj: TaskToDo, intervals: [TimeInterval]) {
         if intervals.isEmpty{
             return
         }

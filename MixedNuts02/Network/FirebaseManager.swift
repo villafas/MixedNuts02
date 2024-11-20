@@ -31,7 +31,7 @@ class FirebaseManager {
     
     
     //MARK: - Fetch Methods
-    func fetchTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
+    func fetchTasks(completion: @escaping (Result<[TaskToDo], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         
@@ -44,9 +44,9 @@ class FirebaseManager {
                     return
                 }
                 
-                var tasks: [Task] = []
+                var tasks: [TaskToDo] = []
                 for document in querySnapshot!.documents {
-                    let task = Task(snapshot: document)
+                    let task = TaskToDo(snapshot: document)
                     tasks.append(task)
                 }
                 
@@ -54,7 +54,7 @@ class FirebaseManager {
             }
     }
     
-    func fetchTodaysTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
+    func fetchTodaysTasks(completion: @escaping (Result<[TaskToDo], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
         
@@ -78,9 +78,9 @@ class FirebaseManager {
                     return
                 }
                 
-                var tasks: [Task] = []
+                var tasks: [TaskToDo] = []
                 for document in querySnapshot!.documents {
-                    let task = Task(snapshot: document)
+                    let task = TaskToDo(snapshot: document)
                     tasks.append(task)
                 }
                 
@@ -103,7 +103,7 @@ class FirebaseManager {
             
             for document in querySnapshot!.documents {
                 let uid = document.get("uid") as! String
-                let task = Task(snapshot: document)
+                let task = TaskToDo(snapshot: document)
                 
                 dispatchGroup.enter()  // Enter the group before starting async work
                 
@@ -234,7 +234,7 @@ class FirebaseManager {
                 var completeCount: Int = 0
                 var incompleteCount: Int = 0
                 for document in querySnapshot!.documents {
-                    let task = Task(snapshot: document)
+                    let task = TaskToDo(snapshot: document)
                     if task.isComplete == true {
                         completeCount += 1
                     } else {
@@ -246,6 +246,43 @@ class FirebaseManager {
                 taskCount.append(incompleteCount)
                 
                 completion(.success(taskCount))
+            }
+    }
+    
+    func fetchWeeklyTasks(completion: @escaping (Result<[TaskToDo], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // Get the start of the week (e.g., Monday at 00:00:00)
+        let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!
+        
+        // Get the end of the week (e.g., Sunday at 23:59:59)
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
+        let endOfWeekEndOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: endOfWeek)!
+        
+        
+        // Query for tasks due this week (from startOfWeek to endOfWeekEndOfDay)
+        tasksCollection
+            .whereField("dueDate", isGreaterThanOrEqualTo: startOfWeek)
+            .whereField("dueDate", isLessThanOrEqualTo: endOfWeekEndOfDay)
+            .whereField("isComplete", isEqualTo: true)
+            .order(by: "dueDate")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                var tasks: [TaskToDo] = []
+                for document in querySnapshot!.documents {
+                    let task = TaskToDo(snapshot: document)
+                    tasks.append(task)
+                }
+                
+                completion(.success(tasks))
             }
     }
     
@@ -423,7 +460,7 @@ class FirebaseManager {
     //MARK: - CRUD Methods
     
     // Function to add a task to Firestore using toAnyObject()
-    func addTask(_ task: Task, completion: @escaping (Result<String, Error>) -> Void) {
+    func addTask(_ task: TaskToDo, completion: @escaping (Result<String, Error>) -> Void) {
         let taskData = task.toAnyObject()  // Convert Task object to a dictionary
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
@@ -460,7 +497,7 @@ class FirebaseManager {
         completion(.success(courseID))  // Return the ID
     }
     
-    func updateTask(_ task: Task, completion: @escaping (Result<Void, Error>) -> Void) {
+    func updateTask(_ task: TaskToDo, completion: @escaping (Result<Void, Error>) -> Void) {
         let taskData = task.toAnyObject()  // Convert Task object to a dictionary
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
@@ -725,7 +762,7 @@ class FirebaseManager {
     }
     
     // Function to add a task to Firestore using toAnyObject()
-    func shareTask(_ task: Task, _ toId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func shareTask(_ task: TaskToDo, _ toId: String, completion: @escaping (Result<Void, Error>) -> Void) {
         let taskData = task.toAnyObjectWithId()  // Convert Task object to a dictionary
         let userDbRef = db.collection("users").document(toId)
         let tasksCollection = userDbRef.collection("sharedTasks")
@@ -743,7 +780,7 @@ class FirebaseManager {
         completion(.success(()))  // Return the ID
     }
     
-    func acceptTask(_ task: Task, completion: @escaping (Result<String, Error>) -> Void) {
+    func acceptTask(_ task: TaskToDo, completion: @escaping (Result<String, Error>) -> Void) {
         var newTaskId = ""
         let dispatchGroup = DispatchGroup()  // Create a dispatch group
         var errorOccurred: Error? = nil  // Track any error that occurs

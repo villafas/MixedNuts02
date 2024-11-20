@@ -18,7 +18,7 @@ class DesignableExpandedTaskView: DesignableTaskView {
     @IBOutlet weak var shareButton: UIButton!
     
     //MARK: - Expanded task view instantiation
-    override class func instanceFromNib(setTask: Task) -> DesignableExpandedTaskView{
+    override class func instanceFromNib(setTask: TaskToDo) -> DesignableExpandedTaskView{
         let task = UINib(nibName: "ExpandedTaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableExpandedTaskView
         task.taskObj = setTask
         task.taskTitle.text = "\(setTask.title)"

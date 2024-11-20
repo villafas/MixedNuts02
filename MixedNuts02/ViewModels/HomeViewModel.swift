@@ -15,7 +15,7 @@ class HomeViewModel {
 
     var errorMessage: String?
     
-    var taskCollection = [Task]() // holds format for table view structure
+    var taskCollection = [TaskToDo]() // holds format for table view structure
     var weeklyTaskCount = [Int]()
     var nextCourse: Course?
     var nextCourseSchedule: DaySchedule?

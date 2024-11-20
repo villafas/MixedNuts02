@@ -114,7 +114,7 @@ class TaskListViewModel {
         }
     }
     
-    func acceptTask(_ task: Task) {
+    func acceptTask(_ task: TaskToDo) {
         firebaseManager.acceptTask(task) { [weak self] result in
             switch result {
             case .success(let newId):

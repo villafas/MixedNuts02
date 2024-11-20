@@ -15,7 +15,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var db: Firestore!
     
-    var taskList: [Task]?
+    var taskList: [TaskToDo]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        taskList = [Task]()
+        taskList = [TaskToDo]()
         
         db = Firestore.firestore()
         
@@ -40,7 +40,7 @@ class ArchiveViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    let task = Task(snapshot: document)
+                    let task = TaskToDo(snapshot: document)
                     self.taskList!.append(task)
                 }
                 self.taskTable.reloadData();

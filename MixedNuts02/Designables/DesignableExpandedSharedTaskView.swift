@@ -18,7 +18,7 @@ class DesignableExpandedSharedTaskView: DesignableSharedTaskView {
     @IBOutlet weak var declineButton: UIButton!
     
     //MARK: - Expanded task view instantiation
-    override class func instanceFromNib(setTask: Task, setFriend: FriendUser) -> DesignableExpandedSharedTaskView{
+    override class func instanceFromNib(setTask: TaskToDo, setFriend: FriendUser) -> DesignableExpandedSharedTaskView{
         let task = UINib(nibName: "ExpandedSharedTaskView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! DesignableExpandedSharedTaskView
         task.taskObj = setTask
         task.friendObj = setFriend
