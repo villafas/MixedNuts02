@@ -21,7 +21,12 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
     
     //let dates = ["7/10/2017", "7/11/2017", "7/12/2017", "7/13/2017", "7/14/2017", "7/15/2017", "7/16/2017"]
     var mergedRanges: [CellRange] = [] // Store merged ranges as a property
-    let days = ["MONDAY", "TUESDAY", "WEDNSDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+    //let days = ["MONDAY", "TUESDAY", "WEDNSDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+    private lazy var days: [String] = {
+        let startOfWeek = Calendar.current.startOfWeek() ?? Date() // Calculate the start of the current week
+        return generateDateHeaders(startDate: startOfWeek, daysCount: 7) // Generate headers for 7 days
+    }()
+    
     let dayColors = [UIColor(red: 0.918, green: 0.224, blue: 0.153, alpha: 1),
                      UIColor(red: 0.106, green: 0.541, blue: 0.827, alpha: 1),
                      UIColor(red: 0.200, green: 0.620, blue: 0.565, alpha: 1),
@@ -89,6 +94,7 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
         refreshCourses()
     }
     
+
     //MARK: - Model & Controller Binding
     
     private func bindViewModel() {
@@ -288,6 +294,23 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
     }
     
     //MARK: - Data formatting
+    
+    //generating the date headers Example: "Mon, Nov 27"
+    private func generateDateHeaders(startDate: Date, daysCount: Int) -> [String] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, MMM dd"
+
+        var headers: [String] = []
+        var currentDate = startDate
+
+        for _ in 0..<daysCount {
+            headers.append(formatter.string(from: currentDate))
+            // Move to the next day
+            currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
+        }
+
+        return headers
+    }
     
     // Function to convert time into an index (6 AM -> 0, 7 AM -> 1, ..., 11 PM -> 17)
     func timeToIndex(_ time: Time) -> Int {
