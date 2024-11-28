@@ -7,6 +7,14 @@
 
 import Foundation
 
+extension Calendar {
+    func startOfWeek(for date: Date = Date()) -> Date? {
+        var components = dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+        components.weekday = 2
+        return self.date(from: components)
+    }
+}
+
 extension Date{
     // Date extension for conversion and formatting
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
