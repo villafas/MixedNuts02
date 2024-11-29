@@ -26,7 +26,6 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
         let startOfWeek = Calendar.current.startOfWeek() ?? Date() // Calculate the start of the current week
         return generateDateHeaders(startDate: startOfWeek, daysCount: 7) // Generate headers for 7 days
     }()
-    
     let dayColors = [UIColor(red: 0.918, green: 0.224, blue: 0.153, alpha: 1),
                      UIColor(red: 0.106, green: 0.541, blue: 0.827, alpha: 1),
                      UIColor(red: 0.200, green: 0.620, blue: 0.565, alpha: 1),
@@ -94,7 +93,6 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
         refreshCourses()
     }
     
-
     //MARK: - Model & Controller Binding
     
     private func bindViewModel() {
@@ -161,72 +159,125 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
     }
     
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? {
-        // Handle the case for day titles (frozen row)
+        // Handle day titles (frozen row at the top)
         if case (1...(days.count + 1), 0) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: DayTitleCell.self), for: indexPath) as! DayTitleCell
             cell.label.text = days[indexPath.column - 1]
             cell.label.textColor = dayColors[indexPath.column - 1]
-            cell.backgroundColor = .clear // Set a clear background for header cells
+            cell.backgroundColor = .clear
             return cell
         }
-        
-        // Handle the case for the time title (frozen cell)
-        else if case (0, 0) = (indexPath.column, indexPath.row) {
-            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeTitleCell.self), for: indexPath) as! TimeTitleCell
-            cell.label.text = "TIME"
-            cell.backgroundColor = .clear // Set a clear background for header cells
-            return cell
-        }
-        
-        // Handle the case for time cells
+
+        // Handle time titles (frozen column on the left)
         else if case (0, 1...(hours.count + 1)) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeCell.self), for: indexPath) as! TimeCell
             cell.label.text = hours[indexPath.row - 1]
             cell.backgroundColor = indexPath.row % 2 == 0 ? evenRowColor : oddRowColor
             return cell
         }
-        
+
         // Handle schedule cells
         else if case (1...(days.count + 1), 1...(hours.count + 2)) = (indexPath.column, indexPath.row) {
             let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: ScheduleCell.self), for: indexPath) as! ScheduleCell
             let text = data[indexPath.column - 1][indexPath.row - 1]
-            
-            // Reset the cell's label and background color for every call
-            cell.label.text = nil
-            cell.backgroundColor = .clear // Clear background initially
 
-            // Check if the current cell is part of a merged cell range
-            if isMergedCellAt(indexPath) {
-                // If this cell is part of a merged range but not the top-left, we do not display text
-                if isTopLeftOfMergedCell(at: indexPath) {
-                    // Display text for the top-left cell of the merged range
-                    cell.label.text = text
-                    let color = dayColors[indexPath.column - 1]
-                    cell.label.textColor = color
-                    cell.backgroundColor = color.withAlphaComponent(0.3) // Set background for filled cells
+            // Reset the cell
+            cell.label.text = nil
+            cell.backgroundColor = .clear
+
+            if !text.isEmpty {
+                cell.label.text = text
+
+                // Differentiate between tasks and courses
+                if text.contains("Task:") {
+                    // Highlight tasks differently
+                    cell.backgroundColor = UIColor.orange.withAlphaComponent(0.3) // Task color
+                    cell.label.textColor = .orange
                 } else {
-                    // This is a merged cell but not the top-left cell
-                    cell.label.text = nil
-                    cell.backgroundColor = .clear // Keep it clear or a default color
+                    // Default for courses
+                    let color = dayColors[indexPath.column - 1]
+                    cell.backgroundColor = color.withAlphaComponent(0.3)
+                    cell.label.textColor = color
                 }
             } else {
-                // If the cell is empty
-                if text.isEmpty {
-                    cell.backgroundColor = indexPath.row % 2 == 0 ? evenRowColor : oddRowColor // Alternating color for empty cells
-                } else {
-                    // If the cell contains text but isn't part of a merge
-                    cell.label.text = text
-                    let color = dayColors[indexPath.column - 1]
-                    cell.label.textColor = color
-                    cell.backgroundColor = color.withAlphaComponent(0.3) // Set background for filled cells
-                }
+                // Empty cells
+                cell.backgroundColor = indexPath.row % 2 == 0 ? evenRowColor : oddRowColor
             }
 
             return cell
         }
-        
+
+        // Default return
         return nil
     }
+    
+//    func spreadsheetView(_ spreadsheetView: SpreadsheetView, cellForItemAt indexPath: IndexPath) -> Cell? {
+//        // Handle the case for day titles (frozen row)
+//        if case (1...(days.count + 1), 0) = (indexPath.column, indexPath.row) {
+//            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: DayTitleCell.self), for: indexPath) as! DayTitleCell
+//            cell.label.text = days[indexPath.column - 1]
+//            cell.label.textColor = dayColors[indexPath.column - 1]
+//            cell.backgroundColor = .clear // Set a clear background for header cells
+//            return cell
+//        }
+//        
+//        // Handle the case for the time title (frozen cell)
+//        else if case (0, 0) = (indexPath.column, indexPath.row) {
+//            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeTitleCell.self), for: indexPath) as! TimeTitleCell
+//            cell.label.text = "TIME"
+//            cell.backgroundColor = .clear // Set a clear background for header cells
+//            return cell
+//        }
+//        
+//        // Handle the case for time cells
+//        else if case (0, 1...(hours.count + 1)) = (indexPath.column, indexPath.row) {
+//            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeCell.self), for: indexPath) as! TimeCell
+//            cell.label.text = hours[indexPath.row - 1]
+//            cell.backgroundColor = indexPath.row % 2 == 0 ? evenRowColor : oddRowColor
+//            return cell
+//        }
+//        
+//        // Handle schedule cells
+//        else if case (1...(days.count + 1), 1...(hours.count + 2)) = (indexPath.column, indexPath.row) {
+//            let cell = spreadsheetView.dequeueReusableCell(withReuseIdentifier: String(describing: ScheduleCell.self), for: indexPath) as! ScheduleCell
+//            let text = data[indexPath.column - 1][indexPath.row - 1]
+//            
+//            // Reset the cell's label and background color for every call
+//            cell.label.text = nil
+//            cell.backgroundColor = .clear // Clear background initially
+//
+//            // Check if the current cell is part of a merged cell range
+//            if isMergedCellAt(indexPath) {
+//                // If this cell is part of a merged range but not the top-left, we do not display text
+//                if isTopLeftOfMergedCell(at: indexPath) {
+//                    // Display text for the top-left cell of the merged range
+//                    cell.label.text = text
+//                    let color = dayColors[indexPath.column - 1]
+//                    cell.label.textColor = color
+//                    cell.backgroundColor = color.withAlphaComponent(0.3) // Set background for filled cells
+//                } else {
+//                    // This is a merged cell but not the top-left cell
+//                    cell.label.text = nil
+//                    cell.backgroundColor = .clear // Keep it clear or a default color
+//                }
+//            } else {
+//                // If the cell is empty
+//                if text.isEmpty {
+//                    cell.backgroundColor = indexPath.row % 2 == 0 ? evenRowColor : oddRowColor // Alternating color for empty cells
+//                } else {
+//                    // If the cell contains text but isn't part of a merge
+//                    cell.label.text = text
+//                    let color = dayColors[indexPath.column - 1]
+//                    cell.label.textColor = color
+//                    cell.backgroundColor = color.withAlphaComponent(0.3) // Set background for filled cells
+//                }
+//            }
+//
+//            return cell
+//        }
+//        
+//        return nil
+//    }
 
     // Helper function to determine if this cell is the top-left cell of a merged range
     private func isTopLeftOfMergedCell(at indexPath: IndexPath) -> Bool {
@@ -294,23 +345,6 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
     }
     
     //MARK: - Data formatting
-    
-    //generating the date headers Example: "Mon, Nov 27"
-    private func generateDateHeaders(startDate: Date, daysCount: Int) -> [String] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE, MMM dd"
-
-        var headers: [String] = []
-        var currentDate = startDate
-
-        for _ in 0..<daysCount {
-            headers.append(formatter.string(from: currentDate))
-            // Move to the next day
-            currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
-        }
-
-        return headers
-    }
     
     // Function to convert time into an index (6 AM -> 0, 7 AM -> 1, ..., 11 PM -> 17)
     func timeToIndex(_ time: Time) -> Int {
@@ -393,6 +427,23 @@ class TimetableViewController: UIViewController, SpreadsheetViewDataSource, Spre
         }
         
         print(columnWidths)
+    }
+    
+    
+    //generating the date headers
+    private func generateDateHeaders(startDate: Date, daysCount: Int) -> [String] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEE, MMM dd" // Format: Mon, Nov 27
+
+        var headers: [String] = []
+        var currentDate = startDate
+
+        for _ in 0..<daysCount {
+            headers.append(formatter.string(from: currentDate))
+            currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
+        }
+
+        return headers
     }
     
 }

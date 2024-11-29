@@ -54,6 +54,7 @@ class FirebaseManager {
             }
     }
     
+    // Fetching Today's Task
     func fetchTodaysTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("tasks")
@@ -88,6 +89,39 @@ class FirebaseManager {
             }
     }
 
+    
+    
+    // Fetching the Weeks Task
+    func fetchWeeklyTasks(completion: @escaping (Result<[Task], Error>) -> Void) {
+        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
+        let tasksCollection = userDbRef.collection("tasks")
+        
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now))!
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
+
+        tasksCollection
+            .whereField("dueDate", isGreaterThanOrEqualTo: startOfWeek)
+            .whereField("dueDate", isLessThanOrEqualTo: endOfWeek)
+            .order(by: "dueDate")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                var tasks: [Task] = []
+                for document in querySnapshot!.documents {
+                    let task = Task(snapshot: document)
+                    tasks.append(task)
+                }
+
+                completion(.success(tasks))
+            }
+    }
+    
+    //Fetch the Pending Tasks
     func fetchPendingTasks(completion: @escaping (Result<[SharedTask], Error>) -> Void) {
         let userDbRef = db.collection("users").document(AppUser.shared.uid!)
         let tasksCollection = userDbRef.collection("sharedTasks")
@@ -294,6 +328,9 @@ class FirebaseManager {
             completion(.success(details))
         }
     }
+    
+    
+    //MARK: - End of task
     
     func isUsernameTaken(_ username: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let usersCollection = Firestore.firestore().collection("users")
@@ -533,55 +570,6 @@ class FirebaseManager {
         }
     }
     
-    // OLD
-    /*
-    func fetchTasks(forDate dateComp: DateComponents, completion: @escaping (Result<[Task], Error>) -> Void) {
-        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
-        let tasksCollection = userDbRef.collection("tasks")
-        
-        tasksCollection
-            .whereField("dueDate", isDateEqual: dateComp)
-            .order(by: "isComplete", descending: false)
-            .getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                
-                var tasks: [Task] = []
-                for document in querySnapshot!.documents {
-                    let task = Task(snapshot: document)
-                    tasks.append(task)
-                }
-                
-                completion(.success(tasks))
-            }
-    }
-    
-    func fetchTaskDates(completion: @escaping (Result<[Date], Error>) -> Void) {
-        let userDbRef = db.collection("users").document(AppUser.shared.uid!)
-        let tasksCollection = userDbRef.collection("tasks")
-        
-        tasksCollection
-            .whereField("isComplete", isEqualTo: false)
-            .getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    completion(.failure(error))
-                    return
-                }
-                
-                var dates: [Date] = []
-                for document in querySnapshot!.documents {
-                    let taskDate = ((document.data()["dueDate"]) as! Timestamp).dateValue().startOfDay;
-                    dates.append(taskDate)
-                }
-                
-                completion(.success(dates))
-            }
-    }
-     */
-    
-
     func sendRequest(_ requests: [Friendship], completion: @escaping (Result<Void, Error>) -> Void) {
         let requestToData = requests[0].toAnyObject()
         let requestFromData = requests[1].toAnyObject()
@@ -592,14 +580,14 @@ class FirebaseManager {
         let otherFriendsCollection = friendDbRef.collection("friends")
         
         // Add a new document with an auto-generated ID and get the reference
-        let newDocumentRef = myFriendsCollection.addDocument(data: requestToData) { error in
+        _ = myFriendsCollection.addDocument(data: requestToData) { error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
         }
         
-        let otherDocumentRef = otherFriendsCollection.addDocument(data: requestFromData) { error in
+        _ = otherFriendsCollection.addDocument(data: requestFromData) { error in
             if let error = error {
                 completion(.failure(error))
                 return
